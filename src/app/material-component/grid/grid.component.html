@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-content>
+      <mat-card-title>Basic grid-list</mat-card-title>
+      <mat-card-subtitle><code>&lt;mat-grid-list&gt;</code> is a two-dimensional list view that arranges cells into grid-based layout. See Material Design spec. <a href="https://material.io/guidelines/components/grid-lists.html">here</a></mat-card-subtitle>
+      <mat-grid-list cols="6" rowHeight="2:1">
+        <mat-grid-tile>A1</mat-grid-tile>
+        <mat-grid-tile>A2</mat-grid-tile>
+        <mat-grid-tile>A3</mat-grid-tile>
+        <mat-grid-tile>A4</mat-grid-tile>
+        <mat-grid-tile>A5</mat-grid-tile>
+        <mat-grid-tile>A6</mat-grid-tile>
+        <mat-grid-tile>B1</mat-grid-tile>
+        <mat-grid-tile>B2</mat-grid-tile>
+        <mat-grid-tile>B3</mat-grid-tile>
+        <mat-grid-tile>B4</mat-grid-tile>
+        <mat-grid-tile>B5</mat-grid-tile>
+        <mat-grid-tile [style.background]="red">B6</mat-grid-tile>
+      </mat-grid-list>  
+    </mat-card-content>        
+</mat-card>
