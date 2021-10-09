@@ -1,21 +1,25 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {LoginObject} from "../models/login-object.model";
-import {Session} from "../models/session.model";
+import { Injectable} from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { LoginObject } from '../models/login-object.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthenticationService {
+    private httpOptions: any;
+    private authenticationUrl = 'https://gendesoft.com/silobolsas-api/Usuarios/Login';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        //Http Headers Options
+        this.httpOptions = {
+            headers : new HttpHeaders(
+                {'Content-Type': 'application/json'}
+            )
+        }
+    }
 
-  private basePath = 'https://gendesoft.com/silobolsas-api/';
-
-  login(loginObj: LoginObject): Observable<Session> {
-    return this.http.post<Session>(this.basePath + 'Usuarios/Login', loginObj);
-  }
-
-  logout(): Observable<Boolean> {
-    return this.http.post<Boolean>(this.basePath + 'logout', {});
-  }
+    login(loginObj: LoginObject) {
+        console.log(`Login User ${loginObj.usuario}`);
+        return this.http.post(this.authenticationUrl, loginObj, this.httpOptions);
+    }
 }

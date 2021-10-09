@@ -1,20 +1,20 @@
 <mat-card>
     <mat-card-content>
-      <mat-card-title>Basic grid-list</mat-card-title>
-      <mat-card-subtitle><code>&lt;mat-grid-list&gt;</code> is a two-dimensional list view that arranges cells into grid-based layout. See Material Design spec. <a href="https://material.io/guidelines/components/grid-lists.html">here</a></mat-card-subtitle>
+      <mat-card-title>Monitoreo de Silobolsas</mat-card-title>
+      <mat-card-subtitle>Monitoreo en timpo real del estados de las silobolsas.</mat-card-subtitle>
       <mat-grid-list cols="6" rowHeight="2:1">
-        <mat-grid-tile>A1</mat-grid-tile>
-        <mat-grid-tile>A2</mat-grid-tile>
-        <mat-grid-tile>A3</mat-grid-tile>
-        <mat-grid-tile>A4</mat-grid-tile>
-        <mat-grid-tile>A5</mat-grid-tile>
-        <mat-grid-tile>A6</mat-grid-tile>
-        <mat-grid-tile>B1</mat-grid-tile>
-        <mat-grid-tile>B2</mat-grid-tile>
-        <mat-grid-tile>B3</mat-grid-tile>
-        <mat-grid-tile>B4</mat-grid-tile>
-        <mat-grid-tile>B5</mat-grid-tile>
-        <mat-grid-tile [style.background]="red">B6</mat-grid-tile>
+        <mat-grid-tile style="background-color: red;">A1 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">A2 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: yellow;">A3 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">A4 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: red;">A5 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">A6 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">B1 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: red;">B2 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">B3 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">B4 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: yellow;">B5 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
+        <mat-grid-tile style="background-color: green;">B6 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
       </mat-grid-list>  
     </mat-card-content>        
 </mat-card>
