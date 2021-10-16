@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -18,8 +17,6 @@ import { DemoMaterialModule } from './demo-material-module';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import { LogInComponent } from './log-in/log-in.component';
-import { UserListComponent } from './silobolsas-component/user/user-list/user-list.component';
-import { UserEditComponent } from './silobolsas-component/user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +25,7 @@ import { UserEditComponent } from './silobolsas-component/user/user-edit/user-ed
     AppHeaderComponent,
     SpinnerComponent,
     AppSidebarComponent,
-    LogInComponent,
-    UserListComponent,
-    UserEditComponent
+    LogInComponent
   ],
   imports: [
     BrowserModule,
