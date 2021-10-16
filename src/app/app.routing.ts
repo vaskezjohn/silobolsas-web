@@ -11,14 +11,14 @@ export const AppRoutes: Routes = [
     component: FullComponent,
     children: [
       {
-        path: 'silobolsa',
+        path: 'dashboard',
         redirectTo: '/dashboard',
         pathMatch: 'full'
       },
       {
         path: '',
         loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule)
+          () => import('./silobolsas-component/silobolsas.module').then(m => m.MaterialComponentsModule)
       },
       {
         path: 'dashboard',

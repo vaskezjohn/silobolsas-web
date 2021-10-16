@@ -26,7 +26,7 @@ export class LogInComponent implements OnInit {
     if(this.usuario && this.password) {
       let login = new LoginObject(this.usuario, this.password);
       this.authenticationService.login(login).toPromise().then(respose => {        
-        this.router.navigate(['../silobolsa']);
+        this.router.navigate(['../dashboard']);
       }).catch(error => {
         console.log('usuario invalido');
         this.showError = true;

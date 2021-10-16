@@ -10,10 +10,10 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MaterialRoutes } from './material.routing';
+import { MaterialRoutes } from './silobolsa.routing';
 import { ButtonsComponent } from './buttons/buttons.component';
 
-import { GridComponent } from './grid/grid.component';
+import { SilobolsaMonitorComponent } from './silobolsa-monitor/silobolsa-monitor.component';
 import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
 import { TabsComponent } from './tabs/tabs.component';
@@ -31,7 +31,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
-import { SilobolsaInfoDialogComponent } from './grid/silobolsa-info-dialog/silobolsa-info-dialog.component';
+import { SilobolsaInfoDialogComponent } from './silobolsa-monitor/silobolsa-info-dialog/silobolsa-info-dialog.component';
 
 @NgModule({
   imports: [
@@ -48,7 +48,7 @@ import { SilobolsaInfoDialogComponent } from './grid/silobolsa-info-dialog/silob
   entryComponents: [DialogOverviewExampleDialogComponent],
   declarations: [
     ButtonsComponent,
-    GridComponent,
+    SilobolsaMonitorComponent,
     ListsComponent,
     MenuComponent,
     TabsComponent,

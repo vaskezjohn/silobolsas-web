@@ -18,6 +18,8 @@ import { DemoMaterialModule } from './demo-material-module';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { UserListComponent } from './silobolsas-component/user/user-list/user-list.component';
+import { UserEditComponent } from './silobolsas-component/user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { LogInComponent } from './log-in/log-in.component';
     AppHeaderComponent,
     SpinnerComponent,
     AppSidebarComponent,
-    LogInComponent
+    LogInComponent,
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

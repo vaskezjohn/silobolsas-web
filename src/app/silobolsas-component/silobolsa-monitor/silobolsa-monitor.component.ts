@@ -4,11 +4,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { SilobolsaInfoDialogComponent } from './silobolsa-info-dialog/silobolsa-info-dialog.component'
 
 @Component({
-  selector: 'app-grid',
-  templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss']
+  selector: 'app-silobolsa-monitor',
+  templateUrl: './silobolsa-monitor.component.html',
+  styleUrls: ['./silobolsa-monitor.component.scss']
 })
-export class GridComponent {
+export class SilobolsaMonitorComponent {
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
