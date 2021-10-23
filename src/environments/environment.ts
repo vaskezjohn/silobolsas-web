@@ -7,4 +7,7 @@ export const environment = {
   production: false,
   base_url: 'https://gendesoft.com/silobolsas-api/',  
   odata_base_url: 'https://gendesoft.com/silobolsas-api/odata/',
+
+  // base_url: 'https://localhost:5003/',  
+  // odata_base_url: 'https://localhost:5003//odata/',
 };

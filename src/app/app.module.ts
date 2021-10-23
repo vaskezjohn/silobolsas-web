@@ -17,6 +17,8 @@ import { DemoMaterialModule } from './demo-material-module';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './account/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LogInComponent } from './log-in/log-in.component';
     AppHeaderComponent,
     SpinnerComponent,
     AppSidebarComponent,
-    LogInComponent
+    LogInComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
