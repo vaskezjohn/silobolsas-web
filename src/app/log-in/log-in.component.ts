@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-<<<<<<< HEAD
 import { AuthenticationService } from '../authentication/services/authentication.service';
 import { Session } from '../authentication/models/session.model';
 import {FormControl, Validators, FormControlName, FormGroup} from '@angular/forms';
@@ -8,12 +7,9 @@ import { LoginObject } from '../authentication/models/login-object.model';
 import { User } from '../authentication/models/user.model';
 import { Role } from '../authentication/models/role';
 import { StorageService } from '../authentication/services/storage.service';
-=======
-import { AuthenticationService } from './services/authentication.service';
-import { User } from './models/user.model';
-import { FormControl, Validators, FormControlName, FormGroup } from '@angular/forms';
-import { LoginObject } from './models/login-object.model';
->>>>>>> 796a23d867225f59d05f554ab39d7b1772f70c59
+
+
+
 
 @Component({
   selector: 'app-log-in',
