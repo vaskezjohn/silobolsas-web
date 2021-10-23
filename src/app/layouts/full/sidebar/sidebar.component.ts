@@ -1,27 +1,25 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
 import { MenuItems } from '../../../shared/menu-items/menu-items';
+import { StorageService } from 'src/app/authentication/services/storage.service';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: []
 })
-export class AppSidebarComponent implements OnDestroy {
-  mobileQuery: MediaQueryList;
-
-  private _mobileQueryListener: () => void;
-
+export class AppSidebarComponent implements OnInit {
+  
+  usuario!: string;
   constructor(
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher,
-    public menuItems: MenuItems
-  ) {
-    this.mobileQuery = media.matchMedia('(min-width: 768px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+    public menuItems: MenuItems,
+    private storageService: StorageService
+  ) {}
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  ngOnInit(): void {
+    this.menuItems.getMenuitem().forEach(
+      item => item.hasPermissions = (item.userRole == this.storageService.getCurrentUser().role) ? true : false
+    );
+    this.menuItems.getMenuitem().forEach(item => console.log(`Rol: ${item.userRole} - Tiene Permisos: ${item.hasPermissions}`));
+    this.usuario = this.storageService.getCurrentUser().firstname;
   }
 }

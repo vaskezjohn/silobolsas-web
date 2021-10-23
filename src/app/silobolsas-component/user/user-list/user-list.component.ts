@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserNewComponent } from '../user-new/user-new.component'
 import { User } from '../models/user.model';
+import { Userervice } from '../service/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -11,16 +12,20 @@ import { User } from '../models/user.model';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[] = [new User('Molinos', 'molinos@molinos.com'),
-  new User('Rosario', 'rosario@rosario.com') 
-  ]; 
+  users: User[] =[]; 
 
   displayedColumns: string[] = ['usuario', 'email', 'operations'];
   dataSource!: MatTableDataSource<User>;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public userervice: Userervice) { }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.users);
+    this.userervice.userList().toPromise().then((respose: any) => {        
+      respose.forEach((item: any) => this.users.push(new User(item.nombre, item.usuario)));
+      this.dataSource = new MatTableDataSource(this.users);
+    }).catch(error => {
+      console.log('Error al obtener los usuario'); 
+    });
+    
   }
 
   deleteUser(user: string){
