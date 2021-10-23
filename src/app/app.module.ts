@@ -18,6 +18,9 @@ import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { AuthorizationInterceptor } from './authentication/interceptor/authorization.interceptor';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './account/reset-password/reset-password.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { AuthorizationInterceptor } from './authentication/interceptor/authoriza
     AppHeaderComponent,
     SpinnerComponent,
     AppSidebarComponent,
-    LogInComponent
+    LogInComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,14 @@
 import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { LoginObject } from '../models/login-object.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticationService {
     private httpOptions: any;
-    private authenticationUrl = 'https://gendesoft.com/silobolsas-api/Usuarios/Login';
+    private authenticationUrl = environment.base_url + 'Usuarios/Login';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
