@@ -1,0 +1,28 @@
+<div>
+    <h1 mat-dialog-title>Nuevo Campo</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+          <form>
+            <mat-form-field>
+              <input matInput [(ngModel)]="campo.descripcion" type="text" placeholder="Descripcion" name="descripcion">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="campo.calle" type="text" placeholder="Calle" name="calle">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="campo.altura" type="text" placeholder="Altura" name="altura">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="campo.telefono" type="text" placeholder="Telefono" name="telefono">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="campo.mail" type="text" placeholder="Mail" name="mail">
+            </mat-form-field>
+          </form>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="campo" cdkFocusInitial>Confirmar</button>
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+  </div>
+
