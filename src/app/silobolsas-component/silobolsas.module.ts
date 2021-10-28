@@ -17,6 +17,8 @@ import { SilobolsaInfoDialogComponent } from './silobolsa-monitor/silobolsa-info
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserNewComponent } from './user/user-new/user-new.component';
+import { CampoListComponent } from './campo/campo-list/campo-list.component';
+import { CampoNewComponent } from './campo/campo-new/campo-new.component';
 
 @NgModule({
   imports: [
@@ -31,11 +33,13 @@ import { UserNewComponent } from './user/user-new/user-new.component';
   ],
   providers: [],
   declarations: [
-    SilobolsaMonitorComponent,    
+    SilobolsaMonitorComponent,
     SilobolsaInfoDialogComponent,
     UserListComponent,
     UserEditComponent,
-    UserNewComponent
+    UserNewComponent,
+    CampoListComponent,
+    CampoNewComponent,
   ]
 })
 export class MaterialComponentsModule {}
