@@ -75,7 +75,7 @@ export class UserListComponent implements OnInit {
   }
 
   clone(user: User): User {
-    var cloned = new User(user.nombre, user.apellido, user.telefono, user.genero, user.email, user.usuario, user.password, user.id, user.idRol);
+    var cloned = new User(user.nombre, user.apellido, user.telefono, user.genero, user.email, user.usuario, '', user.id, user.idRol);
     return cloned;
 }
 

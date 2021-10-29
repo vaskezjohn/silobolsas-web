@@ -25,7 +25,6 @@ export class UserEditComponent implements OnInit {
 
   edit() {
     this.showError = false;
-    this.user.password = 'password';
      this.userervice.edit(this.user).toPromise().then((respose: any) => {              
       this.dialogRef.close(true);
     }).catch(responseError => {
