@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserNewComponent } from '../user-new/user-new.component'
+import { UserNewComponent } from '../user-new/user-new.component';
+import { UserViewComponent } from '../user-view/user-view.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
+import { UserDeleteComponent } from '../user-delete/user-delete.component';
 import { User } from '../models/user.model';
 import { Userervice } from '../service/user.service';
 
@@ -20,7 +23,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.userervice.userList().toPromise().then((respose: any) => {        
-      respose.forEach((item: any) => this.users.push(new User(item.nombre, item.usuario)));
+      respose.forEach((item: any) => this.users.push(new User(item.nombre, item.apellido, item.telefono, item.genero, item.email, item.usuario, item.password, item.id, item.idRol)));
       this.dataSource = new MatTableDataSource(this.users);
     }).catch(error => {
       console.log('Error al obtener los usuario'); 
@@ -28,30 +31,52 @@ export class UserListComponent implements OnInit {
     
   }
 
-  deleteUser(user: string){
-
+  deleteUser(user: User){
+    const dialogRef = this.dialog.open(UserDeleteComponent, {
+      data: this.clone(user)
+    });
+    dialogRef.afterClosed().subscribe(respononse => {
+      if (respononse){
+        this.users =[]
+        this.ngOnInit();
+      }      
+    });
   }
 
-  editUser(user: string){
-  }
+  editUser(user: User){
+    const dialogRef = this.dialog.open(UserEditComponent, {
+      data: this.clone(user)
+    });
+    dialogRef.afterClosed().subscribe(respononse => {
+      if (respononse){
+        this.users =[]
+        this.ngOnInit();
+      }      
+    });
+  }  
 
   newUser() {
     const dialogRef = this.dialog.open(UserNewComponent, {
-      data: new User('', '')
+      data: new User('', '', '', 0, '', '', '')
     });
-    dialogRef.afterClosed().subscribe(user => {
-      if (user != undefined)
-        this.addUser(user);
+    dialogRef.afterClosed().subscribe(respononse => {
+      if (respononse){
+        this.users =[]
+        this.ngOnInit();
+      } 
     });
   }
 
-  addUser(user: User) {
-    this.users.push(new User(user.nombre, user.email));
-    this.dataSource.data = this.users;
+  detailsUser(user: User) {
+    console.log(user.nombre)
+    const dialogRef = this.dialog.open(UserViewComponent, {
+      data: user
+    });    
   }
 
-  detailsUser(user: string) {
-
-  }
+  clone(user: User): User {
+    var cloned = new User(user.nombre, user.apellido, user.telefono, user.genero, user.email, user.usuario, user.password, user.id, user.idRol);
+    return cloned;
+}
 
 }

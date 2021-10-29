@@ -4,29 +4,28 @@ import { User} from '../models/user.model'
 import { Userervice } from '../service/user.service';
 
 @Component({
-  selector: 'app-user-new',
-  templateUrl: './user-new.component.html',
-  styleUrls: ['./user-new.component.css']
+  selector: 'app-user-delete',
+  templateUrl: './user-delete.component.html',
+  styleUrls: ['./user-delete.component.css']
 })
-export class UserNewComponent implements OnInit {
+export class UserDeleteComponent implements OnInit {
 
   public showError: boolean = false;
   public erroMessage: string = 'No se pudo agregar el usuario';
 
-  constructor(public dialogRef: MatDialogRef<UserNewComponent>,
+  constructor(public dialogRef: MatDialogRef<UserDeleteComponent>,
     @ Inject(MAT_DIALOG_DATA) public user: User, public userervice: Userervice) { }
 
   ngOnInit(): void {
   }
 
-  cancelar() {
+  onDismiss() {
     this.dialogRef.close(false);
   }
 
-  add() {
-    this.showError = false;
-    this.user.idRol = 'cf6e4f59-2de6-11ec-b9b8-883882e3ecf6'    
-     this.userervice.add(this.user).toPromise().then((respose: any) => {              
+  onConfirm() {
+    this.showError = false; 
+     this.userervice.delete(this.user).toPromise().then((respose: any) => {              
       this.dialogRef.close(true);
     }).catch(responseError => {
       console.log(responseError);

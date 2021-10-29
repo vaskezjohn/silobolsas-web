@@ -19,6 +19,8 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserNewComponent } from './user/user-new/user-new.component';
 import { CampoListComponent } from './campo/campo-list/campo-list.component';
 import { CampoNewComponent } from './campo/campo-new/campo-new.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
+import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 
 @NgModule({
   imports: [
@@ -40,6 +42,8 @@ import { CampoNewComponent } from './campo/campo-new/campo-new.component';
     UserNewComponent,
     CampoListComponent,
     CampoNewComponent,
+    UserViewComponent,
+    UserDeleteComponent
   ]
 })
 export class MaterialComponentsModule {}

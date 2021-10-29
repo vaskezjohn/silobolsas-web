@@ -1,0 +1,27 @@
+
+  <div>
+    <h1 mat-dialog-title>Usuario</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+          <form>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.nombre" type="text" placeholder="Nombre" name="nombre" disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.apellido" type="text" placeholder="Apellido" name="apellido" disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.telefono" type="text" placeholder="Teléfono" name="telefono"disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.email" type="text" placeholder="E-mail" name="email" disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.usuario" type="text" placeholder="Usuario" name="usuario" disabled>
+            </mat-form-field>            
+          </form>
+      </div>
+  </div>
+  <div mat-dialog-actions>    
+    <button mat-raised-button color="primary" (click)="close()">Cerrar</button>    
+  </div>

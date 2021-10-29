@@ -2,10 +2,16 @@
   <div>
     <h1 mat-dialog-title>Nuevo Usuario</h1>
     <div mat-dialog-content>
-        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">          
           <form>
             <mat-form-field>
-              <input matInput [(ngModel)]="user.nombre" type="text" placeholder="Nombre" name="monre">
+              <input matInput [(ngModel)]="user.nombre" type="text" placeholder="Nombre" name="nombre">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.apellido" type="text" placeholder="Apellido" name="apellido">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.telefono" type="text" placeholder="Teléfono" name="telefono">
             </mat-form-field>
             <mat-form-field>
               <input matInput [(ngModel)]="user.email" type="text" placeholder="E-mail" name="email">
@@ -14,13 +20,18 @@
               <input matInput [(ngModel)]="user.usuario" type="text" placeholder="Usuario" name="usuario">
             </mat-form-field>
             <mat-form-field>
-              <input matInput [(ngModel)]="user.password" type="text" placeholder="Password" name="pasword">
+              <input matInput [(ngModel)]="user.password" type="password" placeholder="Password" name="pasword">
             </mat-form-field>
           </form>
       </div>
   </div>
+  <div *ngIf="showError" class="alert alert-danger" fxLayout="row" fxLayoutAlign="center center"
+    style="background-color: white; color: red">
+    {{erroMessage}}
+  </div>
   <div mat-dialog-actions>    
-    <button mat-raised-button color="primary" [mat-dialog-close]="user" cdkFocusInitial>Confirmar</button>
+    <button mat-raised-button color="primary" (click)="add()">Confirmar</button>
     <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>    
   </div>
+  
   
