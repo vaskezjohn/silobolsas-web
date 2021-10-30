@@ -21,6 +21,8 @@ import { CampoListComponent } from './campo/campo-list/campo-list.component';
 import { CampoNewComponent } from './campo/campo-new/campo-new.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
 import { UserDeleteComponent } from './user/user-delete/user-delete.component';
+import { SilobolsaListComponent } from './silobolsa/silobolsa-list/silobolsa-list.component';
+import { SilobolsaNewComponent } from './silobolsa/silobolsa-new/silobolsa-new.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ import { UserDeleteComponent } from './user/user-delete/user-delete.component';
     CampoListComponent,
     CampoNewComponent,
     UserViewComponent,
-    UserDeleteComponent
+    UserDeleteComponent,
+    SilobolsaListComponent,
+    SilobolsaNewComponent
   ]
 })
 export class MaterialComponentsModule {}

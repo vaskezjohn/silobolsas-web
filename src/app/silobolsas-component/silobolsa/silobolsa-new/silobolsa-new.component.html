@@ -1,0 +1,23 @@
+<div>
+    <h1 mat-dialog-title>Nueva Silobolsa</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+            <form>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="silobolsa.tipoGrano" type="text" placeholder="Tipo de grano"
+                        name="tipoGrano">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="silobolsa.fechaEmbolsado" type="text" placeholder="Fecha de embolsado" name="fechaEmbolsado">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="silobolsa.detalle" type="text" placeholder="Detalle" name="detalle">
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" [mat-dialog-close]="silobolsa" cdkFocusInitial>Confirmar</button>
+        <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    </div>
+</div>
