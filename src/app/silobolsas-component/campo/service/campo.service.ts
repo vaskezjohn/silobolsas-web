@@ -9,11 +9,9 @@ import { environment } from 'src/environments/environment';
 export class CampoService {
     private httpOptions: any;
 
-
-    //private basePath  = 'https://gendesoft.com/silobolsas-api/';
+    private basePath = environment.base_url;
+    private basePathOdata = environment.odata_base_url;
     private productorId = '08d999ca-09d7-49bf-8c0a-22601330e571';
-
-    private basePath  = environment.base_url;
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -25,18 +23,21 @@ export class CampoService {
     }
 
     CampoList() {
-      return this.http.get(this.basePath + 'odata/Campos?%24filter=ProductoresID%20eq%20' + this.productorId , this.httpOptions);
+      return this.http.get(this.basePathOdata + 'Campos', this.httpOptions);
+      //return this.http.get(this.basePath + 'odata/Campos?%24filter=ProductoresID%20eq%20' + this.productorId , this.httpOptions);
     }
 
     add(campo: Campo) {
+      campo.productorId = this.productorId;
       return this.http.post(this.basePath + 'Campos', campo, this.httpOptions);
     }
 
     edit(campo: Campo) {
-        return this.http.put(this.basePath + 'Campos/' + campo.id, campo, this.httpOptions);
+      campo.productorId = this.productorId;
+      return this.http.put(this.basePath + 'Campos/' + campo.id, campo, this.httpOptions);
     }
 
     delete(campo: Campo) {
-        return this.http.delete(this.basePath + 'Campos/' + campo.id, this.httpOptions);
+        return this.http.delete(this.basePath+ 'Campos/' + campo.id, this.httpOptions);
     }
 }
