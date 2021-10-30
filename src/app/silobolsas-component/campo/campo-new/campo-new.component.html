@@ -21,8 +21,12 @@
           </form>
       </div>
   </div>
+  <div *ngIf="showError" class="alert alert-danger" fxLayout="row" fxLayoutAlign="center center"
+  style="background-color: white; color: red">
+  {{erroMessage}}
+  </div>
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" [mat-dialog-close]="campo" cdkFocusInitial>Confirmar</button>
+    <button mat-raised-button color="primary" (click)="add()">Confirmar</button>
     <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
   </div>
 
