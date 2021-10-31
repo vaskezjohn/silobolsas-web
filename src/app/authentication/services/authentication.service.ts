@@ -20,7 +20,6 @@ export class AuthenticationService {
     }
 
     login(loginObj: LoginObject) {
-        console.log(`Login User ${loginObj.usuario}`);
         return this.http.post(this.authenticationUrl, loginObj, this.httpOptions);
     }
 }

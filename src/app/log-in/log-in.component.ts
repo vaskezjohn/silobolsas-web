@@ -31,8 +31,9 @@ export class LogInComponent implements OnInit {
     this.showError = false;
     if (this.usuario && this.password) {
       let login = new LoginObject(this.usuario, this.password);
-      this.authenticationService.login(login).toPromise().then((respose: any) => {        
-        let sesion = new Session(respose.data.token, respose.data.tokenExpires, new User(respose.data.id, respose.data.email, respose.data.nombre, respose.data.apellido, respose.data.telefono, Role[respose.data.roles.rol == Role.ADMIN? Role.ADMIN:Role.AGRO]));
+      this.authenticationService.login(login).toPromise().then((respose: any) => {      
+        console.log('responseUser',respose);  
+        let sesion = new Session(respose.data.token, respose.data.tokenExpires, new User(respose.data.id, respose.data.email, respose.data.nombre, respose.data.apellido, respose.data.telefono,respose.data.rolesID,respose.data.productoresID, Role[respose.data.roles.rol == Role.ADMIN? Role.ADMIN:Role.AGRO]));
         this.correctLogin(sesion)
       }).catch(error => {
         console.log('usuario invalido');
