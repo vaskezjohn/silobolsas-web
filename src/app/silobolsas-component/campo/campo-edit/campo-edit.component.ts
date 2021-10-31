@@ -4,16 +4,16 @@ import { Campo} from '../models/campo.model'
 import { CampoService } from '../service/campo.service';
 
 @Component({
-  selector: 'app-campo-new',
-  templateUrl: './campo-new.component.html',
-  styleUrls: ['./campo-new.component.css']
+  selector: 'app-campo-edit',
+  templateUrl: './campo-edit.component.html',
+  styleUrls: ['./campo-edit.component.css']
 })
-export class CampoNewComponent implements OnInit {
+export class CampoEditComponent implements OnInit {
 
   public showError: boolean = false;
-  public erroMessage: string = 'No se pudo agregar el campo';
+  public erroMessage!: string;
 
-  constructor(public dialogRef: MatDialogRef<CampoNewComponent>,
+  constructor(public dialogRef: MatDialogRef<CampoEditComponent>,
     @ Inject(MAT_DIALOG_DATA) public campo: Campo, public campoService: CampoService) { }
 
   ngOnInit(): void {
@@ -23,15 +23,14 @@ export class CampoNewComponent implements OnInit {
     this.dialogRef.close(false);
   }
 
-  add() {
+  edit() {
     this.showError = false;
-     this.campoService.add(this.campo).toPromise().then((respose: any) => {
+     this.campoService.edit(this.campo).toPromise().then((respose: any) => {
       this.dialogRef.close(true);
     }).catch(responseError => {
       console.log(responseError);
       this.showError = true;
-      this.erroMessage = responseError.error.message;
+      this.erroMessage = (responseError.status != 500) ? responseError.error.message : 'No se pudo editar el campo';
     });
   }
-
 }

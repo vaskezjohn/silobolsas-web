@@ -4,6 +4,9 @@ export class Campo {
         public calle?: string,
         public altura?: string,
         public telefono?: string,
-        public mail?: string
+        public mail?: string,
+        public id?: string,
+        public localidadId?: number,
+        public productorId?: string
       ) {}
     }

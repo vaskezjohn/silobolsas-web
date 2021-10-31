@@ -20,6 +20,9 @@ import { UserNewComponent } from './user/user-new/user-new.component';
 import { CampoListComponent } from './campo/campo-list/campo-list.component';
 import { CampoNewComponent } from './campo/campo-new/campo-new.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { CampoEditComponent } from './campo/campo-edit/campo-edit.component';
+import { CampoViewComponent } from './campo/campo-view/campo-view.component';
+import { CampoDeleteComponent } from './campo/campo-delete/campo-delete.component';
 import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 import { SilobolsaListComponent } from './silobolsa/silobolsa-list/silobolsa-list.component';
 import { SilobolsaNewComponent } from './silobolsa/silobolsa-new/silobolsa-new.component';
@@ -44,6 +47,9 @@ import { SilobolsaNewComponent } from './silobolsa/silobolsa-new/silobolsa-new.c
     UserNewComponent,
     CampoListComponent,
     CampoNewComponent,
+    CampoViewComponent,
+    CampoEditComponent,
+    CampoDeleteComponent,
     UserViewComponent,
     UserDeleteComponent,
     SilobolsaListComponent,

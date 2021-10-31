@@ -1,0 +1,18 @@
+
+  <div>
+    <h1 mat-dialog-title>Eliminar Campo</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+          <p>¿Desea eliminar el campo {{campo.descripcion}}?</p>
+      </div>
+  </div>
+  <div *ngIf="showError" class="alert alert-danger" fxLayout="row" fxLayoutAlign="center center"
+    style="background-color: white; color: red">
+    {{erroMessage}}
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onConfirm()">Confirmar</button>
+    <button mat-raised-button color="warn" (click)="onDismiss()">Cancelar</button>
+  </div>
+
+

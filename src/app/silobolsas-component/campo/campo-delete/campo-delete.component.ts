@@ -4,28 +4,28 @@ import { Campo} from '../models/campo.model'
 import { CampoService } from '../service/campo.service';
 
 @Component({
-  selector: 'app-campo-new',
-  templateUrl: './campo-new.component.html',
-  styleUrls: ['./campo-new.component.css']
+  selector: 'app-campo-delete',
+  templateUrl: './campo-delete.component.html',
+  styleUrls: ['./campo-delete.component.css']
 })
-export class CampoNewComponent implements OnInit {
+export class CampoDeleteComponent implements OnInit {
 
   public showError: boolean = false;
-  public erroMessage: string = 'No se pudo agregar el campo';
+  public erroMessage: string = 'No se pudo borrar el campo';
 
-  constructor(public dialogRef: MatDialogRef<CampoNewComponent>,
+  constructor(public dialogRef: MatDialogRef<CampoDeleteComponent>,
     @ Inject(MAT_DIALOG_DATA) public campo: Campo, public campoService: CampoService) { }
 
   ngOnInit(): void {
   }
 
-  cancelar() {
+  onDismiss() {
     this.dialogRef.close(false);
   }
 
-  add() {
+  onConfirm() {
     this.showError = false;
-     this.campoService.add(this.campo).toPromise().then((respose: any) => {
+     this.campoService.delete(this.campo).toPromise().then((respose: any) => {
       this.dialogRef.close(true);
     }).catch(responseError => {
       console.log(responseError);

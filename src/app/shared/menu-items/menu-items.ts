@@ -13,7 +13,7 @@ const MENUITEMS = [
   { state: 'dashboard', name: 'Estadísticas', type: 'link', icon: 'av_timer', userRole: 'AGRO' },
   { state: 'silobolsa-monitor', type: 'link', name: 'Monitoreo', icon: 'view_comfy', userRole: 'AGRO' },
   { state: 'user-list', type: 'link', name: 'Usuario', icon: 'view_list', userRole: 'ADMIN' },
-  { state: 'campo-list', type: 'link', name: 'Campos', icon: 'view_comfy', userRole: 'AGRO' },
+  { state: 'campo-list', type: 'link', name: 'Campos', icon: 'terrain', userRole: 'AGRO' },
   { state: 'silobolsa-list', type: 'link', name: 'Silobolsas', icon: 'view_comfy', userRole: 'AGRO' }
 
 ];
