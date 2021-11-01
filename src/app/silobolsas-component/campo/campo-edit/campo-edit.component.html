@@ -7,6 +7,25 @@
             <mat-form-field>
               <input matInput [(ngModel)]="campo.descripcion" type="text" placeholder="Descripción" name="nombre">
             </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Provincia</mat-label>
+              <mat-select formControlName="lstProvincia" (selectionChange)="onProvinciaChange($event.value)" >
+                <mat-option *ngFor="let provincia of resultadoProvincias" [value]="provincia.id">
+                    {{provincia.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Localidad</mat-label>
+              <mat-select [(ngModel)]="campo.localidadId" formControlName="lstLocalidad">
+                <mat-option *ngFor="let localidad of resultadoLocalidades" [value]="localidad.id">
+                    {{localidad.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
             <mat-form-field>
               <input matInput [(ngModel)]="campo.calle" type="text" placeholder="Calle" name="apellido">
             </mat-form-field>

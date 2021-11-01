@@ -7,22 +7,25 @@ import { CampoEditComponent } from '../campo-edit/campo-edit.component';
 import { CampoDeleteComponent } from '../campo-delete/campo-delete.component';
 import { Campo } from '../models/campo.model';
 import { CampoService } from '../service/campo.service';
+import { StorageService } from 'src/app/authentication/services/storage.service';
 
 @Component({
   selector: 'app-campo-list',
   templateUrl: './campo-list.component.html',
   styleUrls: ['./campo-list.component.css']
 })
-export class CampoListComponent implements OnInit {
 
+export class CampoListComponent implements OnInit {
   campos: Campo[] =[];
+
+
 
   displayedColumns: string[] = ['descripcion', 'calle','altura','telefono','mail', 'operations'];
   dataSource!: MatTableDataSource<Campo>;
-  constructor(public dialog: MatDialog, public CampoService: CampoService) { }
+  constructor(public dialog: MatDialog, public CampoService: CampoService, public storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.CampoService.CampoList().toPromise().then((respose: any) => {
+    this.CampoService.CampoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, item.calle, item.altura, item.telefono, item.mail,item.id)));
       this.dataSource = new MatTableDataSource(this.campos);
     }).catch(error => {
