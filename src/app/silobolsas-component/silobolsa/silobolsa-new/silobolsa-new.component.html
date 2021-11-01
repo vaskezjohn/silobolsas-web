@@ -1,23 +1,57 @@
 <div>
-    <h1 mat-dialog-title>Nueva Silobolsa</h1>
+    <h1 mat-dialog-title>{{editMode ? "Edición" : "Nueva" }} Silobolsa</h1>
     <div mat-dialog-content>
         <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
-            <form>
+            <form [formGroup]="form">
+
                 <mat-form-field>
-                    <input matInput [(ngModel)]="silobolsa.tipoGrano" type="text" placeholder="Tipo de grano"
+                    <input matInput formControlName="tipoGrano" type="text" placeholder="Tipo de grano"
                         name="tipoGrano">
+                    <mat-error *ngIf="form.controls['tipoGrano'].hasError('required')">
+                        Tipo de grano es <strong>requerido</strong>
+                    </mat-error>
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput [(ngModel)]="silobolsa.fechaEmbolsado" type="text" placeholder="Fecha de embolsado" name="fechaEmbolsado">
+                    <mat-label>Campos</mat-label>
+                    <mat-select formControlName="campos">
+                        <mat-option *ngFor="let campo of campos; let i = index" [value]="campos[i].ID">
+                            {{campos[i].descripcion}}
+                        </mat-option>
+                    </mat-select>
+
+                    <mat-error *ngIf="form.controls['campos'].hasError('required')">
+                        Campo es <strong>requerido</strong>
+                    </mat-error>
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput [(ngModel)]="silobolsa.detalle" type="text" placeholder="Detalle" name="detalle">
+                    <input matInput formControlName="longitud" type="text" placeholder="Longitud">
+                    <mat-error *ngIf="form.controls['longitud'].hasError('required')">
+                        Longitud es <strong>requerido</strong>
+                    </mat-error>
                 </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput formControlName="latitud" type="text" placeholder="Latitud">
+                    <mat-error *ngIf="form.controls['latitud'].hasError('required')">
+                        Longitud es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput formControlName="detalle" type="text" placeholder="Detalle">
+                    <mat-error *ngIf="form.controls['detalle'].hasError('required')">
+                        Detalle es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+
             </form>
         </div>
     </div>
     <div mat-dialog-actions>
-        <button mat-raised-button color="primary" [mat-dialog-close]="silobolsa" cdkFocusInitial>Confirmar</button>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit"
+            (click)="onSubmit()">Confirmar</button>
         <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
     </div>
 </div>
