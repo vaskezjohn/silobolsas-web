@@ -20,7 +20,7 @@
 
             <mat-form-field>
               <mat-label>Localidad</mat-label>
-              <mat-select [(ngModel)]="campo.localidadId" formControlName="lstLocalidad">
+              <mat-select [(ngModel)]="campo.localidadesID" formControlName="lstLocalidad">
                 <mat-option *ngFor="let localidad of resultadoLocalidades" [value]="localidad.id">
                     {{localidad.nombre}}
                 </mat-option>

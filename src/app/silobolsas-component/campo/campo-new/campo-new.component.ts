@@ -7,6 +7,7 @@ import { Localidad} from '../../localidad/models/localidad.model'
 import { ProvinciaService } from '../../provincia/service/provincia.service';
 import { LocalidadService } from '../../localidad/service/localidad.service';
 import { StorageService } from 'src/app/authentication/services/storage.service';
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-campo-new',
@@ -45,7 +46,7 @@ export class CampoNewComponent implements OnInit {
 
   add() {
     this.showError = false;
-    this.campo.productorId = this.storageService.getCurrentUser().productoresID;
+    this.campo.productoresID = this.storageService.getCurrentUser().productoresID;
      this.campoService.add(this.campo).toPromise().then((respose: any) => {
       this.dialogRef.close(true);
     }).catch(responseError => {

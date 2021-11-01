@@ -20,13 +20,13 @@ export class CampoListComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['descripcion', 'calle','altura','telefono','mail', 'operations'];
+  displayedColumns: string[] = ['descripcion', 'localidad', 'calle','altura','telefono','mail', 'operations'];
   dataSource!: MatTableDataSource<Campo>;
   constructor(public dialog: MatDialog, public CampoService: CampoService, public storageService: StorageService) { }
 
   ngOnInit(): void {
     this.CampoService.CampoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, item.calle, item.altura, item.telefono, item.mail,item.id)));
+      respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, item.calle, item.altura, item.telefono, item.mail,item.id, item.localidadesID, item.productoresID)));
       this.dataSource = new MatTableDataSource(this.campos);
     }).catch(error => {
       console.log('Error al obtener los campos');
@@ -60,7 +60,7 @@ export class CampoListComponent implements OnInit {
 
   newCampo() {
     const dialogRef = this.dialog.open(CampoNewComponent, {
-      data: new Campo('', '', '', '', '', '')
+      data: new Campo('', '', '', '', '', '',0,'')
     });
     dialogRef.afterClosed().subscribe(respononse => {
       if (respononse){
@@ -71,7 +71,7 @@ export class CampoListComponent implements OnInit {
   }
 
   addCampo(campo: Campo) {
-    this.campos.push(new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail));
+    this.campos.push(new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail,campo.id,campo.localidadesID,campo.productoresID));
     this.dataSource.data = this.campos;
   }
 
@@ -83,7 +83,7 @@ export class CampoListComponent implements OnInit {
   }
 
   clone(campo: Campo): Campo {
-    var cloned = new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail, campo.id);
+    var cloned = new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail, campo.id, campo.localidadesID, campo.productoresID);
     return cloned;
   }
 }

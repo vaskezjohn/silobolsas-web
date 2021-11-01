@@ -44,7 +44,6 @@ export class CampoEditComponent implements OnInit {
 
   edit() {
     this.showError = false;
-    this.campo.productorId = this.storageService.getCurrentUser().productoresID;
      this.campoService.edit(this.campo).toPromise().then((respose: any) => {
       this.dialogRef.close(true);
     }).catch(responseError => {
