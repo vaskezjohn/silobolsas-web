@@ -5,79 +5,79 @@
       <mat-card-content disabled>
         <div class="d-flex flex-wrap">
           <div>
-            <mat-card-title>Titular de la silobolsa</mat-card-title>
+            <mat-card-title>Titular de la silobolsa <strong>({{silobolsa?.codigoSilo}})</strong></mat-card-title>
             <mat-card-subtitle>Detalle del productor y silobolsa.</mat-card-subtitle>
           </div>
         </div>
         <div class="barchrt">
-          <mat-grid-list cols="2" rowHeight="7:1">
+          <mat-grid-list cols="2" rowHeight="42px">
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1">
-              <mat-card-subtitle>Productor</mat-card-subtitle>
+              <mat-card-subtitle><strong>Productor</strong></mat-card-subtitle>
             </mat-grid-tile>
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1">
-              <mat-card-subtitle>Silobolsa</mat-card-subtitle>
+              <mat-card-subtitle><strong>Silobolsa</strong></mat-card-subtitle>
             </mat-grid-tile>
           </mat-grid-list>
 
-          <mat-grid-list cols="2" rowHeight="7:1">
+          <mat-grid-list cols="2" rowHeight="42px">
             <!-- Productor -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">  
-              <mat-label>Razon social: <strong>Soja</strong></mat-label>
+              <mat-label>Razon social: <strong>{{silobolsa?.campos?.productores?.razonSocial}}</strong></mat-label>
             </mat-grid-tile>
 
             <!-- Silobolsa -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">
-                <mat-label>Tipo de grano: <strong>Soja</strong></mat-label>
+                <mat-label>Tipo de grano: <strong>{{silobolsa?.tipoGrano}}</strong></mat-label>
             </mat-grid-tile>
 
             <!-- Productor -->
             <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">  
-              <mat-label>CUIT: <strong>Soja</strong></mat-label>       
+              <mat-label>CUIT: <strong>{{silobolsa?.campos?.productores?.cuit}}</strong></mat-label>       
             </mat-grid-tile>
 
             <!-- Silobolsa -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">
-              <mat-label>Fecha de embolsad: <strong>Soja</strong></mat-label>
+              <mat-label>Fecha de embolsado: <strong>{{silobolsa?.fechaEmbolsado | date:'MM-dd-yyyy'}}</strong></mat-label>
             </mat-grid-tile>
 
             <!-- Productor -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">    
-              <mat-label>CUIT: <strong>Soja</strong></mat-label>           
+              <mat-label>Telefono: <strong>{{silobolsa?.campos?.productores?.telefono}}</strong></mat-label>           
             </mat-grid-tile>
 
             <!-- Silobolsa -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">              
-              <mat-label>Campo: <strong>Soja</strong></mat-label>
+              <mat-label>Campo: <strong>{{silobolsa?.campos?.descripcion}}</strong></mat-label>
             </mat-grid-tile>
 
             <!-- Productor -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">                     
-              <mat-label>Correo: <strong>Soja</strong></mat-label>            
+              <mat-label>Correo: <strong>{{silobolsa?.campos?.productores?.mail}}</strong></mat-label>            
             </mat-grid-tile>
 
             <!-- Silobolsa -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">       
-              <mat-label>Longitud: <strong>Soja</strong></mat-label>
+              <mat-label>Longitud: <strong>{{silobolsa?.longitud}}</strong></mat-label>
             </mat-grid-tile>
 
             <!-- Productor -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">                                
-              <mat-label>Localidad: <strong>Soja</strong></mat-label>                   
+              <mat-label>Localidad: <strong>{{silobolsa?.campos?.productores?.localidades?.nombre}}</strong></mat-label>                   
             </mat-grid-tile>
 
              <!-- Silobolsa -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">     
-              <mat-label>Latitud: <strong>Soja</strong></mat-label>
+              <mat-label>Latitud: <strong>{{silobolsa?.latitud}}</strong></mat-label>
             </mat-grid-tile>
 
             <!-- Productor -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">                                              
-              <mat-label>Calle: <strong>Soja</strong> - Altura: <strong>123123</strong></mat-label>            
+              <mat-label>Calle: <strong>{{silobolsa?.campos?.productores?.calle}}</strong> - Altura: <strong>{{silobolsa?.campos?.productores?.altura}}</strong></mat-label>            
             </mat-grid-tile>
 
              <!-- Silobolsa -->
             <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">   
-              <mat-label>Detalle: <strong>Soja</strong></mat-label>
+              <mat-label>Detalle: <strong>{{silobolsa?.detalle}}</strong></mat-label>
             </mat-grid-tile>
 
           </mat-grid-list>

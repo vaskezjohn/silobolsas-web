@@ -12,6 +12,10 @@ export const MaterialRoutes: Routes = [
     component: SilobolsaMonitorComponent
   },
   {
+    path: 'silobolsa-monitor/detail/:id',
+    component: SilobolsaMonitorComponent,
+  },
+  {
     path: 'user-list',
     component: UserListComponent
   },

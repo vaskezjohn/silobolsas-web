@@ -1,3 +1,5 @@
+import { Productor } from "./productor.model";
+
 export class Campos {
     constructor (
         public ID: string,
@@ -7,6 +9,7 @@ export class Campos {
         public telefono: string,
         public mail: string,
         public localidadesID?: number,
-        public productoresID?: number
+        public productoresID?: number,
+        public productores?: Productor
       ) {}
     }

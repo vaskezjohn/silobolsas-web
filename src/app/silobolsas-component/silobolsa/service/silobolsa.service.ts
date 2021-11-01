@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { OrderBy, Query, OperatorType } from 'ngx-odata-v4';
 import { Silobolsa } from '../models/silobolsa.model';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -43,9 +44,14 @@ export class SilobolsaService {
     return this.http.delete(this.silobolsasPath + `/${id}`, this.httpOptions);
   }
 
-  UpdateSilobolsa(id: string,obj: Silobolsa) {
-    return this.http.put(this.silobolsasPath + `/${id}`,obj, this.httpOptions);
+  UpdateSilobolsa(id: string, obj: Silobolsa) {
+    return this.http.put(this.silobolsasPath + `/${id}`, obj, this.httpOptions);
   }
 
+  silobolsaByID(id: string) : Observable<any> {
+    const query = Query.create().filter('ID', OperatorType.Eq, `${id}`).expand('Campos', c => c.expand('Productores'));
+    // const query = Query.create().filter('ID', OperatorType.Eq, `${id}`).expand('Campos', c => c.expand('Productores', p => p.expand('Localidades')));
 
+    return this.http.get(this.silobolsasOdataPath + `?${query.compile()}`, this.httpOptions);
+  }
 }

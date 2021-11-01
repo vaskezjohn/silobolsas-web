@@ -70,7 +70,7 @@ export class SilobolsaListComponent implements OnInit {
   }
 
   detailsSilobolsa(silobolsa: Silobolsa) {
-    this.router.navigate(['/silobolsa-monitor']);
+      this.router.navigate(['/silobolsa-monitor/detail', silobolsa.ID]);
   }
 
   openModelSilobolsa() {
@@ -97,17 +97,13 @@ export class SilobolsaListComponent implements OnInit {
   }
 
   updateSilobolsa(silobolsa: Silobolsa) {
-
-    console.log("update",silobolsa);
     this.silobolsaService.UpdateSilobolsa(silobolsa.ID, silobolsa).toPromise().then((respose: any) => {
-      console.log("updater",respose);
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
           if (x.ID == respose.data.id)
             x = respose;
           return true;
         });
-
     }).catch(error => {
       console.log('silobolsa invalida');
     });
