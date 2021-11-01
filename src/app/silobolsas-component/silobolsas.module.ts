@@ -26,6 +26,7 @@ import { CampoDeleteComponent } from './campo/campo-delete/campo-delete.componen
 import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 import { SilobolsaListComponent } from './silobolsa/silobolsa-list/silobolsa-list.component';
 import { SilobolsaNewComponent } from './silobolsa/silobolsa-new/silobolsa-new.component';
+import { ProductorListComponent } from './productor/productor-list/productor-list.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { SilobolsaNewComponent } from './silobolsa/silobolsa-new/silobolsa-new.c
     UserViewComponent,
     UserDeleteComponent,
     SilobolsaListComponent,
-    SilobolsaNewComponent
+    SilobolsaNewComponent,
+    ProductorListComponent
   ]
 })
 export class MaterialComponentsModule {}
