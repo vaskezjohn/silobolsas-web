@@ -5,10 +5,16 @@
             <form [formGroup]="form">
 
                 <mat-form-field>
-                    <input matInput formControlName="tipoGrano" type="text" placeholder="Tipo de grano"
-                        name="tipoGrano">
+                    <input matInput formControlName="tipoGrano" type="text" placeholder="Tipo de grano">
                     <mat-error *ngIf="form.controls['tipoGrano'].hasError('required')">
                         Tipo de grano es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput formControlName="fechaEmbolsado" type="date" placeholder="Fecha de embolsado">
+                    <mat-error *ngIf="form.controls['fechaEmbolsado'].hasError('required')">
+                        Fecha de embolsado es <strong>requerido</strong>
                     </mat-error>
                 </mat-form-field>
 

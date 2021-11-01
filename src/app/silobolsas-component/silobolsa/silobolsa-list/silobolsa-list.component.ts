@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { StorageService } from 'src/app/authentication/services/storage.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-silobolsa-list',
@@ -26,24 +27,35 @@ export class SilobolsaListComponent implements OnInit {
     public silobolsaService: SilobolsaService,
     public storageService: StorageService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.silobolsaService.SilobolsasList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.tipoGrano, item.fechaEmbolsado, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.dataSource = new MatTableDataSource(this.silobolsas);
-    }).catch(error => {
-      console.log('Error al obtener las silobolsas');
+    }).catch(error => {      
+      Swal.fire('Error!', 'Error al obtener las silobolsas!', 'error');
     });
 
   }
 
-  deleteSilobolsa(silobolsaID: string) {
-    this.silobolsaService.DeleteSilobolsa(silobolsaID).toPromise().then((respose: any) => {
-      this.dataSource.data = this.dataSource.data.filter(
-        (x) => x.ID != silobolsaID
-      );
-    }).catch(error => {
-      console.log('silobolsa invalida');
-    });
+  deleteSilobolsa(silobolsa: Silobolsa) {
+    Swal.fire({
+      title:  'Eliminar silobolsa',
+      text:  '¿Desea eliminar la silobolsa ' + silobolsa.codigoSilo +'?',
+      showDenyButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `No, cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.silobolsaService.DeleteSilobolsa(silobolsa.ID).toPromise().then((respose: any) => {
+          this.dataSource.data = this.dataSource.data.filter(
+            (x) => x.ID != silobolsa.ID
+          );
+        }).catch(error => {
+          Swal.fire('Error!', 'silobolsa invalida!', 'error');
+        });
+        Swal.fire('Eliminado!', '', 'success');
+      } 
+    })  
   }
 
   editSilobolsa(Silobolsa: Silobolsa) {

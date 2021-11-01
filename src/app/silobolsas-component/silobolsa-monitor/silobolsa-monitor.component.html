@@ -1,20 +1,182 @@
+<div fxLayout="row wrap">
+
+  <div fxFlex.gt-lg="60" fxFlex.gt-md="60" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card style="height:400px;">
+      <mat-card-content disabled>
+        <div class="d-flex flex-wrap">
+          <div>
+            <mat-card-title>Titular de la silobolsa</mat-card-title>
+            <mat-card-subtitle>Detalle del productor y silobolsa.</mat-card-subtitle>
+          </div>
+        </div>
+        <div class="barchrt">
+          <mat-grid-list cols="2" rowHeight="7:1">
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1">
+              <mat-card-subtitle>Productor</mat-card-subtitle>
+            </mat-grid-tile>
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1">
+              <mat-card-subtitle>Silobolsa</mat-card-subtitle>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="2" rowHeight="7:1">
+            <!-- Productor -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">  
+              <mat-label>Razon social: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+            <!-- Silobolsa -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">
+                <mat-label>Tipo de grano: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+            <!-- Productor -->
+            <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">  
+              <mat-label>CUIT: <strong>Soja</strong></mat-label>       
+            </mat-grid-tile>
+
+            <!-- Silobolsa -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">
+              <mat-label>Fecha de embolsad: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+            <!-- Productor -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">    
+              <mat-label>CUIT: <strong>Soja</strong></mat-label>           
+            </mat-grid-tile>
+
+            <!-- Silobolsa -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">              
+              <mat-label>Campo: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+            <!-- Productor -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">                     
+              <mat-label>Correo: <strong>Soja</strong></mat-label>            
+            </mat-grid-tile>
+
+            <!-- Silobolsa -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">       
+              <mat-label>Longitud: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+            <!-- Productor -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">                                
+              <mat-label>Localidad: <strong>Soja</strong></mat-label>                   
+            </mat-grid-tile>
+
+             <!-- Silobolsa -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">     
+              <mat-label>Latitud: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+            <!-- Productor -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">                                              
+              <mat-label>Calle: <strong>Soja</strong> - Altura: <strong>123123</strong></mat-label>            
+            </mat-grid-tile>
+
+             <!-- Silobolsa -->
+            <mat-grid-tile class="mat-grid-tile-custom"  colspan="1" rowsan="1">   
+              <mat-label>Detalle: <strong>Soja</strong></mat-label>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.gt-lg="40" fxFlex.gt-md="40" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card style="height:400px;">
+      <mat-card-content>
+        <div class="d-flex flex-wrap">
+          <div>
+            <mat-card-title>Ubicación</mat-card-title>
+            <mat-card-subtitle>Ubicación de la silobolsa en el campo.</mat-card-subtitle>
+          </div>
+        </div>
+        <div class="barchrt">
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+
+
+
 <mat-card>
-    <mat-card-content>
-      <mat-card-title>Monitoreo de Silobolsas</mat-card-title>
-      <mat-card-subtitle>Monitoreo en timpo real del estados de las silobolsas.</mat-card-subtitle>
-      <mat-grid-list cols="6" rowHeight="2:1">
-        <mat-grid-tile style="background-color: red; border-radius: 100px 0 0 0;">A1 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green;">A2 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: yellow;">A3 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green;">A4 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: red;">A5 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green; border-radius: 0 100px 0 0;">A6 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green; border-radius: 100px 0 0 0;">B1 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: red;">B2 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green;">B3 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green;">B4 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: yellow;">B5 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-        <mat-grid-tile style="background-color: green; border-radius: 0 100px 0 0;">B6 <button mat-icon-button aria-label="Informaciòn de la silobolsa" (click)="openDialog()"><mat-icon>info</mat-icon></button></mat-grid-tile>
-      </mat-grid-list>  
-    </mat-card-content>        
+  <mat-card-content>
+    <mat-card-title>Monitoreo de Silobolsa</mat-card-title>
+    <mat-card-subtitle>Monitoreo en timpo real del estado de las silobolsa.</mat-card-subtitle>
+    <mat-grid-list cols="8" rowHeight="2:1">
+
+      <mat-grid-tile style="background-color: red; border-radius: 90% 20% 0 0;">A1 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: green; border-radius: 20% 20% 0 0;">A2 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: yellow; border-radius: 20% 20% 0 0;">A3 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: green; border-radius: 20% 20% 0 0;">A4 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: red; border-radius: 20% 20% 0 0;">A5 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: red; border-radius: 20% 20% 0 0;">A6 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: red; border-radius: 20% 20% 0 0;">A7 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: green; border-radius: 20% 100% 0 0;">A8 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <!--         
+      <mat-grid-tile style="background-color: green; border-radius: 100px 0 0 0;">B1 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button></mat-grid-tile>
+      <mat-grid-tile style="background-color: red;">B2 <button mat-icon-button aria-label="Informaciòn de la silobolsa"
+          (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button></mat-grid-tile>
+      <mat-grid-tile style="background-color: green;">B3 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button></mat-grid-tile>
+      <mat-grid-tile style="background-color: green;">B4 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button></mat-grid-tile>
+      <mat-grid-tile style="background-color: yellow;">B5 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button></mat-grid-tile>
+      <mat-grid-tile style="background-color: green; border-radius: 0 100px 0 0;">B6 <button mat-icon-button
+          aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
+          <mat-icon>info</mat-icon>
+        </button></mat-grid-tile> -->
+    </mat-grid-list>
+  </mat-card-content>
 </mat-card>

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -5,6 +6,8 @@ import { StorageService } from 'src/app/authentication/services/storage.service'
 import { Campos } from '../models/campos.models';
 import { Silobolsa } from '../models/silobolsa.model';
 import { SilobolsaService } from '../service/silobolsa.service';
+
+
 
 @Component({
   selector: 'app-silobolsa-new',
@@ -26,6 +29,7 @@ export class SilobolsaNewComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       tipoGrano: ['', Validators.required],
+      fechaEmbolsado: ['', Validators.required],
       campos: ['', Validators.required],
       longitud: ['', Validators.required],
       latitud: ['', Validators.required],
@@ -47,7 +51,9 @@ export class SilobolsaNewComponent implements OnInit {
   }
 
   setEditForm() {
+    console.log('set', this.silobolsa);
     this.form.controls['tipoGrano'].setValue(this.silobolsa.tipoGrano);
+    this.form.controls['fechaEmbolsado'].setValue(new Date(this.silobolsa.fechaEmbolsado).toISOString().split('T')[0]);
     this.form.controls['campos'].setValue(this.silobolsa.camposID);
     this.form.controls['longitud'].setValue(this.silobolsa.longitud);
     this.form.controls['latitud'].setValue(this.silobolsa.latitud);
@@ -72,20 +78,19 @@ export class SilobolsaNewComponent implements OnInit {
 
   setCampos() {
     this.silobolsa.tipoGrano = this.form.controls['tipoGrano'].value;
+    this.silobolsa.fechaEmbolsado = this.form.controls['fechaEmbolsado'].value;
     this.silobolsa.camposID = this.form.controls['campos'].value;
     this.silobolsa.longitud = this.form.controls['longitud'].value;
     this.silobolsa.latitud = this.form.controls['latitud'].value;
-    this.silobolsa.detalle = this.form.controls['detalle'].value;    
-    this.silobolsa.campos = this.campos.filter((x) => x.ID == this.form.controls['campos'].value)[0]; 
+    this.silobolsa.detalle = this.form.controls['detalle'].value;
+    this.silobolsa.campos = this.campos.filter((x) => x.ID == this.form.controls['campos'].value)[0];
   }
 
   onSubmit() {
     if (!this.form.valid) {
       return;
     }
-    console.log("antes",this.silobolsa);
     this.setCampos();
-    console.log("despues",this.silobolsa);
     this.dialogRef.close(this.silobolsa);
   }
 
