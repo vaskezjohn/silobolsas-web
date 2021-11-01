@@ -21,7 +21,7 @@ export class LocalidadService {
     }
 
     LocalidadList(provinciaId: number) {
-      return this.http.get(this.basePathOdata + 'Localidades', this.httpOptions);
+      return this.http.get(this.basePathOdata + 'Localidades?%24filter=ProvinciasId%20eq%20' + provinciaId, this.httpOptions);
     }
 
 }

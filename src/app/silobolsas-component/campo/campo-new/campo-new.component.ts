@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Campo} from '../models/campo.model'
+import { CampoService } from '../service/campo.service';
 import { Provincia} from '../../provincia/models/provincia.model'
 import { Localidad} from '../../localidad/models/localidad.model'
-import { CampoService } from '../service/campo.service';
 import { ProvinciaService } from '../../provincia/service/provincia.service';
 import { LocalidadService } from '../../localidad/service/localidad.service';
 import { StorageService } from 'src/app/authentication/services/storage.service';
@@ -35,7 +35,7 @@ export class CampoNewComponent implements OnInit {
       this.resultadoProvincias = this.provincias;
 
     }).catch(error => {
-      console.log('Error al obtener las provincias');
+      console.log('Error al obtener provincias');
     });
   }
 
@@ -61,7 +61,7 @@ export class CampoNewComponent implements OnInit {
       this.resultadoLocalidades = this.localidades;
 
     }).catch(error => {
-      console.log('Error al obtener las localidades');
+      console.log('Error al obtener localidades');
     });
   }
 }
