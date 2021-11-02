@@ -6,7 +6,7 @@ export class Campo {
         public telefono?: string,
         public mail?: string,
         public id?: string,
-        public localidadId?: number,
-        public productorId?: string
+        public localidadesID?: number,
+        public productoresID?: string
       ) {}
     }

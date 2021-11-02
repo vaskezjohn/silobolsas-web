@@ -12,6 +12,11 @@
           <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="localidad">
+          <th mat-header-cell *matHeaderCellDef> Localidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.localidadesID}} </td>
+        </ng-container>
+
         <!-- Calle Column -->
         <ng-container matColumnDef="calle">
           <th mat-header-cell *matHeaderCellDef> Calle </th>
