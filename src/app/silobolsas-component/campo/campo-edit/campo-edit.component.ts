@@ -16,8 +16,6 @@ import { LocalidadService } from '../../localidad/service/localidad.service';
 export class CampoEditComponent implements OnInit {
   provincias: Provincia[] =[];
   localidades: Localidad[] =[];
-  resultadoProvincias!: Array<any>;
-  resultadoLocalidades!: Array<any>;
   public showError: boolean = false;
   public erroMessage!: string;
 
@@ -31,10 +29,8 @@ export class CampoEditComponent implements OnInit {
   ngOnInit(): void {
     this.provinciaService.ProvinciaList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.provincias.push(new Provincia(item.id, item.nombre)));
-      this.resultadoProvincias = this.provincias;
-
     }).catch(error => {
-      console.log('Error al obtener provincias');
+      console.log('Error al obtener las provincias');
     });
   }
 
@@ -54,12 +50,11 @@ export class CampoEditComponent implements OnInit {
   }
 
   onProvinciaChange(provinciaId: number) {
+    this.localidades =[];
     this.localidadService.LocalidadList(provinciaId).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.localidades.push(new Provincia(item.id, item.nombre)));
-      this.resultadoLocalidades = this.localidades;
-
+      respose.forEach((item: any) => this.localidades.push(new Localidad(item.id, item.nombre,item.CP,item.provinciasID,item.provincias)));
     }).catch(error => {
-      console.log('Error al obtener localidades');
+      console.log('Error al obtener las localidades');
     });
   }
 }

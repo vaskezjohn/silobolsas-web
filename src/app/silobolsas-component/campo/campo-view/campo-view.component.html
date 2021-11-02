@@ -8,6 +8,12 @@
               <input matInput [(ngModel)]="campo.descripcion" type="text" placeholder="Descripción" name="descripcion" disabled>
             </mat-form-field>
             <mat-form-field>
+              <input matInput [(ngModel)]="campo.localidades?.provincias.nombre" type="text" placeholder="Provincia" name="provincia" disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="campo?.localidades.nombre" type="text" placeholder="Localidad" name="localidad" disabled>
+            </mat-form-field>
+            <mat-form-field>
               <input matInput [(ngModel)]="campo.calle" type="text" placeholder="Calle" name="calle" disabled>
             </mat-form-field>
             <mat-form-field>

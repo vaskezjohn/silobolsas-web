@@ -1,3 +1,4 @@
+import { Localidad } from "../../localidad/models/localidad.model";
 export class Campo {
     constructor (
         public descripcion: string,
@@ -5,8 +6,9 @@ export class Campo {
         public altura?: string,
         public telefono?: string,
         public mail?: string,
-        public id?: string,
+        public ID?: string,
         public localidadesID?: number,
-        public productoresID?: string
+        public productoresID?: string,
+        public localidades?: Localidad
       ) {}
     }

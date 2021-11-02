@@ -24,4 +24,8 @@ export class ProvinciaService {
       return this.http.get(this.basePathOdata + 'Provincias', this.httpOptions);
     }
 
+    ProvinciaById(provinciaId: number) {
+      return this.http.get(this.basePathOdata + 'Provincias?%24filter=id%20eq%20' + provinciaId, this.httpOptions);
+    }
+
 }

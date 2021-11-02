@@ -19,8 +19,6 @@ export class CampoNewComponent implements OnInit {
   localidades: Localidad[] =[];
   public showError: boolean = false;
   public erroMessage: string = 'No se pudo agregar el campo';
-  resultadoProvincias!: Array<any>;
-  resultadoLocalidades!: Array<any>;
 
 
   constructor(public dialogRef: MatDialogRef<CampoNewComponent>,
@@ -33,10 +31,8 @@ export class CampoNewComponent implements OnInit {
   ngOnInit(): void {
     this.provinciaService.ProvinciaList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.provincias.push(new Provincia(item.id, item.nombre)));
-      this.resultadoProvincias = this.provincias;
-
     }).catch(error => {
-      console.log('Error al obtener provincias');
+      console.log('Error al obtener las provincias');
     });
   }
 
@@ -57,12 +53,11 @@ export class CampoNewComponent implements OnInit {
   }
 
   onProvinciaChange(provinciaId: number) {
+    this.localidades =[];
     this.localidadService.LocalidadList(provinciaId).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.localidades.push(new Provincia(item.id, item.nombre)));
-      this.resultadoLocalidades = this.localidades;
-
+      respose.forEach((item: any) => this.localidades.push(new Localidad(item.id, item.nombre,item.CP,item.provinciasID,item.provincias)));
     }).catch(error => {
-      console.log('Error al obtener localidades');
+      console.log('Error al obtener las localidades');
     });
   }
 }

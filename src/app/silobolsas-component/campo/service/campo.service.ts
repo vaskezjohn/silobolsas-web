@@ -24,7 +24,8 @@ export class CampoService {
     CampoList(ProductorId: string) {
       //return this.http.get(this.basePathOdata + 'Campos', this.httpOptions);
       //return this.http.get(this.basePathOdata + 'Campos?%24expand=Productores&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
-     return this.http.get(this.basePathOdata + 'Campos?%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
+      return this.http.get(this.basePathOdata + 'Campos?%24expand=Localidades(%24expand=Provincias)&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
+      //return this.http.get(this.basePathOdata + 'Campos?%24expand=Localidades&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
 
     }
 
@@ -34,10 +35,10 @@ export class CampoService {
     }
 
     edit(campo: Campo) {
-      return this.http.put(this.basePath + 'Campos/' + campo.id, campo, this.httpOptions);
+      return this.http.put(this.basePath + 'Campos/' + campo.ID, campo, this.httpOptions);
     }
 
     delete(campo: Campo) {
-        return this.http.delete(this.basePath+ 'Campos/' + campo.id, this.httpOptions);
+        return this.http.delete(this.basePath+ 'Campos/' + campo.ID, this.httpOptions);
     }
 }

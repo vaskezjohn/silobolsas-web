@@ -14,6 +14,7 @@ export class CampoViewComponent implements OnInit {
     @ Inject(MAT_DIALOG_DATA) public campo: Campo, public campoService: CampoService) { }
 
   ngOnInit(): void {
+
   }
 
   close() {
