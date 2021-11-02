@@ -9,11 +9,11 @@
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Provincia</mat-label>
-              <mat-select (selectionChange)="onProvinciaChange($event.value)" >
+              <mat-label >Provincia</mat-label>
+              <mat-select  [(value)]="campo?.localidades.provinciasID" (selectionChange)="onProvinciaChange($event.value)" >
                 <mat-option *ngFor="let provincia of provincias" [value]="provincia.id">
                       {{provincia.nombre}}
-                </mat-option>
+                </mat-option >
               </mat-select>
             </mat-form-field>
 
