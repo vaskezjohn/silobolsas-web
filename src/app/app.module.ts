@@ -8,18 +8,18 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FullComponent } from './layouts/full/full.component';
-import { AppHeaderComponent } from './layouts/full/header/header.component';
-import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
+import { AppHeaderComponent } from './modules/layouts/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './demo-material-module';
 
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
-import { LogInComponent } from './log-in/log-in.component';
-import { AuthorizationInterceptor } from './authentication/interceptor/authorization.interceptor';
-import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './account/reset-password/reset-password.component';
+import { LogInComponent } from './modules/auth/log-in/log-in.component';
+import { AuthorizationInterceptor } from './core/authentication/interceptor/authorization.interceptor';
+import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
+import { FullComponent } from './modules/layouts/full.component';
+import { AppSidebarComponent } from './modules/layouts/sidebar/sidebar.component';
 
 
 @NgModule({
