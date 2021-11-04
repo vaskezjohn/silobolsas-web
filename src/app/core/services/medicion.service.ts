@@ -33,4 +33,14 @@ export class MedicionService {
 
     }
 
+    UltimaMedicionList(productoresID: string, dispositivoID: string, unidadesMedidasID: string) {
+      const query = Query.create().expand('UnidadesMedidas').filter('dispositivosID', OperatorType.Eq, `${dispositivoID}`)
+                                                            .filter('unidadesMedidasID', OperatorType.Eq, `${unidadesMedidasID}`)
+                                  .expand('Silobolsas', s => s.expand('Campos', c => c.filter('productoresID', OperatorType.Eq, `${productoresID}`)))
+                                  .orderBy('fechaHora', OrderBy.Desc).top(1);
+
+      return this.http.get(this.basePathOdata + '/Mediciones' + `?${query.compile()}`, this.httpOptions);
+
+    }
+
 }
