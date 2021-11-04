@@ -1,55 +1,76 @@
 <mat-card>
-	<mat-card-content>
-	<mat-card-title>Silobolsas</mat-card-title>
-	<div class="button-row" style="float: right">
-    <button mat-raised-button color="primary" (click)="newSilobolsa()">+ NUEVO</button>
-  </div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  <mat-card-content>
+    <mat-card-title>
+      Silobolsas
+      <div class="button-row" style="float: right">
+        <button mat-raised-button color="primary" (click)="newSilobolsa()">+ NUEVO</button>
+      </div>
+    </mat-card-title>
+<br>
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort>
 
         <!-- codigo Column -->
         <ng-container matColumnDef="codigoSilo">
-          <th mat-header-cell *matHeaderCellDef> Codigo </th>
-          <td mat-cell *matCellDef="let element"> {{element.codigoSilo}} </td>
+          <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Codigo:</span>
+            {{element.codigoSilo}}
+          </mat-cell>
         </ng-container>
 
         <!-- tipoGrano Column -->
         <ng-container matColumnDef="tipoGrano">
-          <th mat-header-cell *matHeaderCellDef> Tipo grano </th>
-          <td mat-cell *matCellDef="let element"> {{element.tipoGrano}} </td>
+          <mat-header-cell *matHeaderCellDef> Tipo grano </mat-header-cell>
+          <mat-cell *matCellDef="let element">             
+            <span class="mobile-label">Grano:</span>
+            {{element.tipoGrano}} </mat-cell>
         </ng-container>
 
         <!-- fechaEmbolsado Column -->
         <ng-container matColumnDef="fechaEmbolsado">
-          <th mat-header-cell *matHeaderCellDef> Fecha embolsado </th>
-          <td mat-cell *matCellDef="let element"> {{element.fechaEmbolsado | date:'MM-dd-yyyy'}} </td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha embolsado </mat-header-cell>
+          <mat-cell *matCellDef="let element">                       
+            <span class="mobile-label">Fecha:</span>
+             {{element.fechaEmbolsado | date:'MM-dd-yyyy'}} </mat-cell>
         </ng-container>
 
-          <!-- fechaEmbolsado Column -->
-          <ng-container matColumnDef="campos">
-            <th mat-header-cell *matHeaderCellDef> Campo </th>
-            <td mat-cell *matCellDef="let element"> {{element.campos.descripcion}} </td>
-          </ng-container>
+        <!-- fechaEmbolsado Column -->
+        <ng-container matColumnDef="campos">
+          <mat-header-cell *matHeaderCellDef> Campo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <span class="mobile-label">Campo:</span>
+            {{element.campos.descripcion}} </mat-cell>
+        </ng-container>
 
         <!-- detalle Column -->
         <ng-container matColumnDef="detalle">
-          <th mat-header-cell *matHeaderCellDef> Detalle </th>
-          <td mat-cell *matCellDef="let element"> {{element.detalle}} </td>
+          <mat-header-cell *matHeaderCellDef> Detalle </mat-header-cell>
+          <mat-cell *matCellDef="let element">             
+            <span class="mobile-label">Detalle:</span>
+            {{element.detalle}} </mat-cell>
         </ng-container>
 
 
         <!-- Operation Column -->
         <ng-container matColumnDef="operations">
-          <th mat-header-cell *matHeaderCellDef> Operaciones </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-button color="primary" (click)="detailsSilobolsa(element)"><mat-icon>description</mat-icon></button>
-            <button mat-button color="primary" (click)="editSilobolsa(element)"><mat-icon>edit</mat-icon></button>
-            <button mat-button color="primary" (click)="deleteSilobolsa(element)"><mat-icon>delete</mat-icon></button>
-          </td>
+          <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="detailsSilobolsa(element)">
+              <mat-icon>description</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="editSilobolsa(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="deleteSilobolsa(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-	</mat-card-content>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-card-content>
 </mat-card>
