@@ -1,0 +1,66 @@
+<mat-card>
+	<mat-card-content>
+	<mat-card-title>Campos</mat-card-title>
+	<div class="button-row" style="float: right">
+    <button mat-raised-button color="primary" (click)="newCampo()">+ NUEVO</button>
+  </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+        <!-- Descripcion Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="provincia">
+          <th mat-header-cell *matHeaderCellDef> Provincia </th>
+          <td mat-cell *matCellDef="let element"> {{element.localidades.provincias.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="localidad">
+          <th mat-header-cell *matHeaderCellDef> Localidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.localidades.nombre}} </td>
+        </ng-container>
+
+        <!-- Calle Column -->
+        <ng-container matColumnDef="calle">
+          <th mat-header-cell *matHeaderCellDef> Calle </th>
+          <td mat-cell *matCellDef="let element"> {{element.calle}} </td>
+        </ng-container>
+
+        <!-- altura Column -->
+        <ng-container matColumnDef="altura">
+          <th mat-header-cell *matHeaderCellDef> Altura </th>
+          <td mat-cell *matCellDef="let element"> {{element.altura}} </td>
+        </ng-container>
+
+        <!-- Telefono Column -->
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef> Telefono </th>
+          <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+        </ng-container>
+
+
+        <!-- Mail Column -->
+        <ng-container matColumnDef="mail">
+          <th mat-header-cell *matHeaderCellDef> Mail </th>
+          <td mat-cell *matCellDef="let element"> {{element.mail}} </td>
+        </ng-container>
+
+
+        <!-- Operation Column -->
+        <ng-container matColumnDef="operations">
+          <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button color="primary" (click)="detailsCampo(element)"><mat-icon>description</mat-icon></button>
+            <button mat-button color="primary" (click)="editCampo(element)"><mat-icon>edit</mat-icon></button>
+            <button mat-button color="primary" (click)="deleteCampo(element)"><mat-icon>delete</mat-icon></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+	</mat-card-content>
+</mat-card>
