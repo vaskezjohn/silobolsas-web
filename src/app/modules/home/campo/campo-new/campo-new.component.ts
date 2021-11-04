@@ -72,7 +72,13 @@ export class CampoNewComponent implements OnInit {
       console.log('Error al obtener los tipos de notificaciones');
     });
 
-    this.medicionService.MedicionList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
+   // this.medicionService.MedicionList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
+   //   respose.forEach((item: any) => this.mediciones.push(new Medicion(item.ID, item.valor,item.fechaHora, item.dispositivosID, item.silobolsasID,item.silobolsas,item.unidadesMedidasID,item.unidadesMedidas )));
+  //  }).catch(error => {
+  //    console.log('Error al obtener las mediciones');
+  //  });
+
+    this.medicionService.UltimaMedicionList('08d99f41-1cd0-4305-83d9-21fb769ef39b','8da12646-3c47-11ec-b9b8-883882e3ecf6').toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.mediciones.push(new Medicion(item.ID, item.valor,item.fechaHora, item.dispositivosID, item.silobolsasID,item.silobolsas,item.unidadesMedidasID,item.unidadesMedidas )));
     }).catch(error => {
       console.log('Error al obtener las mediciones');
