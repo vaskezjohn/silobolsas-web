@@ -6,8 +6,9 @@ export class Productor {
         public telefono?: string,
         public mail?: string,
         public fechaAlta?: string,
-        public bajaLogica?: string,
+        public bajaLogica?: boolean,
         public localidadesID?: number,
+        public localidad?: object,
         public calle?: string,
         public altura?: string,
       ) {}

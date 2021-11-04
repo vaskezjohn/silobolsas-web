@@ -27,6 +27,7 @@ import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 import { SilobolsaListComponent } from './silobolsa/silobolsa-list/silobolsa-list.component';
 import { SilobolsaNewComponent } from './silobolsa/silobolsa-new/silobolsa-new.component';
 import { ProductorListComponent } from './productor/productor-list/productor-list.component';
+import { ProductorNewComponent } from './productor/productor-new/productor-new.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { ProductorListComponent } from './productor/productor-list/productor-lis
     UserDeleteComponent,
     SilobolsaListComponent,
     SilobolsaNewComponent,
-    ProductorListComponent
+    ProductorListComponent,
+    ProductorNewComponent
   ]
 })
 export class MaterialComponentsModule {}

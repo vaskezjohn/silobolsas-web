@@ -27,22 +27,22 @@
         <!-- Provincia -->
         <ng-container matColumnDef="provincia">
           <th mat-header-cell *matHeaderCellDef> Provincia </th>
-          <td mat-cell *matCellDef="let element"> {{element.cuit}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.localidad.provincias.nombre}} </td>
         </ng-container>
 
         <!-- Localidad -->
         <ng-container matColumnDef="localidad">
           <th mat-header-cell *matHeaderCellDef> Localidad </th>
-          <td mat-cell *matCellDef="let element"> {{element.cuit}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.localidad.nombre}} </td>
         </ng-container>
 
         <!-- Operation Column -->
         <ng-container matColumnDef="operations">
           <th mat-header-cell *matHeaderCellDef> Operaciones </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button color="primary" (click)="detailsProducto(element)"><mat-icon>description</mat-icon></button>
-            <button mat-button color="primary" (click)="editProducto(element)"><mat-icon>edit</mat-icon></button>
-            <button mat-button color="primary" (click)="deleteProducto(element)"><mat-icon>delete</mat-icon></button>
+            <button mat-button color="primary" (click)="detailsProductor(element)"><mat-icon>description</mat-icon></button>
+            <button mat-button color="primary" (click)="editProductor(element)"><mat-icon>edit</mat-icon></button>
+            <button mat-button color="primary" (click)="deleteProductor(element)"><mat-icon>delete</mat-icon></button>
           </td>
         </ng-container>
 

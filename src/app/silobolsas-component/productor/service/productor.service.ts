@@ -11,7 +11,6 @@ export class ProductorService {
 
     private basePath = environment.base_url;
     private basePathOdata = environment.odata_base_url;
-    //private productorId = '08d999ca-09d7-49bf-8c0a-22601330e571';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -23,14 +22,15 @@ export class ProductorService {
     }
 
     ProductorList() {
-      return this.http.get(this.basePathOdata + 'Productores', this.httpOptions);
+      return this.http.get(this.basePathOdata + 'Productores?%24expand=localidades($expand=provincias)', this.httpOptions);
     }
 
-   /*  add(campo: Productor) {
-      campo.productorId = this.productorId;
-      return this.http.post(this.basePath + 'Campos', campo, this.httpOptions);
-    }
+   add(productor: Productor) {
+      return this.http.post(this.basePath + 'Productores', productor, this.httpOptions);
+      //return this.http.post('https://localhost:44362/' + 'Productores', productor, this.httpOptions);
 
+    }
+/*
     edit(campo: Productor) {
       campo.productorId = this.productorId;
       return this.http.put(this.basePath + 'Campos/' + campo.id, campo, this.httpOptions);

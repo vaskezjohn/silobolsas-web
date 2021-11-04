@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//import { CampoNewComponent } from '../campo-new/campo-new.component'
+import { ProductorNewComponent } from '../productor-new/productor-new.component'
 //import { CampoViewComponent } from '../campo-view/campo-view.component'
 //import { CampoEditComponent } from '../campo-edit/campo-edit.component';
 //import { CampoDeleteComponent } from '../campo-delete/campo-delete.component';
@@ -17,7 +17,7 @@ export class ProductorListComponent implements OnInit {
 
   productores: Productor[] =[];
 
-  displayedColumns: string[] = ['razonSocial', 'cuit', 'mail', 'provincia', 'localidad'];
+  displayedColumns: string[] = ['razonSocial', 'cuit', 'mail', 'provincia', 'localidad','operations'];
   dataSource!: MatTableDataSource<Productor>;
   constructor(public dialog: MatDialog, public ProductorService: ProductorService) { }
 
@@ -31,6 +31,7 @@ export class ProductorListComponent implements OnInit {
                                                                           item.fechaAlta,
                                                                           item.bajaLogica,
                                                                           item.localidadesID,
+                                                                          item.localidades,
                                                                           item.calle,
                                                                           item.altura)));
       this.dataSource = new MatTableDataSource(this.productores);
@@ -66,15 +67,15 @@ export class ProductorListComponent implements OnInit {
   }
 
   newProductor() {
-    /* const dialogRef = this.dialog.open(CampoNewComponent, {
-      data: new Campo('', '', '', '', '', '')
+    const dialogRef = this.dialog.open(ProductorNewComponent, {
+      data: new Productor('', '', '', '', '', '',false,1, new Object ,'','')
     });
     dialogRef.afterClosed().subscribe(respononse => {
       if (respononse){
-        this.campos =[]
+        this.productores =[]
         this.ngOnInit();
       }
-    }); */
+    });
   }
 
   addProductor(campo: Productor) {
