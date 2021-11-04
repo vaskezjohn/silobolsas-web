@@ -22,7 +22,7 @@
         <!-- tipoGrano Column -->
         <ng-container matColumnDef="tipoGrano">
           <mat-header-cell *matHeaderCellDef> Tipo grano </mat-header-cell>
-          <mat-cell *matCellDef="let element">             
+          <mat-cell *matCellDef="let element">
             <span class="mobile-label">Grano:</span>
             {{element.tipoGrano}} </mat-cell>
         </ng-container>
@@ -30,7 +30,7 @@
         <!-- fechaEmbolsado Column -->
         <ng-container matColumnDef="fechaEmbolsado">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha embolsado </mat-header-cell>
-          <mat-cell *matCellDef="let element">                       
+          <mat-cell *matCellDef="let element">
             <span class="mobile-label">Fecha:</span>
              {{element.fechaEmbolsado | date:'MM-dd-yyyy'}} </mat-cell>
         </ng-container>
@@ -38,7 +38,7 @@
         <!-- fechaEmbolsado Column -->
         <ng-container matColumnDef="campos">
           <mat-header-cell *matHeaderCellDef> Campo </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
+          <mat-cell *matCellDef="let element">
             <span class="mobile-label">Campo:</span>
             {{element.campos.descripcion}} </mat-cell>
         </ng-container>
@@ -46,7 +46,7 @@
         <!-- detalle Column -->
         <ng-container matColumnDef="detalle">
           <mat-header-cell *matHeaderCellDef> Detalle </mat-header-cell>
-          <mat-cell *matCellDef="let element">             
+          <mat-cell *matCellDef="let element">
             <span class="mobile-label">Detalle:</span>
             {{element.detalle}} </mat-cell>
         </ng-container>

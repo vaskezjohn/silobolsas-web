@@ -13,7 +13,6 @@
 
               <mat-form-field>
                 <input matInput [(ngModel)]="productor.cuit" formControlName="cuit" type="text" placeholder="Cuit" >
-                <!-- <div *ngIf="form.controls['cuit'].hasError('pattern')">Enter only number.</div> -->
                 <mat-error >
                   El cuit debe tener 11 dígitos
                 </mat-error>
@@ -37,15 +36,18 @@
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput [(ngModel)]="productor.fechaAlta" formControlName="fechaAlta" type="date" placeholder="Fecha de alta">
+                <!-- <input matInput [(ngModel)]="productor.fechaAlta" formControlName="fechaAlta" type="date" placeholder="Fecha de alta"> -->
+                <input matInput formControlName="fechaAlta" type="date" placeholder="Fecha de alta">
                 <mat-error *ngIf="form.controls['fechaAlta'].hasError('required')">
                     Fecha de alta es <strong>requerida</strong>
                 </mat-error>
               </mat-form-field>
 
+
+
               <mat-form-field>
                 <mat-label>Provincia</mat-label>
-                <mat-select formControlName="provincias" (selectionChange)="onProvinciaChange($event.value)" >
+                <mat-select formControlName="provincias"  [(value)]="productor?.localidad.provinciasID" (selectionChange)="onProvinciaChange($event.value)" >
                   <mat-option *ngFor="let provincia of resultadoProvincias" [value]="provincia.id">
                       {{provincia.nombre}}
                   </mat-option>
@@ -88,7 +90,7 @@
     </div>
     <div mat-dialog-actions>
         <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit"
-            (click)="add()">Confirmar</button>
+            (click)="onSubmit()">Confirmar</button>
         <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
     </div>
 </div>

@@ -30,13 +30,13 @@ export class ProductorService {
       //return this.http.post('https://localhost:44362/' + 'Productores', productor, this.httpOptions);
 
     }
-/*
-    edit(campo: Productor) {
-      campo.productorId = this.productorId;
-      return this.http.put(this.basePath + 'Campos/' + campo.id, campo, this.httpOptions);
+
+    edit(id: string, obj: Productor) {
+      return this.http.put(this.basePath + `Productores/${id}`, obj, this.httpOptions);
     }
 
-    delete(campo: Productor) {
-        return this.http.delete(this.basePath+ 'Campos/' + campo.id, this.httpOptions);
-    } */
+
+    delete(id: string) {
+      return this.http.delete(this.basePath + `Productores/${id}`, this.httpOptions);
+    }
 }

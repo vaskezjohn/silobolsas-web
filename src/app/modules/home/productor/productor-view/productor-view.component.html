@@ -1,0 +1,47 @@
+
+  <div>
+    <h1 mat-dialog-title>Productor</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+          <form>
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor.razonSocial"  type="text" placeholder="Razón social" name="razonSocial" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor.cuit" type="text" placeholder="Cuit"  name="cuit" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor.telefono"  type="text" placeholder="Telefóno"  name="telefono" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor.mail"  type="email" placeholder="E-mail"  name="mail"  disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput  [(ngModel)]="fechaAltaFormat" type="text" placeholder="Fecha de alta"  name="fechaAlta" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor?.localidad.provincias.nombre" type="text" placeholder="Provincia" name="provincia" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor?.localidad.nombre" type="text" placeholder="Localidad" name="localidad" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor.calle"  type="text" placeholder="Calle" name="calle" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="productor.altura"  type="text" placeholder="Altura"  name="altura" disabled>
+            </mat-form-field>
+          </form>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="close()">Cerrar</button>
+  </div>
