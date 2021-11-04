@@ -1,0 +1,96 @@
+<div>
+    <h1 mat-dialog-title>{{editMode ? "Edición" : "Nuevo" }} Productor</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+            <form [formGroup]="form">
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="productor.razonSocial" formControlName="razonSocial" type="text" placeholder="Razón social">
+                <mat-error *ngIf="form.controls['razonSocial'].hasError('required')">
+                    Razón social es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="productor.cuit" formControlName="cuit" type="text" placeholder="Cuit" >
+                <mat-error >
+                  El cuit debe tener 11 dígitos
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="productor.telefono" formControlName="telefono" type="text" placeholder="Telefóno">
+                <mat-error *ngIf="form.controls['telefono'].hasError('required')">
+                    Telefóno es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="productor.mail" formControlName="mail"  type="email" placeholder="E-mail" ngModel email required>
+                <mat-error *ngIf="form.controls['mail'].hasError('required')">
+                    El E-mail es obligatorio
+                </mat-error>
+                <mat-error *ngIf="!form.controls['mail'].hasError('required')">
+                  Ingrese un E-mail valido
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <!-- <input matInput [(ngModel)]="productor.fechaAlta" formControlName="fechaAlta" type="date" placeholder="Fecha de alta"> -->
+                <input matInput formControlName="fechaAlta" type="date" placeholder="Fecha de alta">
+                <mat-error *ngIf="form.controls['fechaAlta'].hasError('required')">
+                    Fecha de alta es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+
+
+
+              <mat-form-field>
+                <mat-label>Provincia</mat-label>
+                <mat-select formControlName="provincias"  [(value)]="productor?.localidad.provinciasID" (selectionChange)="onProvinciaChange($event.value)" >
+                  <mat-option *ngFor="let provincia of resultadoProvincias" [value]="provincia.id">
+                      {{provincia.nombre}}
+                  </mat-option>
+                </mat-select>
+
+               <mat-error *ngIf="form.controls['provincias'].hasError('required')">
+                  Provincia es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Localidad</mat-label>
+                <mat-select [(ngModel)]="productor.localidadesID" formControlName="localidades">
+                  <mat-option *ngFor="let localidad of resultadoLocalidades" [value]="localidad.id">
+                      {{localidad.nombre}}
+                  </mat-option>
+
+                  <mat-error *ngIf="form.controls['localidades'].hasError('required')">
+                    Localidad es <strong>requerida</strong>
+                  </mat-error>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="productor.calle" formControlName="calle" type="text" placeholder="Calle">
+                <mat-error *ngIf="form.controls['calle'].hasError('required')">
+                    La calle es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="productor.altura" formControlName="altura" type="text" placeholder="Altura">
+                <mat-error *ngIf="form.controls['altura'].hasError('required')">
+                    La altura es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+
+            </form>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit"
+            (click)="onSubmit()">Confirmar</button>
+        <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    </div>
+</div>
