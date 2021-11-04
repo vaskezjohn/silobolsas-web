@@ -9,6 +9,15 @@ import { LocalidadService } from '../../../../core/services/localidad.service';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { templateJitUrl } from '@angular/compiler';
 
+import { UnidadMedidaService } from 'src/app/core/services/unidadmedida.service';
+import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
+import { ColorService } from 'src/app/core/services/color.service';
+import { Color} from '../../../../core/models/color.model';
+import { MedicionService } from 'src/app/core/services/medicion.service';
+import { Medicion} from '../../../../core/models/medicion.model';
+import { TipoNotificacionService } from 'src/app/core/services/tiponotificacion.service';
+import { TipoNotificacion} from '../../../../core/models/tiponotificacion.model';
+
 @Component({
   selector: 'app-campo-new',
   templateUrl: './campo-new.component.html',
@@ -17,6 +26,11 @@ import { templateJitUrl } from '@angular/compiler';
 export class CampoNewComponent implements OnInit {
   provincias: Provincia[] =[];
   localidades: Localidad[] =[];
+  unidadesmedidas: UnidadMedida[] =[];
+  colores: Color[] = [];
+  mediciones: Medicion[]=[];
+  tiponotificaciones: TipoNotificacion[]=[];
+
   public showError: boolean = false;
   public erroMessage: string = 'No se pudo agregar el campo';
 
@@ -26,13 +40,42 @@ export class CampoNewComponent implements OnInit {
     public campoService: CampoService,
     public storageService: StorageService,
     public provinciaService: ProvinciaService,
-    public localidadService: LocalidadService) { }
+    public localidadService: LocalidadService,
+    public unidadmedidaService: UnidadMedidaService,
+    public colorService: ColorService,
+    public medicionService: MedicionService,
+    public tiponotificacionService: TipoNotificacionService )
+    { }
 
   ngOnInit(): void {
     this.provinciaService.ProvinciaList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.provincias.push(new Provincia(item.id, item.nombre)));
     }).catch(error => {
       console.log('Error al obtener las provincias');
+    });
+
+    this.unidadmedidaService.UnidadMedidaList().toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.unidadesmedidas.push(new UnidadMedida(item.id, item.descripcion,item.simbolo)));
+    }).catch(error => {
+      console.log('Error al obtener las unidades de medida');
+    });
+
+    this.colorService.ColorList().toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.colores.push(new Color(item.id, item.descripcion,item.hex)));
+    }).catch(error => {
+      console.log('Error al obtener los colores');
+    });
+
+    this.tiponotificacionService.TipoNotificacionList().toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.tiponotificaciones.push(new TipoNotificacion(item.id, item.descripcion)));
+    }).catch(error => {
+      console.log('Error al obtener los tipos de notificaciones');
+    });
+
+    this.medicionService.MedicionList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.mediciones.push(new Medicion(item.ID, item.valor,item.fechaHora, item.dispositivosID, item.silobolsasID,item.silobolsas,item.unidadesMedidasID,item.unidadesMedidas )));
+    }).catch(error => {
+      console.log('Error al obtener las mediciones');
     });
   }
 
