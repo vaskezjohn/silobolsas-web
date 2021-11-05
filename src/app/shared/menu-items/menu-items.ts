@@ -15,7 +15,8 @@ const MENUITEMS = [
   { state: 'productor-list', type: 'link', name: 'Productores', icon: 'supervisor_account', userRole: 'ADMIN' },
   { state: 'user-list', type: 'link', name: 'Usuarios', icon: 'view_list', userRole: 'ADMIN' },
   { state: 'campo-list', type: 'link', name: 'Campos', icon: 'terrain', userRole: 'AGRO' },
-  { state: 'silobolsa-list', type: 'link', name: 'Silobolsas', icon: 'grain', userRole: 'AGRO' }
+  { state: 'silobolsa-list', type: 'link', name: 'Silobolsas', icon: 'grain', userRole: 'AGRO' },
+  { state: 'dispositivo-list', type: 'link', name: 'Dispositivos', icon: 'settings_remotenna', userRole: 'AGRO' }
 
 ];
 

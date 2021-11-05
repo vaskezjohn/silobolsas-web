@@ -25,6 +25,7 @@ import { SilobolsaAbmComponent } from './silobolsa/silobolsa-abm/silobolsa-abm.c
 import { ProductorListComponent } from './productor/productor-list/productor-list.component';
 import { ProductorAbmComponent } from './productor/productor-abm/productor-abm.component';
 import { ProductorViewComponent } from './productor/productor-view/productor-view.component';
+import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DemoMaterialModule } from 'src/app/demo-material-module';
     SilobolsaAbmComponent,
     ProductorListComponent,
     ProductorAbmComponent,
-    ProductorViewComponent
+    ProductorViewComponent,
+    DispositivoListComponent
   ]
 })
 export class MaterialComponentsModule {}
