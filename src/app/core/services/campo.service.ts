@@ -25,7 +25,7 @@ export class CampoService {
     CampoList(ProductorId: string) {
 
       const query = Query.create().expand('Localidades', l => l.expand('Provincias'))
-                                  .expand('Silobolsas')
+                                  .expand('Silobolsas', s => s.expand('Dispositivos'))
                                   .filter('productoresID', OperatorType.Eq, `${ProductorId}`);
 
       return this.http.get(this.basePathOdata + '/Campos' + `?${query.compile()}`, this.httpOptions);
