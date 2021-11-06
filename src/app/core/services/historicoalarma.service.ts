@@ -22,12 +22,12 @@ export class HistoricoAlarmaService {
     }
 
     HistoricoAlarmaList(productoresID: string) {
-      const query = Query.create().expand('Colores')
+      const query = Query.create().filter('Silobolsas/Campos/productoresID', OperatorType.Eq, `${productoresID}`).expand('Colores')
                                   .expand('Dispositivos')
                                   .expand('TiposNotificaciones')
                                   .expand('UnidadesMedidas')
                                   .expand('Usuarios')
-                                  .expand('Silobolsas', s => s.expand('Campos', c => c.filter('productoresID', OperatorType.Eq, `${productoresID}`)))
+                                  .expand('Silobolsas', s => s.expand('Campos'))
                                   .orderBy('fechaHora', OrderBy.Desc);
 
       return this.http.get(this.basePathOdata + '/HistoricoAlarmas' + `?${query.compile()}`, this.httpOptions);
