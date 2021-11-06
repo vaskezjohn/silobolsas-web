@@ -22,8 +22,7 @@ export class HistoricoAlarmaService {
     }
 
     HistoricoAlarmaList(productoresID: string) {
-      const query = Query.create().expand('HistoricoAlarmas')
-                                  .expand('Colores')
+      const query = Query.create().expand('Colores')
                                   .expand('Dispositivos')
                                   .expand('TiposNotificaciones')
                                   .expand('UnidadesMedidas')

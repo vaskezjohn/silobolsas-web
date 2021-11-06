@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+}
+
+.mat-column-fecha {
+  flex: 0 0 10%;
+}
+.mat-column-valor {
+  flex: 0 0 10%;
+}
+.mat-column-ubicacion {
+  flex: 0 0 10%;
+}
+
