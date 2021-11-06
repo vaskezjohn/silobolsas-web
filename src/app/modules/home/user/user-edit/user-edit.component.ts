@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { Productor } from 'src/app/core/models/productor.model';
+import { ProductorService } from 'src/app/core/services/productor.service';
 import { Users} from '../../../../core/models/users.model'
 import { Userervice } from '../../../../core/services/user.service';
 
@@ -13,11 +15,13 @@ export class UserEditComponent implements OnInit {
 
   public showError: boolean = false;
   public erroMessage!: string;
+  public productores?: Array<Productor>;
 
   constructor(public dialogRef: MatDialogRef<UserEditComponent>,
-    @ Inject(MAT_DIALOG_DATA) public user: Users, public userervice: Userervice) { }
+    @ Inject(MAT_DIALOG_DATA) public user: Users, public userervice: Userervice, public productorService: ProductorService) { }
 
   ngOnInit(): void {
+    this.getProductores();
   }
 
   cancelar() {
@@ -35,4 +39,11 @@ export class UserEditComponent implements OnInit {
       this.erroMessage = (responseError.status != 500) ? responseError.error.message : 'No se pudo editar el usuario';      
     });
   }
+
+  getProductores() {
+    this.productorService.ProductorList().subscribe((response: Array<Productor>) => {
+      this.productores = response;
+    });
+  }
+
 }

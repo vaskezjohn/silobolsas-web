@@ -9,21 +9,18 @@
             Nombre es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field>
           <input matInput formControlName="apellido" type="text" placeholder="Apellido" autocomplete="off">
           <mat-error *ngIf="form.controls['apellido'].hasError('required')">
             Apellido es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field>
           <input matInput formControlName="telefono" type="tel" placeholder="Teléfono" autocomplete="off">
           <mat-error *ngIf="form.controls['telefono'].hasError('required')">
             Telefono es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field>
           <input matInput formControlName="email" type="email" placeholder="E-mail" autocomplete="off">
           <mat-error *ngIf="form.controls['email'].hasError('required')">
@@ -33,19 +30,17 @@
             El e-mail no es <strong>valido</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field>
           <mat-label>Productor</mat-label>
-          <mat-select formControlName="productores">
-            <mat-option *ngFor="let productor of productores; let i = index" [value]="productores[i].id">
-              {{productores[i].razonSocial}}
+          <mat-select [(ngModel)]="user.productoresID" name="productoresID">
+            <mat-option *ngFor="let productor of productores" [value]="productor.ID" aria-placeholder="Productor">
+              {{productor.razonSocial}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="form.controls['productores'].hasError('required')">
             Productor es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field>
           <mat-label>Rol</mat-label>
           <mat-select formControlName="roles">
@@ -57,7 +52,6 @@
             Rol es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field>
           <input matInput formControlName="passwordnew" type="password" placeholder="Password" autocomplete="off">
           <mat-error *ngIf="form.controls['passwordnew'].hasError('required')">

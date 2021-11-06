@@ -39,7 +39,7 @@ export class ProductorListComponent implements OnInit {
                                                                           item.calle,
                                                                           item.altura)));
       this.dataSource = new MatTableDataSource(this.productores);
-    }).catch(error => {
+    }).catch((error: any) => {
       console.log('Error al obtener los productores');
     });
 
@@ -55,9 +55,9 @@ export class ProductorListComponent implements OnInit {
       denyButtonText: `No, cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.ProductorService.delete(productor.id).toPromise().then((respose: any) => {
+        this.ProductorService.delete(productor.ID).toPromise().then((respose: any) => {
           this.dataSource.data = this.dataSource.data.filter(
-            (x) => x.id != productor.id
+            (x) => x.ID != productor.ID
           );
         }).catch(error => {
           Swal.fire('Error!', 'Productor invalido!', 'error');
@@ -121,10 +121,10 @@ export class ProductorListComponent implements OnInit {
   }
 
   updateProductor(productor: Productor) {
-    this.ProductorService.edit(productor.id, productor).toPromise().then((respose: any) => {
+    this.ProductorService.edit(productor.ID, productor).toPromise().then((respose: any) => {
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
-          if (x.id == respose.data.id)
+          if (x.ID == respose.data.id)
             x = respose;
           return true;
         });

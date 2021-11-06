@@ -2,7 +2,7 @@ import { Localidad } from "./localidades.model";
 
 export class Productor {
     constructor (
-        public id: string,
+        public ID: string,
         public razonSocial: string,
         public cuit: string,
         public telefono: string,

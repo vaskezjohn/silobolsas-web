@@ -52,7 +52,7 @@ export class ProductorAbmComponent implements OnInit {
       altura: ['', Validators.required],
     });
 
-    if (this.productor.id) {
+    if (this.productor.ID) {
       this.setEditForm();
       this.editMode = true;
     }
@@ -134,7 +134,7 @@ export class ProductorAbmComponent implements OnInit {
   {
     this.showError = false;
     console.log(this.productor)
-    this.productorService.edit(this.productor.id, this.productor).toPromise().then((respose: any) => {
+    this.productorService.edit(this.productor.ID, this.productor).toPromise().then((respose: any) => {
     this.dialogRef.close(true);
     Swal.fire('Productor actualizado!', '', 'success');
     }).catch(responseError => {

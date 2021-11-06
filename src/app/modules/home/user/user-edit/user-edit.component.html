@@ -17,6 +17,14 @@
               <input matInput [(ngModel)]="user.email" type="text" placeholder="E-mail" name="email">
             </mat-form-field>
             <mat-form-field>
+              <mat-label>Productor</mat-label>
+              <mat-select [(ngModel)]="user.productoresID" name="productoresID">
+                <mat-option *ngFor="let productor of productores" [value]="productor.ID" aria-placeholder="Productor">
+                  {{productor.razonSocial}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
               <input matInput [(ngModel)]="user.usuario" type="text" placeholder="Usuario" name="usuario">
             </mat-form-field>
             <mat-form-field>

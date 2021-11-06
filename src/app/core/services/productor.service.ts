@@ -21,7 +21,7 @@ export class ProductorService {
         }
     }
 
-    ProductorList() {
+    ProductorList(): any {
       return this.http.get(this.basePathOdata + 'Productores?%24expand=localidades($expand=provincias)', this.httpOptions);
     }
 

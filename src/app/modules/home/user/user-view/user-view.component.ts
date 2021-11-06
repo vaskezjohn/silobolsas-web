@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Productor } from 'src/app/core/models/productor.model';
+import { ProductorService } from 'src/app/core/services/productor.service';
 import { Users} from '../../../../core/models/users.model'
 import { Userervice } from '../../../../core/services/user.service';
 
@@ -10,13 +12,22 @@ import { Userervice } from '../../../../core/services/user.service';
 })
 export class UserViewComponent implements OnInit {
 
+  public productores?: Array<Productor>;
+  
   constructor(public dialogRef: MatDialogRef<UserViewComponent>,
-    @ Inject(MAT_DIALOG_DATA) public user: Users, public userervice: Userervice) { }
+    @ Inject(MAT_DIALOG_DATA) public user: Users, public userervice: Userervice, public productorService: ProductorService) { }
 
   ngOnInit(): void {
+    this.getProductores();
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+  getProductores() {
+    this.productorService.ProductorList().subscribe((response: Array<Productor>) => {
+      this.productores = response;
+    });
   }
 }

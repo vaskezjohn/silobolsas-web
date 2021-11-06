@@ -24,12 +24,11 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.userervice.userList().toPromise().then((respose: any) => {        
-      respose.forEach((item: any) => this.users.push(new Users(item.nombre, item.apellido, item.telefono, item.genero, item.email, item.usuario, item.password, item.id, item.idRol)));
+      respose.forEach((item: any) => this.users.push(new Users(item.nombre, item.apellido, item.telefono, item.genero, item.email, item.usuario, item.password, item.id, item.rolesID, item.productoresID)));
       this.dataSource = new MatTableDataSource(this.users);
     }).catch(error => {
       console.log('Error al obtener los usuario'); 
-    });
-    
+    });    
   }
 
   deleteUser(user: Users){
@@ -80,7 +79,7 @@ export class UserListComponent implements OnInit {
 
   newUser() {
     const dialogRef = this.dialog.open(UserNewComponent, {
-      data: new Users('', '', '', 0, '', '', '')
+      data: new Users('', '', '', 0, '', '', '', '')
     });
     dialogRef.afterClosed().subscribe(respononse => {
       if (respononse){
@@ -98,8 +97,8 @@ export class UserListComponent implements OnInit {
   }
 
   clone(user: Users): Users {
-    var cloned = new Users(user.nombre, user.apellido, user.telefono, user.genero, user.email, user.usuario, '', user.id, user.rolesID);
+    var cloned = new Users(user.nombre, user.apellido, user.telefono, user.genero, user.email, user.usuario, '', user.id, user.rolesID, user.productoresID);
     return cloned;
-}
+  }
 
 }

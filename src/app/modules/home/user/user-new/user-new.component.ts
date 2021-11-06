@@ -51,21 +51,6 @@ export class UserNewComponent implements OnInit {
     });
   }
 
-  getProductores(){
-    this.productorService.ProductorList().toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.productores.push(
-        new Productor(item.ID,
-          item.razonSocial,
-          item.cuit,
-          item.telefono,
-          item.mail,
-          item.fechaAlta)
-      ));
-    }).catch(error => {
-      console.log('Error al obtener los productores');
-    });
-  }
-
   cancelar() {
     this.dialogRef.close(false);
   }
@@ -76,7 +61,7 @@ export class UserNewComponent implements OnInit {
     this.user.telefono = this.form.controls['telefono'].value;
     this.user.email = this.form.controls['email'].value;    
     this.user.usuario = this.form.controls['email'].value;    
-    this.user.productoresID = this.productores.filter((x) => x.id == this.form.controls['productores'].value)[0].id;
+    this.user.productoresID = this.productores.filter((x) => x.ID == this.form.controls['productores'].value)[0].ID;
     this.user.rolesID = this.roles.filter((x) => x.ID == this.form.controls['roles'].value)[0].ID;
     this.user.password = this.form.controls['passwordnew'].value;
   }
@@ -92,6 +77,12 @@ export class UserNewComponent implements OnInit {
       Swal.fire('Usuario dado de alta!', '', 'success');
     }).catch(responseError => {
       console.log(responseError);
+    });
+  }
+
+  getProductores() {
+    this.productorService.ProductorList().subscribe((response: Array<Productor>) => {
+      this.productores = response;
     });
   }
 
