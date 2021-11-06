@@ -15,6 +15,11 @@ import { DispositivoService } from 'src/app/core/services/dispositivo.service';
   styleUrls: ['./silobolsa-monitor.component.scss']
 })
 export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
+  position = {
+    lat: -34.366452482149924,
+    lng: -58.58322545706875
+  };
+  
   constructor(
     private route: ActivatedRoute,
     public silobolsaService: SilobolsaService,
@@ -32,6 +37,7 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
     new Dispositivo('', '', '', '')
   ];
   silobolsa = new Silobolsa('', '', '', new Date());
+  
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

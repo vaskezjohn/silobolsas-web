@@ -29,6 +29,7 @@ import { DispositivoListComponent } from './dispositivo/dispositivo-list/disposi
 import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositivo-abm.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    CdkTableModule
+    CdkTableModule,
+    GoogleMapsModule
   ],
   providers: [],
   declarations: [
