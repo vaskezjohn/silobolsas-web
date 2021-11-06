@@ -70,6 +70,7 @@ export class SilobolsaListComponent implements OnInit {
   }
 
   detailsSilobolsa(silobolsa: Silobolsa) {
+
     this.router.navigate(['/silobolsa-monitor/detail', silobolsa.ID]);
   }
 

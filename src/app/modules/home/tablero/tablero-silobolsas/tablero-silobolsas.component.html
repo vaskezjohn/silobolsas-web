@@ -1,0 +1,20 @@
+
+<mat-accordion>
+
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false"
+                       *ngFor="let silobolsa of campo.silobolsas; let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{silobolsa.codigoSilo}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{silobolsa.descripcion}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{silobolsa.detalle}}</p>
+    <app-silobolsa-monitor [silobolsaID]='silobolsa.ID'></app-silobolsa-monitor>
+  </mat-expansion-panel>
+</mat-accordion>
+
+

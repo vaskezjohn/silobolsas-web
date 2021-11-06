@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Campo } from '../models/campo.model';
 import { environment } from 'src/environments/environment';
+import { OrderBy, Query, OperatorType } from 'ngx-odata-v4';
 
 @Injectable({
     providedIn: 'root'
@@ -22,10 +23,14 @@ export class CampoService {
     }
 
     CampoList(ProductorId: string) {
-      //return this.http.get(this.basePathOdata + 'Campos', this.httpOptions);
-      //return this.http.get(this.basePathOdata + 'Campos?%24expand=Productores&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
-      return this.http.get(this.basePathOdata + 'Campos?%24expand=Localidades(%24expand=Provincias)&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
-      //return this.http.get(this.basePathOdata + 'Campos?%24expand=Localidades&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
+
+      const query = Query.create().expand('Localidades', l => l.expand('Provincias'))
+                                  .expand('Silobolsas')
+                                  .filter('productoresID', OperatorType.Eq, `${ProductorId}`);
+
+      return this.http.get(this.basePathOdata + '/Campos' + `?${query.compile()}`, this.httpOptions);
+
+      //return this.http.get(this.basePathOdata + 'Campos?%24expand=Localidades(%24expand=Provincias)&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
 
     }
 

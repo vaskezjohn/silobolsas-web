@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SilobolsaInfoDialogComponent } from './silobolsa-info-dialog/silobolsa-info-dialog.component'
@@ -15,6 +15,9 @@ import { DispositivoService } from 'src/app/core/services/dispositivo.service';
   styleUrls: ['./silobolsa-monitor.component.scss']
 })
 export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
+
+  @Input() silobolsaID!: string;
+
   constructor(
     private route: ActivatedRoute,
     public silobolsaService: SilobolsaService,
@@ -32,17 +35,21 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
     new Dispositivo('', '', '', '')
   ];
   silobolsa = new Silobolsa('', '', '', new Date());
-
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.silobolsaService.silobolsaByID(id).toPromise().then((respose: any) => {
+
+    if(!this.silobolsaID){
+      let id:string = this.route.snapshot.paramMap.get('id')!;
+      this.silobolsaID=id;
+    }
+
+    if (this.silobolsaID) {
+      this.silobolsaService.silobolsaByID(this.silobolsaID).toPromise().then((respose: any) => {
         this.silobolsa = respose[0];
       }).catch(error => {
         console.log('silobolsa invalida');
       });
 
-      this.dispositivoService.DispositivoListBySilobolasID(id).toPromise().then((respose: any) => {
+      this.dispositivoService.DispositivoListBySilobolasID(this.silobolsaID).toPromise().then((respose: any) => {
         console.log(respose);
         for (let i = 0; i < 8; i++) {
           console.log(respose[i]);
@@ -65,7 +72,7 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
       //     silobolsa = respose[0];
       //   },
       //   complete() {
-      //     base.silobolsa.tipoGrano = silobolsa.tipoGrano;  
+      //     base.silobolsa.tipoGrano = silobolsa.tipoGrano;
       //   }
       // })
     }

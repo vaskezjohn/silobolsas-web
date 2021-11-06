@@ -1,0 +1,19 @@
+
+
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab *ngFor="let campo of campos; let i = index" [label]="campo.descripcion">
+
+
+    <tablero-silobolsas [campo]='campo'></tablero-silobolsas>
+
+
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
+
+
+
+

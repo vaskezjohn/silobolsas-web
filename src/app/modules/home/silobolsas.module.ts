@@ -28,6 +28,8 @@ import { ProductorViewComponent } from './productor/productor-view/productor-vie
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
+import { TableroComponent } from './tablero/tablero.component';
+import { TableroSilobolsasComponent } from './tablero/tablero-silobolsas/tablero-silobolsas.component';
 
 @NgModule({
   imports: [
@@ -60,7 +62,9 @@ import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-
     ProductorAbmComponent,
     ProductorViewComponent,
     DispositivoListComponent,
-    HistoricoAlarmaListComponent
+    HistoricoAlarmaListComponent,
+    TableroComponent,
+    TableroSilobolsasComponent
   ]
 })
 export class MaterialComponentsModule {}

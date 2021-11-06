@@ -25,7 +25,7 @@ export class CampoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.CampoService.CampoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, item.calle, item.altura, item.telefono, item.mail, item.ID, item.localidadesID, item.productoresID, item.localidades)));
+      respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, item.calle, item.altura, item.telefono, item.mail, item.ID, item.localidadesID, item.productoresID, item.localidades,item.silobolsas)));
 
       this.dataSource = new MatTableDataSource(this.campos);
     }).catch(error => {
@@ -81,7 +81,7 @@ export class CampoListComponent implements OnInit {
   }
 
   addCampo(campo: Campo) {
-    this.campos.push(new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail,campo.ID,campo.localidadesID,campo.productoresID,campo.localidades));
+    this.campos.push(new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail,campo.ID,campo.localidadesID,campo.productoresID,campo.localidades,campo.silobolsas));
     this.dataSource.data = this.campos;
   }
 
@@ -93,7 +93,7 @@ export class CampoListComponent implements OnInit {
   }
 
   clone(campo: Campo): Campo {
-    var cloned = new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail, campo.ID, campo.localidadesID, campo.productoresID,campo.localidades);
+    var cloned = new Campo(campo.descripcion, campo.calle, campo.altura, campo.telefono, campo.mail, campo.ID, campo.localidadesID, campo.productoresID,campo.localidades,campo.silobolsas);
     return cloned;
   }
 }

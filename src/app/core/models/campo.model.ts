@@ -1,4 +1,5 @@
 import { Localidad } from "./localidades.model";
+import { Silobolsa } from "./silobolsa.model";
 
 export class Campo {
   constructor(
@@ -10,6 +11,7 @@ export class Campo {
     public ID?: string,
     public localidadesID?: number,
     public productoresID?: string,
-    public localidades?: Localidad
+    public localidades?: Localidad,
+    public silobolsas?: Silobolsa
   ) { }
 }

@@ -7,6 +7,7 @@ import { SilobolsaListComponent } from './silobolsa/silobolsa-list/silobolsa-lis
 import { ProductorListComponent } from './productor/productor-list/productor-list.component';
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
+import { TableroComponent} from './tablero/tablero.component';
 
 export const MaterialRoutes: Routes = [
 
@@ -41,5 +42,10 @@ export const MaterialRoutes: Routes = [
   {
     path: 'historicoalarma-list',
     component: HistoricoAlarmaListComponent
+  }
+  ,
+  {
+    path: 'tablero',
+    component: TableroComponent
   }
 ];
