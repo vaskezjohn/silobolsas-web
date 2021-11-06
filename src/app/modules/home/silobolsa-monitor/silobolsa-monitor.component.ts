@@ -6,33 +6,58 @@ import { ActivatedRoute } from '@angular/router';
 import { Silobolsa } from '../../../core/models/silobolsa.model';
 import { SilobolsaService } from '../../../core/services/silobolsa.service';
 import { Productor } from '../../../core/models/productor.model';
+import { Dispositivo } from 'src/app/core/models/dispositivo.model';
+import { DispositivoService } from 'src/app/core/services/dispositivo.service';
 
 @Component({
   selector: 'app-silobolsa-monitor',
   templateUrl: './silobolsa-monitor.component.html',
   styleUrls: ['./silobolsa-monitor.component.scss']
 })
-export class SilobolsaMonitorComponent implements OnInit, AfterViewInit{
+export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     public silobolsaService: SilobolsaService,
+    public dispositivoService: DispositivoService,
     public dialog: MatDialog) { }
-    
+
+  dispostivos: Dispositivo[] = [
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', ''),
+    new Dispositivo('', '', '', '')
+  ];
   silobolsa = new Silobolsa('', '', '', new Date());
-  
-  ngOnInit(): void {   
+
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.silobolsaService.silobolsaByID(id).toPromise().then((respose: any) => {
-          
-      console.log(respose);
         this.silobolsa = respose[0];
       }).catch(error => {
         console.log('silobolsa invalida');
       });
 
- 
-
+      this.dispositivoService.DispositivoListBySilobolasID(id).toPromise().then((respose: any) => {
+        console.log(respose);
+        for (let i = 0; i < 8; i++) {
+          console.log(respose[i]);
+          if (respose[i]) {
+            this.dispostivos[i].id = respose[i].ID;
+            this.dispostivos[i].codigoSilo = respose[i].codigoSilo;
+            this.dispostivos[i].silobolsasID = respose[i].silobolsasID;
+            this.dispostivos[i].silobolsas = respose[i].silobolsas;
+            this.dispostivos[i].id = respose[i].ID;
+            this.dispostivos[i].id = respose[i].ID;
+          }
+        }
+      }).catch(error => {
+        console.log('silobolsa invalida');
+      });
 
       // this.silobolsaService.silobolsaByID(id).subscribe({
       //   next(respose) {
@@ -47,13 +72,14 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
-    
+
   }
 
 
-  openDialog(): void {
+  openDialog(dispostivo: Dispositivo): void {
     console.log('dialog');
     const dialogRef = this.dialog.open(SilobolsaInfoDialogComponent, {
+      data: dispostivo,
       width: '350px'
     });
 

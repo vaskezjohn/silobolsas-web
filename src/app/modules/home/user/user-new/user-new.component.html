@@ -1,37 +1,74 @@
+<div>
+  <h1 mat-dialog-title>Nuevo Usuario</h1>
+  <div mat-dialog-content>
+    <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+      <form [formGroup]="form">
+        <mat-form-field>
+          <input matInput formControlName="nombre" type="text" placeholder="Nombre" autocomplete="off">
+          <mat-error *ngIf="form.controls['nombre'].hasError('required')">
+            Nombre es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
 
-  <div>
-    <h1 mat-dialog-title>Nuevo Usuario</h1>
-    <div mat-dialog-content>
-        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">          
-          <form>
-            <mat-form-field>
-              <input matInput [(ngModel)]="user.nombre" type="text" placeholder="Nombre" name="nombre">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="user.apellido" type="text" placeholder="Apellido" name="apellido">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="user.telefono" type="text" placeholder="Teléfono" name="telefono">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="user.email" type="text" placeholder="E-mail" name="email">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="user.usuario" type="text" placeholder="Usuario" name="usuario">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="user.password" type="password" placeholder="Password" name="pasword">
-            </mat-form-field>
-          </form>
-      </div>
+        <mat-form-field>
+          <input matInput formControlName="apellido" type="text" placeholder="Apellido" autocomplete="off">
+          <mat-error *ngIf="form.controls['apellido'].hasError('required')">
+            Apellido es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="telefono" type="tel" placeholder="Teléfono" autocomplete="off">
+          <mat-error *ngIf="form.controls['telefono'].hasError('required')">
+            Telefono es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="email" type="email" placeholder="E-mail" autocomplete="off">
+          <mat-error *ngIf="form.controls['email'].hasError('required')">
+            E-mail es <strong>requerido</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['email'].hasError('email')">
+            El e-mail no es <strong>valido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Productor</mat-label>
+          <mat-select formControlName="productores">
+            <mat-option *ngFor="let productor of productores; let i = index" [value]="productores[i].id">
+              {{productores[i].razonSocial}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls['productores'].hasError('required')">
+            Productor es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="roles">
+            <mat-option *ngFor="let rol of roles; let i = index" [value]="roles[i].ID">
+              {{roles[i].descripcion}}
+            </mat-option>
+          </mat-select>          
+          <mat-error *ngIf="form.controls['roles'].hasError('required')">
+            Rol es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="passwordnew" type="password" placeholder="Password" autocomplete="off">
+          <mat-error *ngIf="form.controls['passwordnew'].hasError('required')">
+            Password es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
   </div>
-  <div *ngIf="showError" class="alert alert-danger" fxLayout="row" fxLayoutAlign="center center"
-    style="background-color: white; color: red">
-    {{erroMessage}}
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit" (click)="add()">Confirmar</button>
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
   </div>
-  <div mat-dialog-actions>    
-    <button mat-raised-button color="primary" (click)="add()">Confirmar</button>
-    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>    
-  </div>
-  
-  
+</div>

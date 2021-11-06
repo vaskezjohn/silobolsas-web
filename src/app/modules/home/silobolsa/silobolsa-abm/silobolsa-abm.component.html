@@ -3,7 +3,6 @@
     <div mat-dialog-content>
         <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
             <form [formGroup]="form">
-
                 <mat-form-field>
                     <input matInput formControlName="tipoGrano" type="text" placeholder="Tipo de grano">
                     <mat-error *ngIf="form.controls['tipoGrano'].hasError('required')">
@@ -51,7 +50,6 @@
                         Detalle es <strong>requerido</strong>
                     </mat-error>
                 </mat-form-field>
-
             </form>
         </div>
     </div>

@@ -49,7 +49,7 @@ export class SilobolsaService {
   }
 
   silobolsaByID(id: string) : Observable<any> {
-    const query = Query.create().filter('ID', OperatorType.Eq, `${id}`).expand('Campos', c => c.expand('Productores'));
+    const query = Query.create().filter('ID', OperatorType.Eq, `${id}`).expand('Campos', c => c.expand('Productores', p => p.expand('Localidades')));
     // const query = Query.create().filter('ID', OperatorType.Eq, `${id}`).expand('Campos', c => c.expand('Productores', p => p.expand('Localidades')));
 
     return this.http.get(this.silobolsasOdataPath + `?${query.compile()}`, this.httpOptions);

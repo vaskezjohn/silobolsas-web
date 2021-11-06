@@ -5,8 +5,7 @@
 /*Pinta fila de la tabla*/
 .mat-row:hover .mat-cell {
   /* border-color: currentColor; */
-  background-color:rgb(244, 246, 252);
-
+  background-color: rgb(244, 246, 252);
 }
 
 .example-container {
@@ -25,10 +24,9 @@
   display: none;
 }
 
-
 @media (max-width: 600px) {
   .mobile-label {
-    width: 80px;
+    width: 100px;
     display: inline-block;
     font-weight: bold;
   }
@@ -53,7 +51,4 @@
     align-items: start;
     padding: 8px 24px;
   }
-
-
-
 }

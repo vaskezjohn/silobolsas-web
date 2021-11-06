@@ -7,6 +7,7 @@ import { Dispositivo } from '../../../../core/models/dispositivo.model';
 import { DispositivoService } from '../../../../core/services/dispositivo.service';
 import { Silobolsa } from 'src/app/core/models/silobolsa.model';
 import Swal from 'sweetalert2';
+import { StorageService } from 'src/app/core/authentication/services/storage.service';
 
 
 
@@ -22,12 +23,13 @@ export class DispositivoListComponent implements OnInit {
   editMode = false;
   dispositivoEdit: Dispositivo = new Dispositivo('', '', '', '', undefined);
 
-  displayedColumns: string[] = ['codigoDispositivo', 'descripcion', 'codigoSilobolsa', 'detalleSilobolsa','operations'];
+  displayedColumns: string[] = ['codigoSilo', 'descripcion', 'codigoSilobolsa', 'detalleSilobolsa'] 
+  // ,'operations'];
   dataSource!: MatTableDataSource<Dispositivo>;
-  constructor(public dialog: MatDialog, public DispositivoService: DispositivoService) { }
+  constructor(public dialog: MatDialog, public DispositivoService: DispositivoService, public storageService : StorageService) { }
 
   ngOnInit(): void {
-    this.DispositivoService.DispositivoList().toPromise().then((respose: any) => {
+    this.DispositivoService.DispositivoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.dispositivos.push(new Dispositivo(item.ID,
                                                                           item.codigoSilo,
                                                                           item.descripcion,

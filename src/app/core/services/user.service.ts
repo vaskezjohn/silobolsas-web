@@ -13,6 +13,7 @@ export class Userervice {
     private httpOptions: any;
     private usuarioUrl  = environment.base_url + 'Usuarios';    
     private usuarioOdataUrl  = environment.odata_base_url + 'Usuarios';
+    private rolOdataUrl  = environment.odata_base_url + 'Roles';
     private authenticationUrl = environment.base_url + 'Usuarios/ForgotPassword';
     private resetPassUrl = environment.base_url + 'Usuarios/ResetPasswordToken';
 
@@ -47,5 +48,9 @@ export class Userervice {
 
     resetPass(resetPasswordObj: ResetPass) {
         return this.http.post(this.resetPassUrl, resetPasswordObj, this.httpOptions);
+    }
+
+    rolesList(){
+        return this.http.get(this.rolOdataUrl, this.httpOptions);
     }
 }

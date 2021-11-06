@@ -27,14 +27,11 @@ export class ProductorService {
 
    add(productor: Productor) {
       return this.http.post(this.basePath + 'Productores', productor, this.httpOptions);
-      //return this.http.post('https://localhost:44362/' + 'Productores', productor, this.httpOptions);
-
     }
 
     edit(id: string, obj: Productor) {
       return this.http.put(this.basePath + `Productores/${id}`, obj, this.httpOptions);
     }
-
 
     delete(id: string) {
       return this.http.delete(this.basePath + `Productores/${id}`, this.httpOptions);

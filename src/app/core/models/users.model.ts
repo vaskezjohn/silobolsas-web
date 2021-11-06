@@ -8,6 +8,7 @@ export class Users {
         public usuario?: string,
         public password?: string,
         public id?: string,
-        public idRol?: string
+        public rolesID?: string,       
+        public productoresID?: string
       ) {}
     }
