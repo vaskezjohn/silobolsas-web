@@ -27,11 +27,11 @@ export class SilobolsaListComponent implements OnInit {
     public silobolsaService: SilobolsaService,
     public storageService: StorageService) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.silobolsaService.SilobolsasList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.tipoGrano, item.fechaEmbolsado, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.dataSource = new MatTableDataSource(this.silobolsas);
-    }).catch(error => {      
+    }).catch(error => {
       Swal.fire('Error!', 'Error al obtener las silobolsas!', 'error');
     });
 
@@ -39,8 +39,8 @@ export class SilobolsaListComponent implements OnInit {
 
   deleteSilobolsa(silobolsa: Silobolsa) {
     Swal.fire({
-      title:  'Eliminar silobolsa',
-      text:  '¿Desea eliminar la silobolsa ' + silobolsa.codigoSilo +'?',
+      title: 'Eliminar silobolsa',
+      text: '¿Desea eliminar la silobolsa ' + silobolsa.codigoSilo + '?',
       showDenyButton: true,
       confirmButtonText: 'Eliminar',
       denyButtonText: `No, cancelar`,
@@ -54,23 +54,23 @@ export class SilobolsaListComponent implements OnInit {
           Swal.fire('Error!', 'silobolsa invalida!', 'error');
         });
         Swal.fire('Eliminado!', '', 'success');
-      } 
-    })  
+      }
+    })
   }
 
   editSilobolsa(Silobolsa: Silobolsa) {
-    this.silobolsaEdit = Silobolsa;    
+    this.silobolsaEdit = Silobolsa;
     this.editMode = false;
     this.openModelSilobolsa();
   }
 
-  newSilobolsa() {    
+  newSilobolsa() {
     this.editMode = true;
     this.openModelSilobolsa();
   }
 
   detailsSilobolsa(silobolsa: Silobolsa) {
-      this.router.navigate(['/silobolsa-monitor/detail', silobolsa.ID]);
+    this.router.navigate(['/silobolsa-monitor/detail', silobolsa.ID]);
   }
 
   openModelSilobolsa() {
@@ -104,6 +104,7 @@ export class SilobolsaListComponent implements OnInit {
             x = respose;
           return true;
         });
+      Swal.fire('Silobolsa actualizado!', '', 'success');
     }).catch(error => {
       console.log('silobolsa invalida');
     });
@@ -121,6 +122,7 @@ export class SilobolsaListComponent implements OnInit {
         respose.data.campos,
         respose.data.detalle));
       this.dataSource.data = this.silobolsas;
+      Swal.fire('Silobolsa dada de alta!', '', 'success');
     }).catch(error => {
       console.log('silobolsa invalida');
     });

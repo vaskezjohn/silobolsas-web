@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Productor } from 'src/app/core/models/productor.model';
 import { Roles } from 'src/app/core/models/roles.model';
 import { ProductorService } from 'src/app/core/services/productor.service';
+import Swal from 'sweetalert2';
 import { Users } from '../../../../core/models/users.model'
 import { Userervice } from '../../../../core/services/user.service';
 
@@ -87,7 +88,8 @@ export class UserNewComponent implements OnInit {
     }
     this.setUsuario();
     this.userervice.add(this.user).toPromise().then((respose: any) => {
-      this.dialogRef.close(true);
+      this.dialogRef.close(true);      
+      Swal.fire('Usuario dado de alta!', '', 'success');
     }).catch(responseError => {
       console.log(responseError);
     });

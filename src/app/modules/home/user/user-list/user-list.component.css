@@ -20,6 +20,12 @@
   max-height: 500px;
 }
 
+/*Pinta fila de la tabla*/
+.mat-row:hover .mat-cell {
+  /* border-color: currentColor; */
+  background-color: rgb(244, 246, 252);
+}
+
 .mobile-label {
   display: none;
 }

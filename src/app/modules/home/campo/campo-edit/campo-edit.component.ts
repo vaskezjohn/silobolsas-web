@@ -7,6 +7,7 @@ import { Provincia} from '../../../../core/models/provincia.model'
 import { Localidad} from '../../../../core/models/localidades.model'
 import { ProvinciaService } from '../../../../core/services/provincia.service';
 import { LocalidadService } from '../../../../core/services/localidad.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-campo-edit',
@@ -41,7 +42,8 @@ export class CampoEditComponent implements OnInit {
   edit() {
     this.showError = false;
      this.campoService.edit(this.campo).toPromise().then((respose: any) => {
-      this.dialogRef.close(true);
+      this.dialogRef.close(true);      
+      Swal.fire('Campo actualizado!', '', 'success');
     }).catch(responseError => {
       console.log(responseError);
       this.showError = true;

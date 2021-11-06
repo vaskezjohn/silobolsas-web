@@ -2,6 +2,12 @@
   width: 100%;
 }
 
+/*Pinta fila de la tabla*/
+.mat-row:hover .mat-cell {
+  /* border-color: currentColor; */
+  background-color: rgb(244, 246, 252);
+}
+
 .example-container {
   display: flex;
   flex-direction: column;

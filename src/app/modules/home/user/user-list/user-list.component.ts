@@ -7,6 +7,7 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 import { UserDeleteComponent } from '../user-delete/user-delete.component';
 import { Users } from '../../../../core/models/users.model';
 import { Userervice } from '../../../../core/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-list',
@@ -32,15 +33,37 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(user: Users){
-    const dialogRef = this.dialog.open(UserDeleteComponent, {
-      data: this.clone(user)
-    });
-    dialogRef.afterClosed().subscribe(respononse => {
-      if (respononse){
-        this.users =[]
-        this.ngOnInit();
-      }      
-    });
+    Swal.fire({
+      title:  'Eliminar Usuario',
+      text:  '¿Desea eliminar usuario ' + user.usuario +'?',
+      showDenyButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `No, cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userervice.delete(user).toPromise().then((respose: any) => {              
+          this.dataSource.data = this.dataSource.data.filter(
+            (x) => x.id != user.id
+          );
+        }).catch(error => {
+          Swal.fire('Error!', 'campo invalido!', 'error');
+        });
+        Swal.fire('Eliminado!', '', 'success');
+      }
+    })
+
+
+
+
+    // const dialogRef = this.dialog.open(UserDeleteComponent, {
+    //   data: this.clone(user)
+    // });
+    // dialogRef.afterClosed().subscribe(respononse => {
+    //   if (respononse){
+    //     this.users =[]
+    //     this.ngOnInit();
+    //   }      
+    // });
   }
 
   editUser(user: Users){

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 import { Users} from '../../../../core/models/users.model'
 import { Userervice } from '../../../../core/services/user.service';
 
@@ -26,7 +27,8 @@ export class UserEditComponent implements OnInit {
   edit() {
     this.showError = false;
      this.userervice.edit(this.user).toPromise().then((respose: any) => {              
-      this.dialogRef.close(true);
+      this.dialogRef.close(true);      
+      Swal.fire('Usuario actualizado!', '', 'success');
     }).catch(responseError => {
       console.log(responseError);
       this.showError = true;      
