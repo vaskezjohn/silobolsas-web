@@ -26,6 +26,7 @@ import { ProductorListComponent } from './productor/productor-list/productor-lis
 import { ProductorAbmComponent } from './productor/productor-abm/productor-abm.component';
 import { ProductorViewComponent } from './productor/productor-view/productor-view.component';
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
+import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositivo-abm.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 
@@ -60,6 +61,7 @@ import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-
     ProductorAbmComponent,
     ProductorViewComponent,
     DispositivoListComponent,
+    DispositivoAbmComponent,
     HistoricoAlarmaListComponent
   ]
 })

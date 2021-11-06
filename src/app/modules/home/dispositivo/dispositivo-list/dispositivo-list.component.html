@@ -3,9 +3,9 @@
 
     <mat-card-title>
       Dispositivos
-      <!-- <div class="button-row" style="float: right">
+      <div class="button-row" style="float: right">
         <button mat-raised-button color="primary" (click)="newDispositivo()">+ NUEVO</button>
-      </div> -->
+      </div>
     </mat-card-title>
 
     <br>
@@ -55,20 +55,20 @@
           </ng-container>
 
           <!-- Operation Column -->
-          <!-- <ng-container matColumnDef="operations">
+          <ng-container matColumnDef="operations">
             <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <button mat-icon-button color="primary" (click)="detailsProductor(element)">
+              <button mat-icon-button color="primary" (click)="detailsDispositivo(element)">
                 <mat-icon>description</mat-icon>
               </button>
-              <button mat-icon-button color="primary" (click)="editProductor(element)">
+              <button mat-icon-button color="primary" (click)="editDispositivo(element)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button color="primary" (click)="deleteProductor(element)">
+              <button mat-icon-button color="primary" (click)="deleteDispositivo(element)">
                 <mat-icon>delete</mat-icon>
               </button>
             </mat-cell>
-          </ng-container> -->
+          </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
