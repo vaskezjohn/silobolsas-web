@@ -27,6 +27,7 @@ import { ProductorAbmComponent } from './productor/productor-abm/productor-abm.c
 import { ProductorViewComponent } from './productor/productor-view/productor-view.component';
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
+import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import { DemoMaterialModule } from 'src/app/demo-material-module';
     ProductorListComponent,
     ProductorAbmComponent,
     ProductorViewComponent,
-    DispositivoListComponent
+    DispositivoListComponent,
+    HistoricoAlarmaListComponent
   ]
 })
 export class MaterialComponentsModule {}

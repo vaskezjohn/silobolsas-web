@@ -6,6 +6,7 @@ import { CampoListComponent } from './campo/campo-list/campo-list.component';
 import { SilobolsaListComponent } from './silobolsa/silobolsa-list/silobolsa-list.component';
 import { ProductorListComponent } from './productor/productor-list/productor-list.component';
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
+import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 
 export const MaterialRoutes: Routes = [
 
@@ -36,5 +37,9 @@ export const MaterialRoutes: Routes = [
   {
     path: 'dispositivo-list',
     component: DispositivoListComponent
+  },
+  {
+    path: 'historicoalarma-list',
+    component: HistoricoAlarmaListComponent
   }
 ];
