@@ -18,6 +18,11 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
 
   @Input() silobolsaID!: string;
 
+  position = {
+    lat: -34.366452482149924,
+    lng: -58.58322545706875
+  };
+
   constructor(
     private route: ActivatedRoute,
     public silobolsaService: SilobolsaService,
@@ -35,6 +40,8 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
     new Dispositivo('', '', '', '')
   ];
   silobolsa = new Silobolsa('', '', '', new Date());
+
+
   ngOnInit(): void {
 
     if(!this.silobolsaID){

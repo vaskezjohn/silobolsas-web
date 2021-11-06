@@ -1,0 +1,44 @@
+<div>
+    <h1 mat-dialog-title>{{editMode ? "Edición" : "Nuevo" }} Dispositivo</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+            <form [formGroup]="form">
+
+              <mat-form-field>
+                <input matInput [(ngModel)]="dispositivo.descripcion" formControlName="descripcion" type="text" placeholder="Descripción">
+                <mat-error *ngIf="form.controls['descripcion'].hasError('required')">
+                    La Descripción es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Campo</mat-label>
+                <mat-select formControlName="campos"  (selectionChange)="onCampoChange($event.value)" >
+                  <mat-option *ngFor="let campo of resultadoCampos" [value]="campo.ID">
+                      {{campo.descripcion}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Silobolsa</mat-label>
+                <mat-select [(ngModel)]="dispositivo.silobolsasID" formControlName="silobolsas">
+                  <mat-option *ngFor="let silobolsa of resultadoSilobolsas" [value]="silobolsa.ID">
+                      {{silobolsa.codigoSilo}}
+                  </mat-option>
+
+                  <mat-error *ngIf="form.controls['silobolsas'].hasError('required')">
+                    La silobolsa es <strong>requerida</strong>
+                  </mat-error>
+                </mat-select>
+              </mat-form-field>
+
+            </form>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit"
+            (click)="onSubmit()">Confirmar</button>
+        <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    </div>
+</div>

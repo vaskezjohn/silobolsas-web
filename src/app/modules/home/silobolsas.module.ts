@@ -26,10 +26,12 @@ import { ProductorListComponent } from './productor/productor-list/productor-lis
 import { ProductorAbmComponent } from './productor/productor-abm/productor-abm.component';
 import { ProductorViewComponent } from './productor/productor-view/productor-view.component';
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
+import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositivo-abm.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 import { TableroComponent } from './tablero/tablero.component';
 import { TableroSilobolsasComponent } from './tablero/tablero-silobolsas/tablero-silobolsas.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   imports: [
@@ -40,7 +42,8 @@ import { TableroSilobolsasComponent } from './tablero/tablero-silobolsas/tablero
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    CdkTableModule
+    CdkTableModule,
+    GoogleMapsModule
   ],
   providers: [],
   declarations: [
@@ -65,6 +68,8 @@ import { TableroSilobolsasComponent } from './tablero/tablero-silobolsas/tablero
     HistoricoAlarmaListComponent,
     TableroComponent,
     TableroSilobolsasComponent
+    DispositivoAbmComponent,
+    HistoricoAlarmaListComponent
   ]
 })
 export class MaterialComponentsModule {}
