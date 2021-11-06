@@ -67,9 +67,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
     DispositivoListComponent,
     HistoricoAlarmaListComponent,
     TableroComponent,
-    TableroSilobolsasComponent
+    TableroSilobolsasComponent,
+    HistoricoAlarmaListComponent,
     DispositivoAbmComponent,
-    HistoricoAlarmaListComponent
   ]
 })
 export class MaterialComponentsModule {}
