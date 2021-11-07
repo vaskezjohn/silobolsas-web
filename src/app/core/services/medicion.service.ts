@@ -33,13 +33,11 @@ export class MedicionService {
 
     }
 
-    UltimaMedicionList(dispositivoID: string, unidadesMedidasID: string) {
-      //const query = Query.create().expand('unidadesMedidas')
-      //                            .expand('Silobolsas', s => s.expand('Campos'));
-
-      const query = Query.create().expand('UnidadesMedidas').filter('dispositivosID', OperatorType.Eq, `${dispositivoID}`)
-                                                            .filter('unidadesMedidasID', OperatorType.Eq, `${unidadesMedidasID}`)
-                                  .orderBy('fechaHora', OrderBy.Desc);
+    UltimaMedicionDispositivo(dispositivoID: string, unidadesMedidasID: string) {
+      const query = Query.create().filter('dispositivosID', OperatorType.Eq, `${dispositivoID}`)
+                                  .filter('unidadesMedidasID', OperatorType.Eq, `${unidadesMedidasID}`)
+                                  .orderBy('fechaHora', OrderBy.Desc)
+                                  .top(1);
 
       return this.http.get(this.basePathOdata + '/Mediciones' + `?${query.compile()}`, this.httpOptions);
 

@@ -30,8 +30,10 @@ import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositi
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 import { TableroComponent } from './tablero/tablero.component';
-import { TableroSilobolsasComponent } from './tablero/tablero-silobolsas/tablero-silobolsas.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { DispositivoEstadoActualComponent } from './dispositivo/dispositivo-estado-actual/dispositivo-estado-actual.component';
+import { ChartistModule } from 'ng-chartist';
+import { SilobolsaEstadoActualComponent } from './silobolsa/silobolsa-estado-actual/silobolsa-estado-actual.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     ReactiveFormsModule,
     FlexLayoutModule,
     CdkTableModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ChartistModule,
   ],
   providers: [],
   declarations: [
@@ -67,9 +70,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
     DispositivoListComponent,
     HistoricoAlarmaListComponent,
     TableroComponent,
-    TableroSilobolsasComponent,
     HistoricoAlarmaListComponent,
     DispositivoAbmComponent,
+    DispositivoEstadoActualComponent,
+    SilobolsaEstadoActualComponent,
   ]
 })
 export class MaterialComponentsModule {}

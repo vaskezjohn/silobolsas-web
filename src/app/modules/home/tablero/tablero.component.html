@@ -1,14 +1,54 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Monitoreo</mat-card-title>
+      <!--Campos-->
+      <mat-tab-group mat-align-tabs="start">
+        <mat-tab *ngFor="let campo of campos; let i = index" [label]="campo.descripcion">
+
+          <!--Silobolsas-->
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let silobolsa of campo.silobolsas; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{silobolsa.codigoSilo}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{silobolsa.descripcion}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>{{silobolsa.detalle}}</p>
+
+              <app-silobolsa-monitor [silobolsaID]='silobolsa.ID'></app-silobolsa-monitor>
+              <!--<silobolsa-estado-actual [silobolsaID]='silobolsa.ID'></silobolsa-estado-actual>-->
+
+              <!--Dispositivos
+               <mat-card>
+                  <mat-card-content>
+                    <mat-card-title>Dispositivos</mat-card-title>
+                    <mat-accordion>
+                      <mat-expansion-panel *ngFor="let dispositivo of silobolsa.dispositivos; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            {{dispositivo.descripcion}}
+                          </mat-panel-title>
+                          <mat-panel-description>
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <dispositivo-estado-actual [dispositivoID]='dispositivo.ID'></dispositivo-estado-actual>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </mat-card-content>
+                </mat-card>
+              -->
+
+            </mat-expansion-panel>
+          </mat-accordion>
 
 
-<mat-tab-group mat-align-tabs="start">
-  <mat-tab *ngFor="let campo of campos; let i = index" [label]="campo.descripcion">
-
-
-    <tablero-silobolsas [campo]='campo'></tablero-silobolsas>
-
-
-  </mat-tab>
-</mat-tab-group>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
 
 
 
