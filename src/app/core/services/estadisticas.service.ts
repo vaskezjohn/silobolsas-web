@@ -1,6 +1,7 @@
 import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +20,8 @@ export class EstadisticasService {
         }
     }
 
-    MedicionesPromedio(productorId :string) {
-      return this.http.get(this.basePath + '/Estadisticas', this.httpOptions);
+    MedicionesPromedioBar(estadisticasReqObject :EstadisticasReqObject) {
+      return this.http.post(this.basePath + '/Estadisticas/MedicionesPromedio/bar',estadisticasReqObject, this.httpOptions);
     }
 
 }
