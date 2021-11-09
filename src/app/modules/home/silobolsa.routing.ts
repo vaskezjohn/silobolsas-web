@@ -9,6 +9,7 @@ import { DispositivoListComponent } from './dispositivo/dispositivo-list/disposi
 import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositivo-abm.component';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 import { TableroComponent} from './tablero/tablero.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 export const MaterialRoutes: Routes = [
 
@@ -48,9 +49,11 @@ export const MaterialRoutes: Routes = [
     path: 'historicoalarma-list',
     component: HistoricoAlarmaListComponent
   }
-  ,
-  {
+  ,{
     path: 'tablero',
     component: TableroComponent
+  } ,{
+    path: 'estadisticas',
+    component: EstadisticasComponent
   }
 ];

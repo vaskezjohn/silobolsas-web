@@ -34,6 +34,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { DispositivoEstadoActualComponent } from './dispositivo/dispositivo-estado-actual/dispositivo-estado-actual.component';
 import { ChartistModule } from 'ng-chartist';
 import { SilobolsaEstadoActualComponent } from './silobolsa/silobolsa-estado-actual/silobolsa-estado-actual.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadisticasPromedioMedidas/estadisticasPromedioMedidasap.component';
 
 @NgModule({
   imports: [
@@ -74,6 +76,8 @@ import { SilobolsaEstadoActualComponent } from './silobolsa/silobolsa-estado-act
     DispositivoAbmComponent,
     DispositivoEstadoActualComponent,
     SilobolsaEstadoActualComponent,
+    EstadisticasComponent,
+    EstadisticasPromedioMedidasComponent,
   ]
 })
 export class MaterialComponentsModule {}

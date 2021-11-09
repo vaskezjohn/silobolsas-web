@@ -10,7 +10,7 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-  { state: 'dashboard', name: 'Estadísticas', type: 'link', icon: 'av_timer', userRole: 'AGRO' },
+  { state: 'estadisticas', name: 'Estadísticas', type: 'link', icon: 'av_timer', userRole: 'AGRO' },
   { state: 'tablero', type: 'link', name: 'Monitoreo', icon: 'view_comfy', userRole: 'AGRO' },
   { state: 'productor-list', type: 'link', name: 'Productores', icon: 'supervisor_account', userRole: 'ADMIN' },
   { state: 'user-list', type: 'link', name: 'Usuarios', icon: 'view_list', userRole: 'ADMIN' },
