@@ -16,12 +16,9 @@ export class TableroComponent implements OnInit{
 
   constructor(public dialog: MatDialog, public CampoService: CampoService, public storageService: StorageService) { }
 
-
-
   ngOnInit(): void {
     this.CampoService.CampoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, item.calle, item.altura, item.telefono, item.mail, item.ID, item.localidadesID, item.productoresID, item.localidades,item.silobolsas)));
-
     }).catch(error => {
       console.log('Error al obtener los campos');
     });

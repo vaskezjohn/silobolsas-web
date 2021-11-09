@@ -74,10 +74,12 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
 
 
    }
+   public cargoGrafico = false;
+   ngOnInit(): void {
 
-  ngOnInit(): void {
     this.EstadisticasService.MedicionesPromedioBar(this.estadisticasReqObject).toPromise().then((respose: any) => {
       this.barChart1.data=respose;
+      this.cargoGrafico = true;
     }).catch(error => {
       console.log('Error al obtener las estadisticas');
     });
