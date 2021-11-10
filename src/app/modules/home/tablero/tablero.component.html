@@ -18,10 +18,12 @@
                       </mat-expansion-panel-header>
                       <p>{{silobolsa.detalle}}</p>
 
-                      <app-silobolsa-monitor [silobolsaID]='silobolsa.ID'></app-silobolsa-monitor>
+                      <div>
+                        <app-silobolsa-monitor [silobolsaID]='silobolsa.ID'></app-silobolsa-monitor>
+                      </div>
 
                       <!--dispositivos-->
-<!--
+
                       <mat-card>
                         <mat-card-content>
                           <mat-card-title>Dispositivos</mat-card-title>
@@ -35,14 +37,17 @@
                                 <mat-panel-description>
                                 </mat-panel-description>
                               </mat-expansion-panel-header>
-                                <div *ngFor="let unidad of unidadesMedidas; let i = index" >
-                                  <dispositivo-estado-actual  [unidadMedida]='unidad' [dispositivoID]='dispositivo.ID'></dispositivo-estado-actual>
+                                <div *ngIf="show">
+                                  <div *ngFor="let unidad of unidadesMedidas; let i = index" >
+                                    <dispositivo-estado-actual  [unidadMedida]='unidad' [dispositivoID]='dispositivo.ID'></dispositivo-estado-actual>
+                                  </div>
                                 </div>
+
                             </mat-expansion-panel>
                           </mat-accordion>
                         </mat-card-content>
                       </mat-card>
--->
+
                     </mat-expansion-panel>
                   </mat-accordion>
 
