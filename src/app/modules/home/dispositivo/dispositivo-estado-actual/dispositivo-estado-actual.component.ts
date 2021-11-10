@@ -3,6 +3,7 @@ import { Component, Input, OnDestroy } from "@angular/core";
 import { ChartType } from "ng-chartist";
 import { Subscription, timer } from "rxjs";
 import { Dispositivo } from "src/app/core/models/dispositivo.model";
+import { Medicion } from "src/app/core/models/medicion.model";
 import { UnidadMedida } from "src/app/core/models/unidadmedida.model";
 import { MedicionService } from "src/app/core/services/medicion.service";
 import { UnidadMedidaService } from "src/app/core/services/unidadmedida.service";
@@ -25,8 +26,9 @@ export function getRandomInt(min: number, max: number): number {
 export class DispositivoEstadoActualComponent implements OnDestroy {
   public data: LiveData;
   public type: ChartType;
+  mediciones:Medicion[]=[];
   serie:number[][]=[[]];
-  public unidadadesMedidas: UnidadMedida[] =[];
+  unidadadesMedidas: UnidadMedida[] =[];
   private timerSubscription: Subscription;
   @Input() dispositivoID!: string;
   @Input() unidadMedida!: UnidadMedida;
@@ -41,29 +43,39 @@ export class DispositivoEstadoActualComponent implements OnDestroy {
     this.timerSubscription = timer(0, 10000).subscribe(() => this.updateData());
   }
 
-  updateData() {
+  public updateData() {
     const time: Date = new Date();
     const formattedTime = formatDate(time, "HH:mm:ss", "en");
     const random = getRandomInt(1, 40);
+    //const random1 = getRandomInt(1, 40);
+    //const random2 = getRandomInt(1, 40);
     const data = this.data.series[0];
+   // const data1 = this.data.series[1];
+  //  const data2= this.data.series[2];
     const labels = this.data.labels;
 
-    labels.push(formattedTime);
-    data.push(random);
 
-    /*
-    this.medicionService.UltimaMedicionDispositivo(this.dispositivoID,this.unidadMedida.id).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => {
-        data.push(item.valor);
-      });
+   // data.push(random);
+    //data1.push(random1);
+   // data2.push(random2);
+
+
+    this.medicionService.UltimaMedicionDispositivo(this.dispositivoID,this.unidadMedida.id).toPromise().then((response: any) => {
+      //console.log(response[0].valor );
+      labels.push(formattedTime);
+      this.data.series[0].push(response[0].valor);
+      console.log(data);
+      //Me quedo con los ultimos 10 registros
+        this.data.labels = labels.slice(-9);
+        this.data.series[0] = data.slice(-9);
+        this.data = { ...this.data };
+    }).catch(error => {
+      console.log('Error al obtener los campos:' + error);
     });
-*/
 
-    // We only want to display 10 data points at a time
-    this.data.labels = labels.slice(-9);
-    this.data.series[0] = data.slice(-9);
 
-    this.data = { ...this.data };
+
+
   }
 
   public ngOnDestroy(): void {

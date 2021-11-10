@@ -39,6 +39,7 @@ export class MedicionService {
                                   .orderBy('fechaHora', OrderBy.Desc)
                                   .top(1);
 
+
       return this.http.get(this.basePathOdata + '/Mediciones' + `?${query.compile()}`, this.httpOptions);
 
     }
