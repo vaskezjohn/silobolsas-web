@@ -36,7 +36,7 @@ import { DispositivoEstadoActualComponent } from './dispositivo/dispositivo-esta
 import { ChartistModule } from 'ng-chartist';
 import { SilobolsaEstadoActualComponent } from './silobolsa/silobolsa-estado-actual/silobolsa-estado-actual.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
-import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadisticasPromedioMedidas/estadisticasPromedioMedidasap.component';
+import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadisticasPromedioMedidas/estadisticasPromedioMedidas.component';
 
 @NgModule({
   imports: [
