@@ -12,7 +12,7 @@
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Campo</mat-label>
+                <mat-label>Campo (no obligatorio)</mat-label>
                 <mat-select formControlName="campos"  (selectionChange)="onCampoChange($event.value)" >
                   <mat-option *ngFor="let campo of resultadoCampos" [value]="campo.ID">
                       {{campo.descripcion}}
@@ -22,7 +22,7 @@
 
               <mat-form-field>
                 <mat-label>Silobolsa</mat-label>
-                <mat-select [(ngModel)]="dispositivo.silobolsasID" formControlName="silobolsas">
+                <mat-select [(ngModel)]="dispositivo.silobolsasID" formControlName="silobolsas" (selectionChange)="cantidadDispositivosBySilobolsa($event.value)">
                   <mat-option *ngFor="let silobolsa of resultadoSilobolsas" [value]="silobolsa.ID">
                       {{silobolsa.codigoSilo}}
                   </mat-option>

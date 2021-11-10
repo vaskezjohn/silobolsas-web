@@ -36,6 +36,7 @@ export class SilobolsaService {
     return this.http.get(this.silobolsasOdataPath + `?${query.compile()}`, this.httpOptions);
   }
 
+
   CamposList(productoresID: string) {
     const query = Query.create().filter('productoresID', OperatorType.Eq, `${productoresID}`);
 

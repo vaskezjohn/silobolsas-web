@@ -24,6 +24,9 @@ export class DispositivoAbmComponent implements OnInit {
   editMode = false;
   resultadoCampos!: Array<any>;
   resultadoSilobolsas!: Array<any>;
+  //dispositivosPorSilobolsa!: Array<any>;
+  //dispositivosPorSilobolsa!: Array<any>;
+  cantidadDispositivosPorSilovolsa!: 0;
   public showError: boolean = false;
   public erroMessage: string = 'No se pudo agregar el dispossitivo';
 
@@ -68,9 +71,23 @@ export class DispositivoAbmComponent implements OnInit {
     this.silobolsaService.SilobolsasList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.tipoGrano, item.fechaEmbolsado, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.resultadoSilobolsas = this.silobolsas;
-      console.log(this.silobolsas )
+
     }).catch(error => {
       console.log('Error al obtener silobolsas');
+    });
+  }
+
+  cantidadDispositivosBySilobolsa(silobolsaID:string){
+    this.cantidadDispositivosPorSilovolsa = 0;
+
+    this.dispositivoService.DispositivoListBySilobolasID(this.dispositivo.silobolsasID).toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.cantidadDispositivosPorSilovolsa++ );
+
+      console.log('Cantidad', this.cantidadDispositivosPorSilovolsa)
+
+    }).catch(error => {
+      console.log('Error cantidadDispositivosBySilobolsa');
+
     });
   }
 
@@ -82,7 +99,7 @@ export class DispositivoAbmComponent implements OnInit {
     this.silobolsaService.SilobolsasListByCampo(campoID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.id, item.codigoSilo, item.tipoGrano, item.fechaEmbolsado, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.resultadoSilobolsas = this.silobolsas;
-      console.log(this.silobolsas )
+
     }).catch(error => {
       console.log('Error al obtener silobolsas');
     });
@@ -93,39 +110,35 @@ export class DispositivoAbmComponent implements OnInit {
   }
 
   setEditForm() {
-    /* var provinciaId = this.productor.localidad?.provinciasID == undefined? 1: this.productor.localidad?.provinciasID;
-    this.form.controls['razonSocial'].setValue(this.productor.razonSocial);
-    this.form.controls['cuit'].setValue(this.productor.cuit);
-    this.form.controls['telefono'].setValue(this.productor.telefono);
-    this.form.controls['mail'].setValue(this.productor.mail);
-    this.form.controls['fechaAlta'].setValue(new Date(this.productor.fechaAlta).toISOString().split('T')[0]);
-    this.form.controls['provincias'].setValue(this.productor.localidad?.provinciasID);
-    this.onProvinciaChange(provinciaId);
-    this.form.controls['localidades'].setValue(this.productor.localidadesID);
-    this.form.controls['calle'].setValue(this.productor.calle);
-    this.form.controls['altura'].setValue(this.productor.altura); */
+    this.form.controls['descripcion'].setValue(this.dispositivo.descripcion);
+    this.form.controls['campos'].setValue(this.dispositivo.silobolsas?.camposID);
+    this.form.controls['silobolsas'].setValue(this.dispositivo.silobolsasID);
   }
 
   onSubmit() {
     if (!this.form.valid) {
       return;
     }
-    //this.productor.fechaAlta = this.form.controls['fechaAlta'].value;
+
+    if(this.cantidadDispositivosPorSilovolsa >= 6)
+    {
+      Swal.fire('La silobolsa seleccionada ya posee 6 dispositivos asociados', '', 'error');
+      return;
+    }
 
     if(this.editMode)
     {
-      //this.update();
+      this.update();
     }
     else
     {
       this.add();
     }
-    //this.dialogRef.close(this.productor);
+    this.dialogRef.close(this.dispositivo);
   }
 
   add() {
     this.showError = false;
-    console.log(this.dispositivo)
     this.dispositivoService.add(this.dispositivo).toPromise().then((respose: any) => {
     this.dialogRef.close(true);
     Swal.fire('Dispositivo dado de alta!', '', 'success');
@@ -137,19 +150,19 @@ export class DispositivoAbmComponent implements OnInit {
     });
   }
 
-  /* update()
+   update()
   {
     this.showError = false;
-    console.log(this.productor)
-    this.productorService.edit(this.productor.id, this.productor).toPromise().then((respose: any) => {
+    console.log(this.dispositivo)
+    this.dispositivoService.edit(this.dispositivo.id, this.dispositivo).toPromise().then((respose: any) => {
     this.dialogRef.close(true);
-    Swal.fire('Productor actualizado!', '', 'success');
+    Swal.fire('Dispositivo actualizado!', '', 'success');
     }).catch(responseError => {
       console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
       Swal.fire('Ocurrió un error imprevisto', '', 'error');
     });
-  }*/
+  }
 
 }

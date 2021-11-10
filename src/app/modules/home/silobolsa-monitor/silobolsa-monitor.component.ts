@@ -62,7 +62,7 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
           console.log(respose[i]);
           if (respose[i]) {
             this.dispostivos[i].id = respose[i].ID;
-            this.dispostivos[i].codigoSilo = respose[i].codigoSilo;
+            this.dispostivos[i].codigo = respose[i].codigoSilo;
             this.dispostivos[i].silobolsasID = respose[i].silobolsasID;
             this.dispostivos[i].silobolsas = respose[i].silobolsas;
             this.dispostivos[i].id = respose[i].ID;

@@ -23,7 +23,10 @@ export class DispositivoService {
     }
 
     DispositivoList(productoresID: string) {
-      const query = Query.create().filter('Silobolsas/Campos/productoresID', OperatorType.Eq, `${productoresID}`).expand('Silobolsas', c => c.expand('Campos'));
+      const query = Query.create().filter('Silobolsas/Campos/productoresID', OperatorType.Eq, `${productoresID}`)
+                          .expand('Silobolsas', c => c.expand('Campos'))
+                          .orderBy('insertDate', OrderBy.Asc);
+
       return this.http.get(this.basePathOdata + `?${query.compile()}`, this.httpOptions);
     }
 
@@ -35,17 +38,14 @@ export class DispositivoService {
 
     add(dispositivo: Dispositivo) {
       return this.http.post(this.basePath + 'Dispositivos', dispositivo, this.httpOptions);
-      //return this.http.post('https://localhost:44362/' + 'Productores', productor, this.httpOptions);
-
     }
 
-    /*
-    edit(id: string, obj: Productor) {
-      return this.http.put(this.basePath + `Productores/${id}`, obj, this.httpOptions);
-    }
 
+    edit(id: string, obj: Dispositivo) {
+      return this.http.put(this.basePath + `Dispositivos/${id}`, obj, this.httpOptions);
+    }
 
     delete(id: string) {
-      return this.http.delete(this.basePath + `Productores/${id}`, this.httpOptions);
-    } */
+      return this.http.delete(this.basePath + `Dispositivos/${id}`, this.httpOptions);
+    }
 }

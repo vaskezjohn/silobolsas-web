@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DispositivoAbmComponent } from '../dispositivo-abm/dispositivo-abm.component'
-/*import { ProductorViewComponent } from '../productor-view/productor-view.component'; */
+import { DispositivoViewComponent } from '../dispositivo-view/dispositivo-view.component';
 import { Dispositivo } from '../../../../core/models/dispositivo.model';
 import { DispositivoService } from '../../../../core/services/dispositivo.service';
 import { Silobolsa } from 'src/app/core/models/silobolsa.model';
@@ -23,13 +23,13 @@ export class DispositivoListComponent implements OnInit {
   editMode = false;
   dispositivoEdit: Dispositivo = new Dispositivo('', '', '', '', undefined);
 
-  displayedColumns: string[] = ['codigoSilo', 'descripcion', 'codigoSilobolsa', 'detalleSilobolsa']
+  displayedColumns: string[] = ['codigo', 'descripcion', 'codigoSilobolsa', 'detalleSilobolsa', 'operations']
   // ,'operations'];
   dataSource!: MatTableDataSource<Dispositivo>;
   constructor(public dialog: MatDialog, public DispositivoService: DispositivoService, public storageService : StorageService) { }
 
   ngOnInit(): void {
-    console.log('idprod', this.storageService.getCurrentUser().productoresID)
+    this.dispositivos = [];
     this.DispositivoService.DispositivoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.dispositivos.push(new Dispositivo(item.ID,
                                                                           item.codigoSilo,
@@ -47,31 +47,30 @@ export class DispositivoListComponent implements OnInit {
 
 
   deleteDispositivo(dispositivo: Dispositivo){
-   /*  Swal.fire({
-      title:  'Eliminar Productor',
-      text:  '¿Desea eliminar al productor ' + productor.razonSocial +'?',
+    Swal.fire({
+      title:  'Eliminar Dispositivo',
+      text:  '¿Desea eliminar el dispositivo ' + dispositivo.codigo +'?',
       showDenyButton: true,
       confirmButtonText: 'Eliminar',
       denyButtonText: `No, cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.ProductorService.delete(productor.id).toPromise().then((respose: any) => {
+        this.DispositivoService.delete(dispositivo.id).toPromise().then((respose: any) => {
           this.dataSource.data = this.dataSource.data.filter(
-            (x) => x.id != productor.id
+            (x) => x.id != dispositivo.id
           );
         }).catch(error => {
-          Swal.fire('Error!', 'Productor invalido!', 'error');
+          Swal.fire('Error!', 'Dispositivo invalido!', 'error');
         });
         Swal.fire('Eliminado!', '', 'success');
       }
-    }) */
+    })
   }
 
   editDispositivo(dispositivo: Dispositivo){
-    /* this.productorEdit = productor;
+    this.dispositivoEdit = dispositivo;
     this.editMode = false;
-    this. openModelProductor();
-    */
+    this.openModelDispositivo();
   }
 
   newDispositivo() {
@@ -87,44 +86,44 @@ export class DispositivoListComponent implements OnInit {
     });
   }
 
-  /*
-  addProductor(productor: Productor) {
-    this.productores.push(productor);
-    this .dataSource.data = this.productores;
-  }
-*/
-  detailsDispositivo(dispositivo: Dispositivo) {
-    /* console.log(productor.fechaAlta)
-    const dialogRef = this.dialog.open(ProductorViewComponent, {
-      data: productor
-    });*/
+
+  addDispositivo(dispositivo: Dispositivo) {
+    this.dispositivos.push(dispositivo);
+    this .dataSource.data = this.dispositivos;
   }
 
-  /*
-  openModelProductor() {
-    let productor: Productor;
+  detailsDispositivo(dispositivo: Dispositivo) {
+    const dialogRef = this.dialog.open(DispositivoViewComponent, {
+      data: dispositivo
+    });
+  }
+
+
+  openModelDispositivo() {
+    let dispositivo: Dispositivo;
 
     if (this.editMode)
-      productor = new Productor('', '', '', '', '', new Date,false,1, new Localidad(1,'',1,4, new Provincia(1,'')) ,'','');
+      dispositivo = new Dispositivo('','','','',undefined);
     else
-      productor = this.productorEdit;
+      dispositivo = this.dispositivoEdit;
 
-    const dialogRef = this.dialog.open(ProductorAbmComponent, {
-      data: productor
+    const dialogRef = this.dialog.open(DispositivoAbmComponent, {
+      data: dispositivo
     });
 
-    dialogRef.afterClosed().subscribe(Productor => {
-      if (Productor) {
-        if (Productor.ID == '' )
-          this.addProductor(Productor);
-        else if (Productor.ID != '')
-          this.updateProductor(Productor);
+    dialogRef.afterClosed().subscribe(Dispositivo => {
+      if (Dispositivo) {
+        if (Dispositivo.ID == '' )
+          this.addDispositivo(Dispositivo);
+        else if (Dispositivo.ID != '')
+          this.updateDispositivo(Dispositivo);
       }
     });
   }
 
-  updateProductor(productor: Productor) {
-    this.ProductorService.edit(productor.id, productor).toPromise().then((respose: any) => {
+  updateDispositivo(dispositivo: Dispositivo) {
+    this.ngOnInit();
+   /*  this.DispositivoService.edit(dispositivo.id, dispositivo).toPromise().then((respose: any) => {
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
           if (x.id == respose.data.id)
@@ -132,8 +131,8 @@ export class DispositivoListComponent implements OnInit {
           return true;
         });
     }).catch(error => {
-      console.log('Productor invalido');
-    });
-  } */
+      console.log('Dispositivo invalido');
+    }); */
+  }
 
 }

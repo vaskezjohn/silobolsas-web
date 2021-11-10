@@ -27,6 +27,7 @@ import { ProductorAbmComponent } from './productor/productor-abm/productor-abm.c
 import { ProductorViewComponent } from './productor/productor-view/productor-view.component';
 import { DispositivoListComponent } from './dispositivo/dispositivo-list/dispositivo-list.component';
 import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositivo-abm.component';
+import { DispositivoViewComponent } from './dispositivo/dispositivo-view/dispositivo-view.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 import { TableroComponent } from './tablero/tablero.component';
@@ -69,11 +70,12 @@ import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadistica
     ProductorListComponent,
     ProductorAbmComponent,
     ProductorViewComponent,
-    DispositivoListComponent,
     HistoricoAlarmaListComponent,
     TableroComponent,
     HistoricoAlarmaListComponent,
+    DispositivoListComponent,
     DispositivoAbmComponent,
+    DispositivoViewComponent,
     DispositivoEstadoActualComponent,
     SilobolsaEstadoActualComponent,
     EstadisticasComponent,
