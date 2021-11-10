@@ -1,4 +1,5 @@
 import { Campos } from "./campos.model";
+import { Dispositivo } from "./dispositivo.model";
 
 export class Silobolsa {
   constructor(
@@ -10,7 +11,7 @@ export class Silobolsa {
     public latitud?: string,
     public camposID?: number,
     public campos?: Campos,
-    public detalle?: string
+    public detalle?: string,
   ) { }
 
 }

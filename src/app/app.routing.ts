@@ -4,6 +4,7 @@ import { LogInComponent } from './modules/auth/log-in/log-in.component';
 import { FullComponent } from './modules/layouts/full.component';
 import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
+import { EstadisticasComponent } from './modules/home/estadisticas/estadisticas.component';
 
 export const AppRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -16,7 +17,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: 'dashboard',
-        redirectTo: '/dashboard',
+        redirectTo: '/estadisticas',
         pathMatch: 'full'
       },
       {

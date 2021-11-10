@@ -1,52 +1,79 @@
 <mat-card >
   <mat-card-content>
     <mat-card-title>Monitoreo</mat-card-title>
-      <!--Campos-->
-      <mat-tab-group mat-align-tabs="start">
-        <mat-tab *ngFor="let campo of campos; let i = index" [label]="campo.descripcion">
+       <mat-accordion>
 
-          <!--Silobolsas-->
-          <mat-accordion>
-            <mat-expansion-panel *ngFor="let silobolsa of campo.silobolsas; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{silobolsa.codigoSilo}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  {{silobolsa.descripcion}}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <p>{{silobolsa.detalle}}</p>
+            <mat-expansion-panel *ngFor="let campo of campos; let i = index" >
+              <mat-expansion-panel-header  class="disable_ripple">{{campo.descripcion}}</mat-expansion-panel-header>
+                   <!--Silobolsas-->
+                  <mat-accordion>
+                    <mat-expansion-panel *ngFor="let silobolsa of campo.silobolsas; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{silobolsa.codigoSilo}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          {{silobolsa.descripcion}}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <p>{{silobolsa.detalle}}</p>
 
-              <app-silobolsa-monitor [silobolsaID]='silobolsa.ID'></app-silobolsa-monitor>
-              <!--<silobolsa-estado-actual [silobolsaID]='silobolsa.ID'></silobolsa-estado-actual>-->
-  <!--
-      <mat-card>
-                  <mat-card-content>
-                    <mat-card-title>Dispositivos</mat-card-title>
-                    <mat-accordion>
-                      <mat-expansion-panel *ngFor="let dispositivo of silobolsa.dispositivos; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
-                        <mat-expansion-panel-header>
-                          <mat-panel-title>
-                            {{dispositivo.descripcion}}
-                          </mat-panel-title>
-                          <mat-panel-description>
-                          </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <dispositivo-estado-actual [dispositivoID]='dispositivo.ID'></dispositivo-estado-actual>
-                      </mat-expansion-panel>
-                    </mat-accordion>
-                  </mat-card-content>
-                </mat-card>
--->
+                      <app-silobolsa-monitor [silobolsaID]='silobolsa.ID'></app-silobolsa-monitor>
+
+                      <!--dispositivos-->
+                      <!--
+                      <mat-card>
+                        <mat-card-content>
+                          <mat-card-title>Dispositivos</mat-card-title>
+                          <mat-accordion>
+                            <mat-expansion-panel *ngFor="let dispositivo of silobolsa.dispositivos; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  {{dispositivo.descripcion}}
+
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                </mat-panel-description>
+                              </mat-expansion-panel-header>
+                                <div *ngFor="let unidad of unidadesMedidas; let i = index" >
+                                  <dispositivo-estado-actual  [unidadMedida]='unidad' [dispositivoID]='dispositivo.ID'></dispositivo-estado-actual>
+                                </div>
+                            </mat-expansion-panel>
+                          </mat-accordion>
+                        </mat-card-content>
+                      </mat-card>
+                      -->
+
+                    </mat-expansion-panel>
+                  </mat-accordion>
+
             </mat-expansion-panel>
           </mat-accordion>
 
 
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card-content>
-  </mat-card>
+        </mat-card-content>
+      </mat-card>
+              <!--<silobolsa-estado-actual [silobolsaID]='silobolsa.ID'></silobolsa-estado-actual>-->
+  <!--
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Dispositivos</mat-card-title>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let dispositivo of silobolsa.dispositivos; let i = index" (opened)="panelOpenState = true"(closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{dispositivo.descripcion}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <dispositivo-estado-actual [dispositivoID]='dispositivo.ID'></dispositivo-estado-actual>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+-->
+
 
 
 

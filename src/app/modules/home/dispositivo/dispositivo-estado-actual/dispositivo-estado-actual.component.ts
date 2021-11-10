@@ -1,12 +1,10 @@
-
 import { formatDate } from "@angular/common";
-import { Component, OnDestroy,Input, OnInit } from "@angular/core";
-import { ChartEvent, ChartType } from "ng-chartist";
+import { Component, Input, OnDestroy } from "@angular/core";
+import { ChartType } from "ng-chartist";
 import { Subscription, timer } from "rxjs";
-import {IBarChartOptions,IChartistAnimationOptions,IChartistData, ILineChartOptions} from 'chartist';
-import { StorageService } from "src/app/core/authentication/services/storage.service";
-import { MedicionService } from "src/app/core/services/medicion.service";
+import { Dispositivo } from "src/app/core/models/dispositivo.model";
 import { UnidadMedida } from "src/app/core/models/unidadmedida.model";
+import { MedicionService } from "src/app/core/services/medicion.service";
 import { UnidadMedidaService } from "src/app/core/services/unidadmedida.service";
 
 export interface LiveData {
@@ -24,124 +22,52 @@ export function getRandomInt(min: number, max: number): number {
   styleUrls: ['./dispositivo-estado-actual.component.css']
 })
 
-export class DispositivoEstadoActualComponent implements OnInit,OnDestroy {
-  @Input() dispositivoID!: string;
-
-  public valoresTemperatura:number[]=[];
-  public valoresHumedad:number[]=[];
-  public valoresDioxido:number[]=[];
-  public series!: number[][];
-
-  public unidadmedidas: UnidadMedida[]=[];
-  public valorActual:number[]=[];
-
+export class DispositivoEstadoActualComponent implements OnDestroy {
   public data: LiveData;
   public type: ChartType;
-  //public events: ChartEvent;
-  public options: ILineChartOptions;
-
- // public events: ChartEvent;
-
+  serie:number[][]=[[]];
+  public unidadadesMedidas: UnidadMedida[] =[];
   private timerSubscription: Subscription;
+  @Input() dispositivoID!: string;
+  @Input() unidadMedida!: UnidadMedida;
+  constructor(public medicionService : MedicionService) {
 
-  constructor(public MedicionService: MedicionService ,
-              public storageService: StorageService,
-              public UnidadMedidaService: UnidadMedidaService  ) {
     this.data = {
       labels: [],
       series: [[]],
     };
     this.type = "Line";
 
-    this.options = {
-      showArea:true,
-      axisX: {
-        showGrid: true,
-        showLabel: true,
-      },
-      axisY:{
-        showLabel: true,
-        showGrid: true,
-      },
-
-      height: 300,
-    };
-
-    /*this.events = {
-      draw: (this.data) => {
-        if (this.data.type === 'bar') {
-          this.data.element.animate({
-            y2: <IChartistAnimationOptions>{
-              dur: '0.9s',
-              from: this.data.y1,
-              to: this.data.y2,
-              easing: 'easeOutQuad'
-            }
-          });
-        }
-      }
-    };*/
-
-
     this.timerSubscription = timer(0, 10000).subscribe(() => this.updateData());
-
-  }
-
-
-  ngOnInit(): void {
-    this.updateData();
-
   }
 
   updateData() {
     const time: Date = new Date();
     const formattedTime = formatDate(time, "HH:mm:ss", "en");
+    const random = getRandomInt(1, 40);
+    const data = this.data.series[0];
     const labels = this.data.labels;
-    const temperaturaId ='525c1f84-3ea7-11ec-b9b8-883882e3ecf6';
-    const humedadId ='5d46ff54-3ea7-11ec-b9b8-883882e3ecf6';
-    const dioxidoId = '75daa939-3ea7-11ec-b9b8-883882e3ecf6';
 
-    this.MedicionService.UltimaMedicionDispositivo(this.dispositivoID,temperaturaId).toPromise().then((respose: any) => {
+    labels.push(formattedTime);
+    data.push(random);
+
+    /*
+    this.medicionService.UltimaMedicionDispositivo(this.dispositivoID,this.unidadMedida.id).toPromise().then((respose: any) => {
       respose.forEach((item: any) => {
-        this.valoresTemperatura.push(item.valor);
+        data.push(item.valor);
       });
-    }).catch(error => {
-      console.log('Error al ultimo valor de la medicion');
     });
+*/
 
+    // We only want to display 10 data points at a time
+    this.data.labels = labels.slice(-9);
+    this.data.series[0] = data.slice(-9);
 
-    this.MedicionService.UltimaMedicionDispositivo(this.dispositivoID,humedadId).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => {
-        this.valoresHumedad.push(item.valor);
-      });
-    }).catch(error => {
-      console.log('Error al ultimo valor de la medicion');
-    });
-
-
-    this.MedicionService.UltimaMedicionDispositivo(this.dispositivoID,dioxidoId).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => {
-        this.valoresDioxido.push(item.valor);
-      });
-    }).catch(error => {
-      console.log('Error al ultimo valor de la medicion');
-    });
-
-
-      this.data.series[0] = this.valoresTemperatura.slice(-9);
-      this.data.series[1] = this.valoresHumedad.slice(-9);
-      this.data.series[2] = this.valoresDioxido.slice(-9);
-      if (this.data.series[0].length > 0){
-        this.data.labels.push(formattedTime);
-        this.data.labels = labels.slice(-9);
-      }
-
-      this.data = { ...this.data };
-
-
+    this.data = { ...this.data };
   }
 
   public ngOnDestroy(): void {
     this.timerSubscription.unsubscribe();
   }
+
 }
