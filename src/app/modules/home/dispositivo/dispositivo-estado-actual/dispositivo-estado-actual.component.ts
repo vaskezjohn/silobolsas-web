@@ -1,13 +1,11 @@
 import { formatDate } from "@angular/common";
-import { Component, Input, OnDestroy } from "@angular/core";
-import { ILineChartOptions } from "chartist";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ILineChartOptions, roundWithPrecision } from "chartist";
 import { ChartType } from "ng-chartist";
 import { Subscription, timer } from "rxjs";
-import { Dispositivo } from "src/app/core/models/dispositivo.model";
 import { Medicion } from "src/app/core/models/medicion.model";
 import { UnidadMedida } from "src/app/core/models/unidadmedida.model";
 import { MedicionService } from "src/app/core/services/medicion.service";
-import { UnidadMedidaService } from "src/app/core/services/unidadmedida.service";
 
 export interface LiveData {
   labels: string[];
@@ -24,7 +22,7 @@ export function getRandomInt(min: number, max: number): number {
   styleUrls: ['./dispositivo-estado-actual.component.css']
 })
 
-export class DispositivoEstadoActualComponent implements OnDestroy {
+export class DispositivoEstadoActualComponent implements OnInit {
   public data: LiveData;
   public type: ChartType;
   public options :ILineChartOptions;
@@ -32,7 +30,7 @@ export class DispositivoEstadoActualComponent implements OnDestroy {
   mediciones:Medicion[]=[];
   serie:number[][]=[[]];
   unidadadesMedidas: UnidadMedida[] =[];
-  private timerSubscription: Subscription;
+  //private timerSubscription: Subscription;
   @Input() dispositivoID!: string;
   @Input() unidadMedida!: UnidadMedida;
   constructor(public medicionService : MedicionService) {
@@ -42,37 +40,46 @@ export class DispositivoEstadoActualComponent implements OnDestroy {
       series: [[]],
     };
     this.type = "Line";
-    this.options ={
+    this.options = {
       showArea:true,
     }
 
-    this.timerSubscription = timer(0, 10000).subscribe(() => this.updateData());
+  //  this.timerSubscription = timer(0, 10000).subscribe(() => this.updateData());
+  }
+
+
+  ngOnInit(): void {
+    this.updateData();
+
   }
 
   public updateData() {
     const time: Date = new Date();
     const formattedTime = formatDate(time, "HH:mm:ss", "en");
+    var serie:number[]=[];
+    var label:string[]=[];
 
-   this.medicionService.UltimaMedicionDispositivo(this.dispositivoID,this.unidadMedida.id).toPromise().then((response: any) => {
-    this.data.labels.push(formattedTime);
-    this.data.series[0].push(response[0].valor);
-
-    //Me quedo con los ultimos 10 registros
-      this.data.labels =this.data.labels.slice(-9);
-      this.data.series[0] = this.data.series[0].slice(-9);
+    this.medicionService.UltimaMedicionDispositivo(this.dispositivoID,this.unidadMedida.id).toPromise().then((respose: any) => {
+      respose.forEach((item: any) => {
+        serie.push(item.valor);
+        label.push(item.fechaHora)
+      });
+      this.data.labels = label.reverse();
+      this.data.series.push(serie.reverse());
 
       this.data = { ...this.data };
-  }).catch(error => {
-    console.log('Error al obtener los campos:' + error);
-  });
-
-
-
+    }).catch(error => {
+      console.log('Error al obtener las mediciones');
+    });
 
   }
 
-  public ngOnDestroy(): void {
-    this.timerSubscription.unsubscribe();
+  refresh(){
+
+
   }
 
 }
+ // public ngOnDestroy(): void {
+ //   this.timerSubscription.unsubscribe();
+ // }

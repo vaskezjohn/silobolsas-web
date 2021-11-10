@@ -14,6 +14,8 @@ import { UnidadMedidaService } from 'src/app/core/services/unidadmedida.service'
 
 
 export class TableroComponent implements AfterViewInit {
+  show: boolean = true;
+  panelOpenState = false;
   campos: Campo[] =[];
   unidadesMedidas: UnidadMedida[] = [];
 
