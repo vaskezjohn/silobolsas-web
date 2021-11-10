@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import {
   IBarChartOptions,
@@ -32,10 +32,8 @@ const data= require('./data.json');
 })
 
 export class EstadisticasPromedioMedidasComponent implements OnInit {
-  estadisticasReqObject!:EstadisticasReqObject;
-  estadisticasResObject!:EstadisticasResObject;
-
-
+  @Input () unidadMedidaID!: string;
+  @Input () unidadMedida!: string;
   barChart1: Chart = {
 		type: 'Bar',
 		data: data,
@@ -43,13 +41,14 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
 			seriesBarDistance: 15,
 			axisX: {
 				showGrid: false,
-				offset: 20
+				offset: 20,
 			},
 			axisY: {
 				showGrid: true,
 				offset: 40
 			},
-			height: 360
+			height: 250
+
 		},
 
 		responsiveOptions: [
@@ -77,7 +76,20 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
    public cargoGrafico = false;
    ngOnInit(): void {
 
-    this.EstadisticasService.MedicionesPromedioBar(this.estadisticasReqObject).toPromise().then((respose: any) => {
+    const temperaturaId ='525c1f84-3ea7-11ec-b9b8-883882e3ecf6';
+    const humedadId ='5d46ff54-3ea7-11ec-b9b8-883882e3ecf6';
+    const dioxidoId = '75daa939-3ea7-11ec-b9b8-883882e3ecf6';
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+    var fechaDesde = '2021-04-09T21:47:16.703Z';
+    var fechaHasta = '2021-11-09T21:47:16.703Z';
+    var productorId = this.storageService.getCurrentUser().productoresID;
+
+
+    let estadisticasReqObject = new EstadisticasReqObject(fechaDesde,fechaHasta,productorId,this.unidadMedidaID);
+    this.EstadisticasService.MedicionesPromedioBar(estadisticasReqObject).toPromise().then((respose: any) => {
       this.barChart1.data=respose;
       this.cargoGrafico = true;
     }).catch(error => {

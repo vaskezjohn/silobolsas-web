@@ -1,12 +1,12 @@
-<mat-card style="height:500px;">
+<mat-card >
   <mat-card-content >
       <div class="d-flex flex-wrap">
           <div>
-              <mat-card-title>Medidas Promedio</mat-card-title>
+              <mat-card-title>Promedio de {{unidadMedida}}</mat-card-title>
                <!--<mat-card-subtitle>Temperatura - Humedad - CO2</mat-card-subtitle>-->
            </div>
           <div class="ml-auto">
-              <ul class="list-inline">
+             <!-- <ul class="list-inline">
                   <li>
                       <h6 class="text-success m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10 "></i>Temperatura</h6> </li>
                   <li>
@@ -14,10 +14,11 @@
                     <li>
                       <h6 class=" text-warning m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10"></i>CO2</h6> </li>
               </ul>
+              -->
           </div>
       </div>
 
-      <div *ngIf="cargoGrafico" class="barchrt" style="height:360px;">
+      <div *ngIf="cargoGrafico" class="barchrt" >
           <x-chartist class="" [data]="barChart1.data" [type]="barChart1.type" [options]="barChart1.options" [responsiveOptions]="barChart1.responsiveOptions"
               [events]="barChart1.events"> </x-chartist>
       </div>

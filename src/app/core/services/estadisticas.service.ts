@@ -8,7 +8,7 @@ import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
 })
 export class EstadisticasService {
     private httpOptions: any;
-
+    private estadisticasReqObject!:EstadisticasReqObject;
     private basePath = environment.base_url;
 
     constructor(private http: HttpClient) {
@@ -20,8 +20,9 @@ export class EstadisticasService {
         }
     }
 
-    MedicionesPromedioBar(estadisticasReqObject :EstadisticasReqObject) {
-      return this.http.post(this.basePath + '/Estadisticas/MedicionesPromedio/bar',estadisticasReqObject, this.httpOptions);
+    MedicionesPromedioBar(estadisticasReqObject:EstadisticasReqObject) {
+
+      return this.http.post(this.basePath + 'Estadisticas/MedicionesPromedio',estadisticasReqObject, this.httpOptions);
     }
 
 }

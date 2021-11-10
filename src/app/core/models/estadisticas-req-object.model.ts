@@ -1,8 +1,9 @@
 
 export class EstadisticasReqObject {
   constructor (
-      public fechaDesde: Date,
-      public fechaHasta: Date,
-      public productorID: string
+      public fechaDesde: string,
+      public fechaHasta: string,
+      public productorID: string,
+      public unidadMedidaID: string
     ) {}
   }
