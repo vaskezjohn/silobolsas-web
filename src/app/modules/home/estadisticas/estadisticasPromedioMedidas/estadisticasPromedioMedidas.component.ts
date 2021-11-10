@@ -11,6 +11,7 @@ import { withLatestFrom } from 'rxjs-compat/operator/withLatestFrom';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { EstadisticasReqObject } from 'src/app/core/models/estadisticas-req-object.model';
 import { EstadisticasResObject } from 'src/app/core/models/estatidiscas-res-object.model';
+import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
 import { EstadisticasService } from 'src/app/core/services/estadisticas.service';
 
 //const data= require('./data.json');
@@ -32,8 +33,8 @@ const data= require('./data.json');
 })
 
 export class EstadisticasPromedioMedidasComponent implements OnInit {
-  @Input () unidadMedidaID!: string;
-  @Input () unidadMedida!: string;
+  @Input () unidadMedida!: UnidadMedida;
+ // @Input () unidadMedida!: string;
   barChart1: Chart = {
 		type: 'Bar',
 		data: data,
@@ -45,7 +46,7 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
 			},
 			axisY: {
 				showGrid: true,
-				offset: 40
+				offset: 40,
 			},
 			height: 250
 
@@ -84,11 +85,11 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
     var month = d.getMonth();
     var day = d.getDate();
     var fechaDesde = '2021-04-09T21:47:16.703Z';
-    var fechaHasta = '2021-11-09T21:47:16.703Z';
+    var fechaHasta = '2022-12-09T21:47:16.703Z';
     var productorId = this.storageService.getCurrentUser().productoresID;
 
 
-    let estadisticasReqObject = new EstadisticasReqObject(fechaDesde,fechaHasta,productorId,this.unidadMedidaID);
+    let estadisticasReqObject = new EstadisticasReqObject(fechaDesde,fechaHasta,productorId,this.unidadMedida.id);
     this.EstadisticasService.MedicionesPromedioBar(estadisticasReqObject).toPromise().then((respose: any) => {
       this.barChart1.data=respose;
       this.cargoGrafico = true;

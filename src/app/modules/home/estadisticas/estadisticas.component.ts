@@ -1,4 +1,7 @@
 import {Component, EventEmitter, OnInit,Output} from '@angular/core';
+import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
+import { EstadisticasService } from 'src/app/core/services/estadisticas.service';
+import { UnidadMedidaService } from 'src/app/core/services/unidadmedida.service';
 
 @Component({
   selector: 'estadisticas',
@@ -14,11 +17,17 @@ export class EstadisticasComponent implements OnInit{
   temperatura ='Temperatura';
   humedad ='Humedad';
   dioxido = 'Dioxido de carbono';
-  constructor(){
+  unodidadesMedidas: UnidadMedida[] =[];
+  constructor(public unidadMedidaService: UnidadMedidaService){
 
   }
 
   ngOnInit(): void {
+    this.unidadMedidaService.UnidadMedidaList().toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.unodidadesMedidas.push(new UnidadMedida(item.id,item.descripcion,item.simbolo )));
+    }).catch(error => {
+      console.log('Error al obtener los campos');
+    });
 
   }
 
