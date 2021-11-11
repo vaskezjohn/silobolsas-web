@@ -3,6 +3,8 @@ import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
+import { Granos } from 'src/app/core/models/granos.model';
+import { GranosService } from 'src/app/core/services/granos.service';
 import { Campos } from '../../../../core/models/campos.model';
 import { Silobolsa } from '../../../../core/models/silobolsa.model';
 import { SilobolsaService } from '../../../../core/services/silobolsa.service';
@@ -17,6 +19,7 @@ import { SilobolsaService } from '../../../../core/services/silobolsa.service';
 export class SilobolsaAbmComponent implements OnInit {
   form!: FormGroup;
   campos: Campos[] = [];
+  granos: Granos[] = [];
   editMode = false;
 
   constructor(
@@ -24,11 +27,12 @@ export class SilobolsaAbmComponent implements OnInit {
     private formBuilder: FormBuilder,
     public silobolsaService: SilobolsaService,
     public storageService: StorageService,
+    public granosService: GranosService,
     @Inject(MAT_DIALOG_DATA) public silobolsa: Silobolsa) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      tipoGrano: ['', Validators.required],
+      granos: ['', Validators.required],
       fechaEmbolsado: ['', Validators.required],
       campos: ['', Validators.required],
       longitud: ['', Validators.required],
@@ -37,6 +41,7 @@ export class SilobolsaAbmComponent implements OnInit {
     });
 
     this.getCampos();
+    this.getGranos();
 
     if (this.silobolsa.ID) {
       this.setEditForm();
@@ -52,7 +57,7 @@ export class SilobolsaAbmComponent implements OnInit {
 
   setEditForm() {
     console.log('set', this.silobolsa);
-    this.form.controls['tipoGrano'].setValue(this.silobolsa.tipoGrano);
+    this.form.controls['granos'].setValue(this.silobolsa.granosID);
     this.form.controls['fechaEmbolsado'].setValue(new Date(this.silobolsa.fechaEmbolsado).toISOString().split('T')[0]);
     this.form.controls['campos'].setValue(this.silobolsa.camposID);
     this.form.controls['longitud'].setValue(this.silobolsa.longitud);
@@ -76,10 +81,22 @@ export class SilobolsaAbmComponent implements OnInit {
       });
   }
 
+  getGranos() {
+    this.granosService.GranosList().toPromise().then((respose: any) => {
+        respose.forEach((item: any) => this.granos.push(
+          new Granos(item.id,
+            item.descripcion)
+        ));
+      }).catch(error => {
+        console.log('Error al obtener las campos');
+      });
+  }
+
   setCampos() {
-    this.silobolsa.tipoGrano = this.form.controls['tipoGrano'].value;
+    this.silobolsa.granos = this.granos.filter((x) => x.ID == this.form.controls['granos'].value)[0];
     this.silobolsa.fechaEmbolsado = this.form.controls['fechaEmbolsado'].value;
-    this.silobolsa.camposID = this.form.controls['campos'].value;
+    this.silobolsa.camposID = this.form.controls['campos'].value;    
+    this.silobolsa.granosID = this.form.controls['granos'].value;
     this.silobolsa.longitud = this.form.controls['longitud'].value;
     this.silobolsa.latitud = this.form.controls['latitud'].value;
     this.silobolsa.detalle = this.form.controls['detalle'].value;

@@ -3,9 +3,16 @@
     <div mat-dialog-content>
         <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
             <form [formGroup]="form">
+
                 <mat-form-field>
-                    <input matInput formControlName="tipoGrano" type="text" placeholder="Tipo de grano">
-                    <mat-error *ngIf="form.controls['tipoGrano'].hasError('required')">
+                    <mat-label>Granos</mat-label>
+                    <mat-select formControlName="granos">
+                        <mat-option *ngFor="let grano of granos; let i = index" [value]="granos[i].ID">
+                            {{granos[i].descripcion}}
+                        </mat-option>
+                    </mat-select>
+
+                    <mat-error *ngIf="form.controls['campos'].hasError('required')">
                         Tipo de grano es <strong>requerido</strong>
                     </mat-error>
                 </mat-form-field>

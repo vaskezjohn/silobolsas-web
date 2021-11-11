@@ -19,7 +19,7 @@ export class SilobolsaListComponent implements OnInit {
   editMode = false;
   silobolsaEdit: Silobolsa = new Silobolsa('', '', '', new Date());
 
-  displayedColumns: string[] = ['codigoSilo', 'tipoGrano', 'fechaEmbolsado', 'campos', 'detalle', 'operations'];
+  displayedColumns: string[] = ['codigoSilo', 'granos', 'fechaEmbolsado', 'campos', 'detalle', 'operations'];
   dataSource!: MatTableDataSource<Silobolsa>;
   constructor(
     private router: Router,
@@ -29,7 +29,8 @@ export class SilobolsaListComponent implements OnInit {
 
   ngOnInit(): void {
     this.silobolsaService.SilobolsasList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.tipoGrano, item.fechaEmbolsado, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
+      console.log("ver",respose);
+      respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.granosID, item.fechaEmbolsado, item.granos, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.dataSource = new MatTableDataSource(this.silobolsas);
     }).catch(error => {
       Swal.fire('Error!', 'Error al obtener las silobolsas!', 'error');
@@ -87,7 +88,7 @@ export class SilobolsaListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(Silobolsa => {
       if (Silobolsa) {
-        if (Silobolsa.ID == '' && Silobolsa.tipoGrano != '' && Silobolsa.detalle != '' && Silobolsa.longitud != ''
+        if (Silobolsa.ID == '' && Silobolsa.granosID != '' && Silobolsa.detalle != '' && Silobolsa.longitud != ''
           && Silobolsa.latitud != '' && Silobolsa.fechaEmbolsado != '' && Silobolsa.camposID != '')
           this.addSilobolsa(Silobolsa);
         else if (Silobolsa.ID != '')
@@ -99,6 +100,7 @@ export class SilobolsaListComponent implements OnInit {
 
   updateSilobolsa(silobolsa: Silobolsa) {
     this.silobolsaService.UpdateSilobolsa(silobolsa.ID, silobolsa).toPromise().then((respose: any) => {
+      console.log("update",respose);
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
           if (x.ID == respose.data.id)
@@ -113,10 +115,12 @@ export class SilobolsaListComponent implements OnInit {
 
   addSilobolsa(silobolsa: Silobolsa) {
     this.silobolsaService.AddSilobolsa(silobolsa).toPromise().then((respose: any) => {
+      console.log("add",respose);
       this.silobolsas.push(new Silobolsa(respose.data.id,
         respose.data.codigoSilo,
-        respose.data.tipoGrano,
-        respose.data.fechaEmbolsado,
+        respose.data.granosID,
+        respose.data.fechaEmbolsado,        
+        respose.data.granos,
         respose.data.longitud,
         respose.data.latitud,
         respose.data.camposID,
