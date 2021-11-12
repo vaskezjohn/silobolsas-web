@@ -78,7 +78,7 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
     var year = d.getFullYear();
     var month = d.getMonth();
     var day = d.getDate();
-    var fechaDesde = '2021-04-09T21:47:16.703Z';
+    var fechaDesde = '2020-01-09T21:47:16.703Z';
     var fechaHasta = '2022-12-09T21:47:16.703Z';
     var productorId = this.storageService.getCurrentUser().productoresID;
 
