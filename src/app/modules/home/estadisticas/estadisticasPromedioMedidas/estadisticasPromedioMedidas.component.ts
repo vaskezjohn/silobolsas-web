@@ -1,16 +1,10 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-import {
-  IBarChartOptions,
-  IChartistAnimationOptions,
-  IChartistData
-} from 'chartist';
+
 import { ChartType, ChartEvent } from 'ng-chartist';
-import { withLatestFrom } from 'rxjs-compat/operator/withLatestFrom';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { EstadisticasReqObject } from 'src/app/core/models/estadisticas-req-object.model';
-import { EstadisticasResObject } from 'src/app/core/models/estatidiscas-res-object.model';
 import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
 import { EstadisticasService } from 'src/app/core/services/estadisticas.service';
 
