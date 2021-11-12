@@ -9,7 +9,7 @@ import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
 export class EstadisticasService {
     private httpOptions: any;
     private estadisticasReqObject!:EstadisticasReqObject;
-    private basePath = environment.base_url;
+    private basePath = environment.base_url + 'Estadisticas';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -22,7 +22,7 @@ export class EstadisticasService {
 
     MedicionesPromedioBar(estadisticasReqObject:EstadisticasReqObject) {
 
-      return this.http.post(this.basePath + 'Estadisticas/MedicionesPromedio',estadisticasReqObject, this.httpOptions);
+      return this.http.post(this.basePath + '/MedicionesPromedio',estadisticasReqObject, this.httpOptions);
     }
 
 }

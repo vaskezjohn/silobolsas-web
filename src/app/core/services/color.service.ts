@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
 export class ColorService {
     private httpOptions: any;
 
-    private basePath = environment.base_url;
-    private basePathOdata = environment.odata_base_url;
+    private basePath = environment.base_url + 'Colores';
+    private basePathOdata = environment.odata_base_url + 'Colores';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -21,7 +21,7 @@ export class ColorService {
     }
 
     ColorList() {
-      return this.http.get(this.basePathOdata + '/Colores', this.httpOptions);
+      return this.http.get(this.basePathOdata, this.httpOptions);
     }
 
 }

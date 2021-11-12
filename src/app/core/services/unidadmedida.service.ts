@@ -9,8 +9,8 @@ import { expand } from 'rxjs-compat/operator/expand';
 export class UnidadMedidaService {
     private httpOptions: any;
 
-    private basePath = environment.base_url;
-    private basePathOdata = environment.odata_base_url;
+    private basePath = environment.base_url + 'UnidadesMedidas';
+    private basePathOdata = environment.odata_base_url + 'UnidadesMedidas';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -22,7 +22,7 @@ export class UnidadMedidaService {
     }
 
     UnidadMedidaList() {
-      return this.http.get(this.basePathOdata + '/UnidadesMedidas', this.httpOptions);
+      return this.http.get(this.basePathOdata, this.httpOptions);
     }
 
 }

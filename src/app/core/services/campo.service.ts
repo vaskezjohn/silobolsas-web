@@ -10,8 +10,8 @@ import { OrderBy, Query, OperatorType } from 'ngx-odata-v4';
 export class CampoService {
     private httpOptions: any;
 
-    private basePath = environment.base_url;
-    private basePathOdata = environment.odata_base_url;
+    private basePath = environment.base_url + 'Campos';
+    private basePathOdata = environment.odata_base_url + 'Campos';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -28,7 +28,7 @@ export class CampoService {
                                   .expand('Silobolsas', s => s.expand('Dispositivos'))
                                   .filter('productoresID', OperatorType.Eq, `${ProductorId}`);
 
-      return this.http.get(this.basePathOdata + '/Campos' + `?${query.compile()}`, this.httpOptions);
+      return this.http.get(this.basePathOdata + `?${query.compile()}`, this.httpOptions);
 
       //return this.http.get(this.basePathOdata + 'Campos?%24expand=Localidades(%24expand=Provincias)&%24filter=ProductoresID%20eq%20' + ProductorId , this.httpOptions);
 
@@ -36,14 +36,14 @@ export class CampoService {
 
 
     add(campo: Campo) {
-      return this.http.post(this.basePath + 'Campos', campo, this.httpOptions);
+      return this.http.post(this.basePath, campo, this.httpOptions);
     }
 
     edit(campo: Campo) {
-      return this.http.put(this.basePath + 'Campos/' + campo.ID, campo, this.httpOptions);
+      return this.http.put(this.basePath + '/' + campo.ID, campo, this.httpOptions);
     }
 
     delete(campo: Campo) {
-        return this.http.delete(this.basePath+ 'Campos/' + campo.ID, this.httpOptions);
+        return this.http.delete(this.basePath+ '/' + campo.ID, this.httpOptions);
     }
 }
