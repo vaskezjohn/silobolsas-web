@@ -38,6 +38,7 @@ import { SilobolsaEstadoActualComponent } from './silobolsa/silobolsa-estado-act
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadisticasPromedioMedidas/estadisticasPromedioMedidas.component';
 import { EstadisticasTotalAlertasComponent } from './estadisticas/estadisticasTotalAlertas/estadisticasTotalAlertas.component';
+import { EstadisticasEstadoGeneralComponent } from './estadisticas/estadisticasEstadoGeneral/estadisticasEstadoGeneral.component';
 
 @NgModule({
   imports: [
@@ -82,6 +83,7 @@ import { EstadisticasTotalAlertasComponent } from './estadisticas/estadisticasTo
     EstadisticasComponent,
     EstadisticasPromedioMedidasComponent,
     EstadisticasTotalAlertasComponent,
+    EstadisticasEstadoGeneralComponent,
   ]
 })
 export class MaterialComponentsModule {}

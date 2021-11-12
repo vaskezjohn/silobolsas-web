@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
+import { EstadisticasAlertasReqObject } from '../models/estadisticas.alertas-req-object.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +24,11 @@ export class EstadisticasService {
     MedicionesPromedioBar(estadisticasReqObject:EstadisticasReqObject) {
 
       return this.http.post(this.basePath + '/MedicionesPromedio',estadisticasReqObject, this.httpOptions);
+    }
+
+    TotalesAlertasBar(estadisticasReqObject:EstadisticasAlertasReqObject) {
+
+      return this.http.post(this.basePath + '/AlertasTotales',estadisticasReqObject, this.httpOptions);
     }
 
 }

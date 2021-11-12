@@ -1,16 +1,11 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-import {
-  IBarChartOptions,
-  IChartistAnimationOptions,
-  IChartistData
-} from 'chartist';
+
 import { ChartType, ChartEvent } from 'ng-chartist';
-import { withLatestFrom } from 'rxjs-compat/operator/withLatestFrom';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { EstadisticasReqObject } from 'src/app/core/models/estadisticas-req-object.model';
-import { EstadisticasResObject } from 'src/app/core/models/estatidiscas-res-object.model';
+import { EstadisticasAlertasReqObject } from 'src/app/core/models/estadisticas.alertas-req-object.model';
 import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
 import { EstadisticasService } from 'src/app/core/services/estadisticas.service';
 
@@ -32,28 +27,68 @@ const data= require('./data.json');
   styleUrls: ['./estadisticasTotalAlertas.component.css']
 })
 
-export class EstadisticasTotalAlertasComponent {
-  public type: ChartType;
-  public data: Chartist.IChartistData;
-  public options: any;
+export class EstadisticasTotalAlertasComponent implements OnInit {
+  @Input () unidadMedida!: UnidadMedida;
+ // @Input () unidadMedida!: string;
+  barChart1: Chart = {
+		type: 'Line',
+		data: data,
+		options: {
+      showArea:true,
+			seriesBarDistance: 15,
+			axisX: {
+				showGrid: false,
+				offset: 20,
+			},
+			axisY: {
+				showGrid: true,
+				offset: 40,
+			},
+			height: 250
 
-  public chartTypes: ChartType[];
+		},
+		responsiveOptions: [
+			[
+				'screen and (min-width: 640px)',
+				{
+					axisX: {
+						labelInterpolationFnc: function(value: number,index: number): string {
+							return index % 1 === 0 ? `${value}` : '';
+						}
+					}
+				}
+			]
+		]
 
-  constructor() {
-    this.chartTypes = ["Bar", "Line"];
 
-    this.type = "Bar";
-    this.data = data.Bar;
-    this.options = {
-      axisX: {
-        showLabel: true,
-      },
-      axisY: {
-        showLabel: true,
-      },
-    };
+
+	};
+
+
+  constructor(public EstadisticasService: EstadisticasService, public storageService: StorageService) {
+
+
+   }
+   public cargoGrafico = false;
+   ngOnInit(): void {
+
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+    var fechaDesde = '2020-01-09T21:47:16.703Z';
+    var fechaHasta = '2022-12-09T21:47:16.703Z';
+    var productorId = this.storageService.getCurrentUser().productoresID;
+
+
+    let estadisticasReqObject = new EstadisticasAlertasReqObject(fechaDesde,fechaHasta,productorId);
+    this.EstadisticasService.TotalesAlertasBar(estadisticasReqObject).toPromise().then((respose: any) => {
+      this.barChart1.data=respose;
+      this.cargoGrafico = true;
+    }).catch(error => {
+      console.log('Error al obtener las estadisticas');
+    });
+
+
   }
-
-
-
 }
