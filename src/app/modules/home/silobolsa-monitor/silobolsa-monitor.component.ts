@@ -41,12 +41,23 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
   ];
   silobolsa = new Silobolsa('', '', '', new Date());
 
+  colores: any[] = [
+    { color: '' },
+    { color: '' },
+    { color: '' },
+    { color: '' },
+    { color: '' },
+    { color: '' },
+    { color: '' },
+    { color: '' }
+  ];
+
 
   ngOnInit(): void {
 
-    if(!this.silobolsaID){
-      let id:string = this.route.snapshot.paramMap.get('id')!;
-      this.silobolsaID=id;
+    if (!this.silobolsaID) {
+      let id: string = this.route.snapshot.paramMap.get('id')!;
+      this.silobolsaID = id;
     }
 
     if (this.silobolsaID) {
@@ -57,16 +68,21 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
       });
 
       this.dispositivoService.DispositivoListBySilobolasID(this.silobolsaID).toPromise().then((respose: any) => {
-        console.log(respose);
         for (let i = 0; i < 8; i++) {
-          console.log(respose[i]);
           if (respose[i]) {
-            this.dispostivos[i].id = respose[i].ID;
+
+            this.dispositivoService.DispositivoListByID(respose[i].id).toPromise().then((respose2: any) => {
+              console.log("ver",respose2);
+              this.colores[i].color = respose2.colores.hex;
+              console.log(this.colores);
+            }).catch(error => {
+              console.log('dispositivo invalida');
+            });
+
+            this.dispostivos[i].id = respose[i].id;
             this.dispostivos[i].codigo = respose[i].codigoSilo;
             this.dispostivos[i].silobolsasID = respose[i].silobolsasID;
             this.dispostivos[i].silobolsas = respose[i].silobolsas;
-            this.dispostivos[i].id = respose[i].ID;
-            this.dispostivos[i].id = respose[i].ID;
           }
         }
       }).catch(error => {

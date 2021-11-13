@@ -2,14 +2,14 @@
 <div mat-dialog-content>
   Estado actual dispositivo: <b>{{dispositivo.codigo}}</b>
   <ul>
-    <li>
-      Temperatura: -
+    <li [style.color]="temperaturaColor">
+      Temperatura: {{this.temperatura}} {{this.temperaturaSimbolo}}
     </li>
-    <li>
-      Humedad: -%
+    <li [style.color]="humedadColor">
+      Humedad:  {{this.humedad}} {{this.humedadSimbolo}}
     </li>
-    <li>
-      CO2: -
+    <li [style.color]="co2Color">
+      CO2:  {{this.co2}} {{this.co2Simbolo}}
     </li>
   </ul>
 </div>

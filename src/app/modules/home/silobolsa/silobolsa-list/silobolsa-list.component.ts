@@ -32,8 +32,8 @@ export class SilobolsaListComponent implements OnInit {
       console.log("ver",respose);
       respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.granosID, item.fechaEmbolsado, item.granos, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.dataSource = new MatTableDataSource(this.silobolsas);
-    }).catch(error => {
-      Swal.fire('Error!', 'Error al obtener las silobolsas!', 'error');
+    }).catch(error => {      
+      console.log('Error al obtener las silobolsas!');
     });
 
   }
@@ -52,7 +52,7 @@ export class SilobolsaListComponent implements OnInit {
             (x) => x.ID != silobolsa.ID
           );
         }).catch(error => {
-          Swal.fire('Error!', 'silobolsa invalida!', 'error');
+         console.log('silobolsa invalida!');
         });
         Swal.fire('Eliminado!', '', 'success');
       }
