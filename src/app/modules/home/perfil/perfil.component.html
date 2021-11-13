@@ -1,0 +1,94 @@
+<div fxLayout="row wrap">
+    <div fxFlex.gt-lg="400" fxFlex.gt-md="400" fxFlex.gt-xs="200" fxFlex="200">
+        <mat-card class="mat-elevation-z4">
+            <mat-card-content disabled>
+                <div class="d-flex flex-wrap">
+                    <div>
+                        <mat-card-title>Usuario <strong>{{user?.firstname}}</strong>
+                        </mat-card-title>
+                        <mat-card-subtitle>Detalle del productor y usuario.</mat-card-subtitle>
+                    </div>
+                </div>
+                <div class="barchrt">
+                    <mat-grid-list cols="2" rowHeight="42px">
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1">
+                            <mat-card-subtitle><strong>Productor</strong></mat-card-subtitle>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1">
+                            <mat-card-subtitle><strong>Usuario</strong></mat-card-subtitle>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+
+                    <mat-grid-list cols="2" rowHeight="42px">
+                        <!-- Productor -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Razon social: <strong>{{productor?.razonSocial}}</strong>
+                            </mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Usuario -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Nombre: <strong>{{user?.firstname}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Productor -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="2">
+                            <mat-label>CUIT: <strong>{{productor?.cuit}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Usuario -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Apellido: <strong>{{user?.lastname}}</strong>
+                            </mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Productor -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Telefono: <strong>{{productor?.telefono}}</strong>
+                            </mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Usuario -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Correo: <strong>{{user?.email}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Productor -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Correo: <strong>{{productor?.mail}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Usuario -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Telefono: <strong>{{user?.phone}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Productor -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Localidad:
+                                <strong>{{productor?.localidad?.nombre}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Usuario -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Rol: <strong>{{user?.role}}</strong></mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Productor -->
+                        <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Calle: <strong>{{productor?.calle}}</strong> - Altura:
+                                <strong>{{productor?.altura}}</strong>
+                            </mat-label>
+                        </mat-grid-tile>
+
+                        <!-- Usuario -->
+                        <!-- <mat-grid-tile class="mat-grid-tile-custom" colspan="1" rowsan="1">
+                            <mat-label>Detalle: <strong>{{user?.firstname}}</strong></mat-label>
+                        </mat-grid-tile> -->
+
+                    </mat-grid-list>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

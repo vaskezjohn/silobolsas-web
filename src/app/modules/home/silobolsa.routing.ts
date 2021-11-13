@@ -11,6 +11,7 @@ import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-
 import { TableroComponent} from './tablero/tablero.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { GranosListComponent } from './granos/granos-list/granos-list.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 export const MaterialRoutes: Routes = [
 
@@ -53,12 +54,17 @@ export const MaterialRoutes: Routes = [
   {
     path: 'historicoalarma-list',
     component: HistoricoAlarmaListComponent
-  }
-  ,{
+  },
+  {
     path: 'tablero',
     component: TableroComponent
-  } ,{
+  },
+  {
     path: 'estadisticas',
     component: EstadisticasComponent
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent
   }
 ];

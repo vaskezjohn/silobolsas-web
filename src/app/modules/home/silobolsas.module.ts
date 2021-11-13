@@ -41,6 +41,7 @@ import { EstadisticasTotalAlertasComponent } from './estadisticas/estadisticasTo
 import { EstadisticasEstadoGeneralComponent } from './estadisticas/estadisticasEstadoGeneral/estadisticasEstadoGeneral.component';
 import { GranosListComponent } from './granos/granos-list/granos-list.component';
 import { GranosAbmComponent } from './granos/granos-abm/granos-abm.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   imports: [
@@ -88,6 +89,7 @@ import { GranosAbmComponent } from './granos/granos-abm/granos-abm.component';
     EstadisticasEstadoGeneralComponent,
     GranosListComponent,
     GranosAbmComponent,
+    PerfilComponent,
   ]
 })
 export class MaterialComponentsModule {}

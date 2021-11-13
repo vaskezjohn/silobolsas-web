@@ -1,4 +1,23 @@
-::ng-deep  .mat-grid-tile-custom .mat-figure {
+::ng-deep .mat-grid-tile-custom .mat-figure {
   justify-content: flex-start !important ;
   align-items: flex-start !important;
+}
+.sizeMaps {
+  height: 400px;
+  width: 390px;
+}
+
+@media (max-width: 1900px) {
+  .sizeMaps {
+    height: 400px;
+    width: 320px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .sizeMaps {
+    height: 400px;
+    width: 220px;
+  }
 }

@@ -72,9 +72,7 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
           if (respose[i]) {
 
             this.dispositivoService.DispositivoListByID(respose[i].id).toPromise().then((respose2: any) => {
-              console.log("ver",respose2);
               this.colores[i].color = respose2.colores.hex;
-              console.log(this.colores);
             }).catch(error => {
               console.log('dispositivo invalida');
             });
