@@ -1,7 +1,8 @@
 import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
+import { EstadisticasEstadoGeneralPieReqObject, EstadisticasReqObject } from '../models/estadisticas-req-object.model';
+import { EstadisticasAlertasReqObject } from '../models/estadisticas.alertas-req-object.model';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
 export class EstadisticasService {
     private httpOptions: any;
     private estadisticasReqObject!:EstadisticasReqObject;
-    private basePath = environment.base_url;
+    private basePath = environment.base_url + 'Estadisticas';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -22,7 +23,19 @@ export class EstadisticasService {
 
     MedicionesPromedioBar(estadisticasReqObject:EstadisticasReqObject) {
 
-      return this.http.post(this.basePath + 'Estadisticas/MedicionesPromedio',estadisticasReqObject, this.httpOptions);
+      return this.http.post(this.basePath + '/MedicionesPromedio',estadisticasReqObject, this.httpOptions);
     }
+
+    TotalesAlertasBar(estadisticasReqObject:EstadisticasAlertasReqObject) {
+
+      return this.http.post(this.basePath + '/AlertasTotales',estadisticasReqObject, this.httpOptions);
+    }
+
+
+
+    EstadoGeneralPie(estadisticasReqObject:EstadisticasEstadoGeneralPieReqObject) {
+      return this.http.post(this.basePath + '/EstadoGeneral',estadisticasReqObject, this.httpOptions);
+    }
+
 
 }

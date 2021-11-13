@@ -9,8 +9,8 @@ import { OrderBy, Query, OperatorType } from 'ngx-odata-v4';
 export class HistoricoAlarmaService {
     private httpOptions: any;
 
-    private basePath = environment.base_url;
-    private basePathOdata = environment.odata_base_url;
+    private basePath = environment.base_url + 'HistoricoAlarmas';
+    private basePathOdata = environment.odata_base_url + 'HistoricoAlarmas';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -30,7 +30,7 @@ export class HistoricoAlarmaService {
                                   .expand('Silobolsas', s => s.expand('Campos'))
                                   .orderBy('fechaHora', OrderBy.Desc);
 
-      return this.http.get(this.basePathOdata + '/HistoricoAlarmas' + `?${query.compile()}`, this.httpOptions);
+      return this.http.get(this.basePathOdata + `?${query.compile()}`, this.httpOptions);
 
     }
 

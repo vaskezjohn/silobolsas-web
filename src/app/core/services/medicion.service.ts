@@ -9,8 +9,8 @@ import { OrderBy, Query, OperatorType } from 'ngx-odata-v4';
 export class MedicionService {
     private httpOptions: any;
 
-    private basePath = environment.base_url;
-    private basePathOdata = environment.odata_base_url;
+    private basePath = environment.base_url + 'Mediciones';
+    private basePathOdata = environment.odata_base_url + 'Mediciones';
 
     constructor(private http: HttpClient) {
         //Http Headers Options
@@ -29,7 +29,7 @@ export class MedicionService {
                                   .expand('Silobolsas', s => s.expand('Campos', c => c.filter('productoresID', OperatorType.Eq, `${productoresID}`)))
                                   .orderBy('fechaHora', OrderBy.Desc);
 
-      return this.http.get(this.basePathOdata + '/Mediciones' + `?${query.compile()}`, this.httpOptions);
+      return this.http.get(this.basePathOdata  + `?${query.compile()}`, this.httpOptions);
 
     }
 
@@ -40,7 +40,7 @@ export class MedicionService {
                                   .top(10);
 
 
-      return this.http.get(this.basePathOdata + '/Mediciones' + `?${query.compile()}`, this.httpOptions);
+      return this.http.get(this.basePathOdata + `?${query.compile()}`, this.httpOptions);
 
     }
 

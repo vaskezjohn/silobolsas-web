@@ -5,6 +5,7 @@ import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from 'ng-chartist';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { EstadisticasReqObject } from 'src/app/core/models/estadisticas-req-object.model';
+import { EstadisticasAlertasReqObject } from 'src/app/core/models/estadisticas.alertas-req-object.model';
 import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
 import { EstadisticasService } from 'src/app/core/services/estadisticas.service';
 
@@ -21,18 +22,19 @@ declare var require: any;
 const data= require('./data.json');
 
 @Component({
-  selector: 'estadisticasPromedioMedidas',
-  templateUrl: './estadisticasPromedioMedidas.component.html',
-  styleUrls: ['./estadisticasPromedioMedidas.component.css']
+  selector: 'estadisticasTotalAlertas',
+  templateUrl: './estadisticasTotalAlertas.component.html',
+  styleUrls: ['./estadisticasTotalAlertas.component.css']
 })
 
-export class EstadisticasPromedioMedidasComponent implements OnInit {
+export class EstadisticasTotalAlertasComponent implements OnInit {
   @Input () unidadMedida!: UnidadMedida;
  // @Input () unidadMedida!: string;
   barChart1: Chart = {
-		type: 'Bar',
+		type: 'Line',
 		data: data,
 		options: {
+      showArea:true,
 			seriesBarDistance: 15,
 			axisX: {
 				showGrid: false,
@@ -45,7 +47,6 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
 			height: 250
 
 		},
-
 		responsiveOptions: [
 			[
 				'screen and (min-width: 640px)',
@@ -69,11 +70,9 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
 
    }
    public cargoGrafico = false;
+
    ngOnInit(): void {
 
-    const temperaturaId ='525c1f84-3ea7-11ec-b9b8-883882e3ecf6';
-    const humedadId ='5d46ff54-3ea7-11ec-b9b8-883882e3ecf6';
-    const dioxidoId = '75daa939-3ea7-11ec-b9b8-883882e3ecf6';
     var d = new Date();
     var year = d.getFullYear();
     var month = d.getMonth();
@@ -83,8 +82,8 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
     var productorId = this.storageService.getCurrentUser().productoresID;
 
 
-    let estadisticasReqObject = new EstadisticasReqObject(fechaDesde,fechaHasta,productorId,this.unidadMedida.id);
-    this.EstadisticasService.MedicionesPromedioBar(estadisticasReqObject).toPromise().then((respose: any) => {
+    let estadisticasReqObject = new EstadisticasAlertasReqObject(fechaDesde,fechaHasta,productorId);
+    this.EstadisticasService.TotalesAlertasBar(estadisticasReqObject).toPromise().then((respose: any) => {
       this.barChart1.data=respose;
       this.cargoGrafico = true;
     }).catch(error => {
@@ -92,24 +91,5 @@ export class EstadisticasPromedioMedidasComponent implements OnInit {
     });
 
 
-    /*data.labels = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    data.series = [
-      [5, 4, 3, 7, 5, 10, 3, 4, 8, 22, 6, 8],
-      [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
-    ];
-  */
   }
 }
