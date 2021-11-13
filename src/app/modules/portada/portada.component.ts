@@ -10,9 +10,9 @@ export class PortadaComponent implements OnInit {
   constructor(private elementRef:ElementRef) { }
 
   ngOnInit(): void {
-    var s = document.createElement("script");
+    let s = document.createElement("script");
     s.type = "text/javascript";
-    s.src = "../../../assets/js/toggleMenu.js";
+    s.src = "assets/js/toggleMenu.js";
     this.elementRef.nativeElement.appendChild(s);
   }
 

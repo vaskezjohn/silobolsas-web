@@ -31,7 +31,7 @@
               "src/styles.css",
               "src/assets/styles/style.scss"
             ],
-            "scripts": [],
+            "scripts": ["src/assets/js/toggleMenu.js"],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
