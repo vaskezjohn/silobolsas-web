@@ -9,6 +9,6 @@ export class User {
         public phone: string,        
         public rolesID: string,    
         public productoresID: string,
-        public role: Role
+        public role: string
     ) {}
 }

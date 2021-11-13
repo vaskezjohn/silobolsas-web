@@ -1,4 +1,5 @@
 export enum Role {
     AGRO = 'AGRO',
-    ADMIN = 'ADMIN'
+    ADMIN = 'ADMIN',
+    AGRO_ADMIN = 'AGRO-ADMIN'
 }

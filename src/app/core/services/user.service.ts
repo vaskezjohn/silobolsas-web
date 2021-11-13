@@ -26,8 +26,8 @@ export class Userervice {
         }
     }
 
-    userList() {
-        return this.http.get(this.usuarioOdataUrl, this.httpOptions);
+    userList(filter: string) {
+        return this.http.get(this.usuarioOdataUrl + filter, this.httpOptions);
     }
 
     add(user: Users) {

@@ -13,11 +13,19 @@
             <mat-form-field>
               <input matInput [(ngModel)]="user.telefono" type="text" placeholder="Teléfono" name="telefono"disabled>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field *ngIf="isAdmin()">
               <mat-label>Productor</mat-label>
               <mat-select [(ngModel)]="user.productoresID" name="productoresID" disabled>
                 <mat-option *ngFor="let productor of productores" [value]="productor.ID" aria-placeholder="Productor">
                   {{productor.razonSocial}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="isAdmin()">
+              <mat-label>Rol</mat-label>
+              <mat-select [(ngModel)]="user.rolesID" name="rolesID" disabled>
+                <mat-option *ngFor="let rol of roles" [value]="rol.ID">
+                  {{rol.descripcion}}
                 </mat-option>
               </mat-select>
             </mat-form-field>

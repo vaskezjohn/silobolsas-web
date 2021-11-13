@@ -17,9 +17,14 @@ export class AppSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuItems.getMenuitem().forEach(
-      item => item.hasPermissions = (item.userRole == this.storageService.getCurrentUser().role) ? true : false
+      item => item.hasPermissions = this.hasPermissions(this.storageService.getCurrentUser().role, item.userRole)
     );
     this.menuItems.getMenuitem().forEach(item => console.log(`Rol: ${item.userRole} - Tiene Permisos: ${item.hasPermissions}`));
     this.usuario = this.storageService.getCurrentUser().firstname;
+  }
+
+  private hasPermissions(userRoles:string, itemMenuRole: string): boolean {
+    var splittedItemMenuRole = itemMenuRole.split('|');
+    return splittedItemMenuRole.includes(userRoles);
   }
 }

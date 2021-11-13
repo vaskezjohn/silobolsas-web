@@ -10,15 +10,15 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-  { state: 'estadisticas', name: 'Estadísticas', type: 'link', icon: 'av_timer', userRole: 'AGRO' },
-  { state: 'tablero', type: 'link', name: 'Monitoreo', icon: 'view_comfy', userRole: 'AGRO' },
+  { state: 'estadisticas', name: 'Estadísticas', type: 'link', icon: 'av_timer', userRole: 'AGRO|AGRO-ADMIN' },
+  { state: 'tablero', type: 'link', name: 'Monitoreo', icon: 'view_comfy', userRole: 'AGRO|AGRO-ADMIN' },
   { state: 'productor-list', type: 'link', name: 'Productores', icon: 'supervisor_account', userRole: 'ADMIN' },
-  { state: 'user-list', type: 'link', name: 'Usuarios', icon: 'view_list', userRole: 'ADMIN' },
+  { state: 'user-list', type: 'link', name: 'Usuarios', icon: 'view_list', userRole: 'ADMIN|AGRO-ADMIN' },
   { state: 'grano-list', type: 'link', name: 'Granos', icon: 'spa', userRole: 'ADMIN' },
-  { state: 'campo-list', type: 'link', name: 'Campos', icon: 'terrain', userRole: 'AGRO' },
-  { state: 'silobolsa-list', type: 'link', name: 'Silobolsas', icon: 'grain', userRole: 'AGRO' },
-  { state: 'dispositivo-list', type: 'link', name: 'Dispositivos', icon: 'settings_remotenna', userRole: 'AGRO' },
-  { state: 'historicoalarma-list', type: 'link', name: 'Alertas', icon: 'alarm', userRole: 'AGRO' }
+  { state: 'campo-list', type: 'link', name: 'Campos', icon: 'terrain', userRole: 'AGRO|AGRO-ADMIN' },
+  { state: 'silobolsa-list', type: 'link', name: 'Silobolsas', icon: 'grain', userRole: 'AGRO|AGRO-ADMIN' },
+  { state: 'dispositivo-list', type: 'link', name: 'Dispositivos', icon: 'settings_remotenna', userRole: 'AGRO|AGRO-ADMIN' },
+  { state: 'historicoalarma-list', type: 'link', name: 'Alertas', icon: 'alarm', userRole: 'AGRO|AGRO-ADMIN' }
 
 ];
 

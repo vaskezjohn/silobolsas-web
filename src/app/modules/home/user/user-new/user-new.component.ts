@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { Productor } from 'src/app/core/models/productor.model';
 import { Roles } from 'src/app/core/models/roles.model';
 import { ProductorService } from 'src/app/core/services/productor.service';
@@ -23,6 +24,7 @@ export class UserNewComponent implements OnInit {
     private formBuilder: FormBuilder,
     public productorService: ProductorService,
     public userervice: Userervice,
+    private storageService: StorageService,
     @Inject(MAT_DIALOG_DATA) public user: Users) { }
 
   ngOnInit(): void {
@@ -35,8 +37,15 @@ export class UserNewComponent implements OnInit {
       roles: ['',Validators.required],
       passwordnew: ['',Validators.required]
     });
-    this.getRoles();
-    this. getProductores();
+    if(this.storageService.isAdmin()) {
+      this.getRoles();
+      this.getProductores();
+    } else {
+      this.form.controls['productores'].setValue(this.storageService.getCurrentUser().productoresID);
+      //rol AGRO
+      this.form.controls['roles'].setValue('cf6e4f59-2de6-11ec-b9b8-883882e3ecf6');
+    }
+    
   }
 
   getRoles(){
@@ -61,8 +70,8 @@ export class UserNewComponent implements OnInit {
     this.user.telefono = this.form.controls['telefono'].value;
     this.user.email = this.form.controls['email'].value;    
     this.user.usuario = this.form.controls['email'].value;    
-    this.user.productoresID = this.productores.filter((x) => x.ID == this.form.controls['productores'].value)[0].ID;
-    this.user.rolesID = this.roles.filter((x) => x.ID == this.form.controls['roles'].value)[0].ID;
+    this.user.productoresID = this.storageService.isAdmin() ? this.productores.filter((x) => x.ID == this.form.controls['productores'].value)[0].ID : this.storageService.getCurrentUser().productoresID;
+    this.user.rolesID = this.storageService.isAdmin() ? this.roles.filter((x) => x.ID == this.form.controls['roles'].value)[0].ID : 'cf6e4f59-2de6-11ec-b9b8-883882e3ecf6';
     this.user.password = this.form.controls['passwordnew'].value;
   }
 
@@ -84,6 +93,10 @@ export class UserNewComponent implements OnInit {
     this.productorService.ProductorList().subscribe((response: Array<Productor>) => {
       this.productores = response;
     });
+  }
+
+  isAdmin(): boolean {
+    return this.storageService.isAdmin();
   }
 
 }

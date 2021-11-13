@@ -8,6 +8,7 @@ import { UserDeleteComponent } from '../user-delete/user-delete.component';
 import { Users } from '../../../../core/models/users.model';
 import { Userervice } from '../../../../core/services/user.service';
 import Swal from 'sweetalert2';
+import { StorageService } from 'src/app/core/authentication/services/storage.service';
 
 @Component({
   selector: 'app-user-list',
@@ -20,10 +21,11 @@ export class UserListComponent implements OnInit {
 
   displayedColumns: string[] = ['usuario', 'email', 'operations'];
   dataSource!: MatTableDataSource<Users>;
-  constructor(public dialog: MatDialog, public userervice: Userervice) { }
+  constructor(public dialog: MatDialog, public userervice: Userervice, private storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.userervice.userList().toPromise().then((respose: any) => {        
+    let filter = !this.storageService.isAdmin() ? `?%24filter=productoresID%20eq%20${this.storageService.getCurrentUser().productoresID}%20and%20rolesID%20eq%20cf6e4f59-2de6-11ec-b9b8-883882e3ecf6`: '';
+    this.userervice.userList(filter).toPromise().then((respose: any) => {        
       respose.forEach((item: any) => this.users.push(new Users(item.nombre, item.apellido, item.telefono, item.genero, item.email, item.usuario, item.password, item.id, item.rolesID, item.productoresID)));
       this.dataSource = new MatTableDataSource(this.users);
     }).catch(error => {
@@ -50,19 +52,6 @@ export class UserListComponent implements OnInit {
         Swal.fire('Eliminado!', '', 'success');
       }
     })
-
-
-
-
-    // const dialogRef = this.dialog.open(UserDeleteComponent, {
-    //   data: this.clone(user)
-    // });
-    // dialogRef.afterClosed().subscribe(respononse => {
-    //   if (respononse){
-    //     this.users =[]
-    //     this.ngOnInit();
-    //   }      
-    // });
   }
 
   editUser(user: Users){

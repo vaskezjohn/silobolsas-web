@@ -30,7 +30,7 @@
             El e-mail no es <strong>valido</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="isAdmin()">
           <mat-label>Productor</mat-label>
           <mat-select [(ngModel)]="user.productoresID" name="productoresID" formControlName="productores">
             <mat-option *ngFor="let productor of productores" [value]="productor.ID" aria-placeholder="Productor">
@@ -41,7 +41,7 @@
             Productor es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="isAdmin()">
           <mat-label>Rol</mat-label>
           <mat-select formControlName="roles">
             <mat-option *ngFor="let rol of roles; let i = index" [value]="roles[i].ID">

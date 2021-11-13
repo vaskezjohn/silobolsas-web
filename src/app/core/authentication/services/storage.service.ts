@@ -65,4 +65,9 @@ export class StorageService {
     this.router.navigate(['/login']);
   }
 
+  isAdmin(): boolean {
+    let role = this.getCurrentUser().role;
+    return role == 'ADMIN';
+  }
+
 }

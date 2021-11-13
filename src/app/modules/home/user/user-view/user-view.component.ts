@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { Productor } from 'src/app/core/models/productor.model';
+import { Roles } from 'src/app/core/models/roles.model';
 import { ProductorService } from 'src/app/core/services/productor.service';
 import { Users} from '../../../../core/models/users.model'
 import { Userervice } from '../../../../core/services/user.service';
@@ -13,12 +15,17 @@ import { Userervice } from '../../../../core/services/user.service';
 export class UserViewComponent implements OnInit {
 
   public productores?: Array<Productor>;
+  public roles: Roles[] = [];
   
   constructor(public dialogRef: MatDialogRef<UserViewComponent>,
-    @ Inject(MAT_DIALOG_DATA) public user: Users, public userervice: Userervice, public productorService: ProductorService) { }
+    @ Inject(MAT_DIALOG_DATA) public user: Users, public userervice: Userervice, public productorService: ProductorService,
+    private storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.getProductores();
+    if(this.isAdmin()) {
+      this.getProductores();
+      this.getRoles();
+    }
   }
 
   close() {
@@ -29,5 +36,21 @@ export class UserViewComponent implements OnInit {
     this.productorService.ProductorList().subscribe((response: Array<Productor>) => {
       this.productores = response;
     });
+  }
+
+  getRoles(){
+    this.userervice.rolesList().toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.roles.push(
+        new Roles(item.id,
+          item.rol,
+          item.descripcion)
+      ));
+    }).catch(error => {
+      console.log('Error al obtener los usuarios');
+    });
+  }
+
+  isAdmin(): boolean {
+    return this.storageService.isAdmin();
   }
 }
