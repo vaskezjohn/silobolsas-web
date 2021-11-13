@@ -1,0 +1,9 @@
+::ng-deep .piechart .ct-series-a .ct-slice-donut {
+  stroke: #09fc01;
+}
+::ng-deep .piechart .ct-series-b .ct-slice-donut {
+  stroke: #da3226;
+}
+::ng-deep .piechart .ct-series-c .ct-slice-donut {
+  stroke: #fffb01;
+}
