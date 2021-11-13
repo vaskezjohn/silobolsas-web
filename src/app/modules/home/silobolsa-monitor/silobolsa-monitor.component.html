@@ -121,7 +121,7 @@
     <mat-card-subtitle>Monitoreo en timpo real del estado de las silobolsa.</mat-card-subtitle>
     <mat-grid-list cols="8" rowHeight="2:1">
 
-      <mat-grid-tile *ngFor="let disp of dispostivos; let i = index"  [ngStyle]="{'background-color': disp.id != '' ? this.colores[0].color : '#808080a3', 
+      <mat-grid-tile *ngFor="let disp of dispostivos; let i = index"  [ngStyle]="{'background-color': disp.id != '' ? this.colores[i].color : '#808080a3', 
       'border-radius': i == 0? '100% 20% 0 0' : i==7? '20% 100% 0 0' : '20% 20% 0 0' }" >
         <button mat-icon-button
           aria-label="Informaciòn de la silobolsa" (click)="openDialog(disp)">
