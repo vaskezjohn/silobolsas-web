@@ -1,0 +1,46 @@
+<mat-card>
+	<mat-card-content>
+
+    <mat-card-title>
+      Granos
+      <div class="button-row" style="float: right">
+        <button mat-raised-button color="primary" (click)="newGrano()">+ NUEVO</button>
+      </div>
+    </mat-card-title>
+
+    <br>
+
+    <div class="example-container mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 mat-table">
+
+          <!-- Razón social Column -->
+          <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef> Descripción grano </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Descripción grano:</span>
+              {{element.descripcion}}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Operation Column -->
+          <ng-container matColumnDef="operations">
+            <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <!-- <button mat-icon-button color="primary" (click)="detailsGrano(element)">
+                <mat-icon>description</mat-icon>
+              </button> -->
+              <button mat-icon-button color="primary" (click)="editGrano(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" (click)="deleteGrano(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+	</mat-card-content>
+</mat-card>

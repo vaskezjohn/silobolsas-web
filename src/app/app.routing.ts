@@ -5,9 +5,12 @@ import { FullComponent } from './modules/layouts/full.component';
 import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { EstadisticasComponent } from './modules/home/estadisticas/estadisticas.component';
+import { PortadaComponent } from './modules/portada/portada.component';
 
 export const AppRoutes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'portada' },
+  
+  { path: 'portada', component: PortadaComponent },
   { path: 'login', component: LogInComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },

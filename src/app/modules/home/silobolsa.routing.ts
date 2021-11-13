@@ -10,6 +10,7 @@ import { DispositivoAbmComponent } from './dispositivo/dispositivo-abm/dispositi
 import { HistoricoAlarmaListComponent } from './historicoalarma/historicoalarma-list.component';
 import { TableroComponent} from './tablero/tablero.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { GranosListComponent } from './granos/granos-list/granos-list.component';
 
 export const MaterialRoutes: Routes = [
 
@@ -28,6 +29,10 @@ export const MaterialRoutes: Routes = [
   {
     path: 'user-list',
     component: UserListComponent
+  },
+  {
+    path: 'grano-list',
+    component: GranosListComponent
   },
   {
     path: 'campo-list',

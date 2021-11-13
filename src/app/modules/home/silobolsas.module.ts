@@ -37,6 +37,8 @@ import { ChartistModule } from 'ng-chartist';
 import { SilobolsaEstadoActualComponent } from './silobolsa/silobolsa-estado-actual/silobolsa-estado-actual.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadisticasPromedioMedidas/estadisticasPromedioMedidas.component';
+import { GranosListComponent } from './granos/granos-list/granos-list.component';
+import { GranosAbmComponent } from './granos/granos-abm/granos-abm.component';
 
 @NgModule({
   imports: [
@@ -80,6 +82,8 @@ import { EstadisticasPromedioMedidasComponent } from './estadisticas/estadistica
     SilobolsaEstadoActualComponent,
     EstadisticasComponent,
     EstadisticasPromedioMedidasComponent,
+    GranosListComponent,
+    GranosAbmComponent,
   ]
 })
 export class MaterialComponentsModule {}

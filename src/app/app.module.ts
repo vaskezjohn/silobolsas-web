@@ -20,6 +20,7 @@ import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-p
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { FullComponent } from './modules/layouts/full.component';
 import { AppSidebarComponent } from './modules/layouts/sidebar/sidebar.component';
+import { PortadaComponent } from './modules/portada/portada.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AppSidebarComponent } from './modules/layouts/sidebar/sidebar.component
     AppSidebarComponent,
     LogInComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PortadaComponent
   ],
   imports: [
     BrowserModule,
