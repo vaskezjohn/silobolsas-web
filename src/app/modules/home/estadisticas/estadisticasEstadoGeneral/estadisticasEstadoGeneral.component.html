@@ -2,7 +2,7 @@
     <mat-card-content>
         <mat-card-title>Estado general</mat-card-title>
         <mat-card-subtitle>Estado de las Silo-Bolsas</mat-card-subtitle>
-        <div class="piechart">
+        <div *ngIf="cargoGrafico" class="piechart">
             <x-chartist class="" [data]="donuteChart1.data" [type]="donuteChart1.type"
                 [options]="donuteChart1.options" [responsiveOptions]="donuteChart1.responsiveOptions"
                 [events]="donuteChart1.events"> </x-chartist>

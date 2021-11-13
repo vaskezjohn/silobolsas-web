@@ -6,3 +6,4 @@ export class EstadisticasAlertasReqObject {
       public productorID: string
     ) {}
   }
+

@@ -70,6 +70,7 @@ export class EstadisticasTotalAlertasComponent implements OnInit {
 
    }
    public cargoGrafico = false;
+
    ngOnInit(): void {
 
     var d = new Date();

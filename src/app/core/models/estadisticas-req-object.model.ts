@@ -7,3 +7,10 @@ export class EstadisticasReqObject {
       public unidadMedidaID: string
     ) {}
   }
+
+
+export class EstadisticasEstadoGeneralPieReqObject {
+  constructor (
+      public productorID: string
+    ) {}
+  }

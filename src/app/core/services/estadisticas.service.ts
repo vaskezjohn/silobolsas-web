@@ -1,7 +1,7 @@
 import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { EstadisticasReqObject } from '../models/estadisticas-req-object.model';
+import { EstadisticasEstadoGeneralPieReqObject, EstadisticasReqObject } from '../models/estadisticas-req-object.model';
 import { EstadisticasAlertasReqObject } from '../models/estadisticas.alertas-req-object.model';
 
 @Injectable({
@@ -30,5 +30,12 @@ export class EstadisticasService {
 
       return this.http.post(this.basePath + '/AlertasTotales',estadisticasReqObject, this.httpOptions);
     }
+
+
+
+    EstadoGeneralPie(estadisticasReqObject:EstadisticasEstadoGeneralPieReqObject) {
+      return this.http.post(this.basePath + '/EstadoGeneral',estadisticasReqObject, this.httpOptions);
+    }
+
 
 }
