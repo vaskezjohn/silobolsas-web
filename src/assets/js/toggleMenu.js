@@ -1,7 +1,7 @@
 
-let toggleMenu = document.querySelectorAll(".navbar .toggle-menu");
-let navLinks = document.querySelector(".nav-links");
-let links = document.querySelectorAll(".nav-links a");
+var toggleMenu = document.querySelectorAll(".navbar .toggle-menu");
+var navLinks = document.querySelector(".nav-links");
+var links = document.querySelectorAll(".nav-links a");
 
 
 function toggleLinks(ourArray, ourFubction) {
