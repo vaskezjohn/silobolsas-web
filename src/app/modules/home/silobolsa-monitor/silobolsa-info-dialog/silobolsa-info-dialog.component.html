@@ -12,4 +12,10 @@
       CO2:  {{this.co2}} {{this.co2Simbolo}}
     </li>
   </ul>
+
+
+  <div *ngFor="let unidad of unidadesMedidas; let i = index" >
+    <dispositivo-estado-actual  [unidadMedida]='unidad' [dispositivoID]='dispositivo.id'></dispositivo-estado-actual>
+  </div>
+
 </div>

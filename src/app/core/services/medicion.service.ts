@@ -37,7 +37,7 @@ export class MedicionService {
       const query = Query.create().filter('dispositivosID', OperatorType.Eq, `${dispositivoID}`)
                                   .filter('unidadesMedidasID', OperatorType.Eq, `${unidadesMedidasID}`)
                                   .orderBy('fechaHora', OrderBy.Desc)
-                                  .top(10);
+                                  .top(6);
 
 
       return this.http.get(this.basePathOdata + `?${query.compile()}`, this.httpOptions);

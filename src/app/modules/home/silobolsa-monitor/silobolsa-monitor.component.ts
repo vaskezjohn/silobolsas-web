@@ -8,6 +8,7 @@ import { SilobolsaService } from '../../../core/services/silobolsa.service';
 import { Productor } from '../../../core/models/productor.model';
 import { Dispositivo } from 'src/app/core/models/dispositivo.model';
 import { DispositivoService } from 'src/app/core/services/dispositivo.service';
+import { UnidadMedida } from 'src/app/core/models/unidadmedida.model';
 
 @Component({
   selector: 'app-silobolsa-monitor',
@@ -108,7 +109,7 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
     console.log('dialog');
     const dialogRef = this.dialog.open(SilobolsaInfoDialogComponent, {
       data: dispostivo,
-      width: '350px'
+      width: '700px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
