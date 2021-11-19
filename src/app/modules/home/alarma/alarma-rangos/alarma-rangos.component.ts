@@ -54,7 +54,7 @@ export class AlarmaRangosComponent implements OnInit {
 
     });
 
-   this.AlarmaService.alarmaListExtendido(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
+    this.AlarmaService.alarmaListExtendido(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.alarmas.push(new Alarma(item.ID,
                                                                   item.productoresID ,
                                                                   item.descripcion,
@@ -73,6 +73,7 @@ export class AlarmaRangosComponent implements OnInit {
                                                                   )));
 
     this.alarmas = this.alarmas.filter(a => a.granosID == granosId && a.unidadesMedidasID == unidadId );
+    this.ordenarPorTemperatura();
     this.dataSource = new MatTableDataSource(this.alarmas);
     this.grano = this.alarmas[0].granos.descripcion;
     this.unidadMedida = this.alarmas[0].unidadesMedidas.descripcion + " " +  this.alarmas[0].unidadesMedidas.simbolo ;
@@ -83,23 +84,21 @@ export class AlarmaRangosComponent implements OnInit {
 
   }
 
+  ordenarPorTemperatura(){
+    this.alarmas.sort((a,b) => {
+      if(a.minimo < b.minimo)
+        return -1;
+
+      if(a.minimo > b.minimo)
+        return 1;
+
+      return 0;
+    });
+  }
+
   newAlarma(){
     this.editMode = false;
     this.openModelAlarma();
-
-    /* var alarmaNew = new Alarma('','','',this.alarmas[0].granosID, this.alarmas[0].granos, this.alarmas[0].unidadesMedidasID, this.alarmas[0].unidadesMedidas,0,0,'', new TipoNotificacion('',''),'', new Color('','',''),'',
-    new User('','','','','','','',''))
-
-    const dialogRef = this.dialog.open(AlarmaAbmComponent, {
-      data: {alarma : alarmaNew, edit: false, rangoMode: true}
-    });
-
-    dialogRef.afterClosed().subscribe(respononse => {
-      if (respononse){
-        this.alarmas =[]
-        this.ngOnInit();
-      }
-    }); */
   }
 
   editAlarma(alarma: Alarma){

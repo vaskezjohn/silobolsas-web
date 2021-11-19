@@ -21,7 +21,7 @@
           <!-- Color Column -->
           <ng-container matColumnDef="color">
             <mat-header-cell *matHeaderCellDef> Color </mat-header-cell>
-            <mat-cell *matCellDef="let element">
+            <mat-cell *matCellDef="let element" [style.color]="element.colores.hex" class="mat-column-color">
 
               <span class="mobile-label" >Color</span>
               {{element.colores.descripcion}}
@@ -59,7 +59,7 @@
            <!-- Detalle silobolsa Column -->
            <ng-container matColumnDef="tipoNotificacion">
             <mat-header-cell *matHeaderCellDef>Tipo de notificación </mat-header-cell>
-            <mat-cell *matCellDef="let element">
+            <mat-cell *matCellDef="let element"  >
               <span class="mobile-label">Tipo de notificación:</span>
               {{element.tiposNotificaciones.descripcion}}
             </mat-cell>
