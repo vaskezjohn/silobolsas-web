@@ -112,16 +112,16 @@
   </div>
 
 </div>
-
-
+<br>
+<!--
 
 <mat-card>
-  <mat-card-content>
+  <mat-card-content>-->
     <mat-card-title>Monitoreo de Silobolsa</mat-card-title>
     <mat-card-subtitle>Monitoreo en timpo real del estado de las silobolsa.</mat-card-subtitle>
     <mat-grid-list cols="8" rowHeight="2:1">
 
-      <mat-grid-tile *ngFor="let disp of dispostivos; let i = index"  [ngStyle]="{'background-color': disp.id != '' ? this.colores[i].color : '#808080a3', 
+      <mat-grid-tile *ngFor="let disp of dispostivos; let i = index"  [ngStyle]="{'background-color': disp.id != '' ? this.colores[i].color : '#808080a3',
       'border-radius': i == 0? '100% 20% 0 0' : i==7? '20% 100% 0 0' : '20% 20% 0 0' }" >
         <button mat-icon-button
           aria-label="Informaciòn de la silobolsa" (click)="openDialog(disp)">
@@ -164,8 +164,8 @@
           <mat-icon>info</mat-icon>
         </button>
       </mat-grid-tile> -->
-      
-      <!--         
+
+      <!--
       <mat-grid-tile style="background-color: green; border-radius: 100px 0 0 0;">B1 <button mat-icon-button
           aria-label="Informaciòn de la silobolsa" (click)="openDialog()">
           <mat-icon>info</mat-icon>
@@ -191,5 +191,6 @@
           <mat-icon>info</mat-icon>
         </button></mat-grid-tile> -->
     </mat-grid-list>
-  </mat-card-content>
+ <!-- </mat-card-content>
 </mat-card>
+-->

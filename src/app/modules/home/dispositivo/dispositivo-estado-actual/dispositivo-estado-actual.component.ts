@@ -62,7 +62,8 @@ export class DispositivoEstadoActualComponent implements OnInit {
     this.medicionService.UltimaMedicionDispositivo(this.dispositivoID,this.unidadMedida.id).toPromise().then((respose: any) => {
       respose.forEach((item: any) => {
         serie.push(item.valor);
-        label.push(item.fechaHora)
+        label.push(item.fechaHora.substr(11,5));
+
       });
       this.data.labels = label.reverse();
       this.data.series.push(serie.reverse());

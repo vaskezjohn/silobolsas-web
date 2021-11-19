@@ -1,11 +1,14 @@
 
 <div fxLayout="row wrap">
-  <div fxFlex.gt-lg="50" fxFlex.gt-md="50" fxFlex.gt-xs="50" fxFlex="50">
+  <div fxFlex.gt-lg="50" fxFlex.gt-md="50" fxFlex.gt-xs="100" fxFlex="100">
     <estadisticasEstadoGeneral></estadisticasEstadoGeneral>
   </div>
-    <div fxFlex.gt-lg="50" fxFlex.gt-md="50" fxFlex.gt-xs="50" fxFlex="50">
-      <estadisticasTotalAlertas></estadisticasTotalAlertas>
-    </div>
+  <div fxFlex.gt-lg="50" fxFlex.gt-md="50" fxFlex.gt-xs="100" fxFlex="100">
+    <estadisticasTotalAlertas></estadisticasTotalAlertas>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
 
   <div *ngFor="let um of unodidadesMedidas; let i = index" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
     <estadisticasPromedioMedidas [unidadMedida]='um'></estadisticasPromedioMedidas>
