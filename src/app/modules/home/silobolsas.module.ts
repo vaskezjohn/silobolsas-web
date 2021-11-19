@@ -42,6 +42,12 @@ import { EstadisticasEstadoGeneralComponent } from './estadisticas/estadisticasE
 import { GranosListComponent } from './granos/granos-list/granos-list.component';
 import { GranosAbmComponent } from './granos/granos-abm/granos-abm.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AlarmaListComponent } from './alarma/alarma-list/alarma-list.component';
+import { AlarmaRangosComponent } from './alarma/alarma-rangos/alarma-rangos.component';
+import { AlarmaAbmComponent } from './alarma/alarama-abm/alarma-abm.component';
+import { AlarmaViewComponent } from './alarma/alarma-view/alarma-view.component';
+
+
 
 @NgModule({
   imports: [
@@ -90,6 +96,10 @@ import { PerfilComponent } from './perfil/perfil.component';
     GranosListComponent,
     GranosAbmComponent,
     PerfilComponent,
+    AlarmaListComponent,
+    AlarmaAbmComponent,
+    AlarmaRangosComponent,
+    AlarmaViewComponent
   ]
 })
 export class MaterialComponentsModule {}

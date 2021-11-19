@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { expand } from 'rxjs-compat/operator/expand';
+import { OperatorType, Query } from 'ngx-odata-v4';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +24,12 @@ export class UnidadMedidaService {
 
     UnidadMedidaList() {
       return this.http.get(this.basePathOdata, this.httpOptions);
+    }
+
+    UnidadMedidaListById(id: string){
+      const query = Query.create().filter('id', OperatorType.Eq, `${id}`)
+
+      return this.http.get(this.basePathOdata+ `?${query.compile()}` , this.httpOptions);
     }
 
 }

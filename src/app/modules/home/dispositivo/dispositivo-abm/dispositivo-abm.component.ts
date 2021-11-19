@@ -120,9 +120,9 @@ export class DispositivoAbmComponent implements OnInit {
       return;
     }
 
-    if(this.cantidadDispositivosPorSilovolsa >= 6)
+    if(this.cantidadDispositivosPorSilovolsa >= 8)
     {
-      Swal.fire('La silobolsa seleccionada ya posee 6 dispositivos asociados', '', 'error');
+      Swal.fire('La silobolsa seleccionada ya posee 8 dispositivos asociados', '', 'error');
       return;
     }
 

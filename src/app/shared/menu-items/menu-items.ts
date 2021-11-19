@@ -18,7 +18,8 @@ const MENUITEMS = [
   { state: 'campo-list', type: 'link', name: 'Campos', icon: 'terrain', userRole: 'AGRO|AGRO-ADMIN' },
   { state: 'silobolsa-list', type: 'link', name: 'Silobolsas', icon: 'grain', userRole: 'AGRO|AGRO-ADMIN' },
   { state: 'dispositivo-list', type: 'link', name: 'Dispositivos', icon: 'settings_remotenna', userRole: 'AGRO|AGRO-ADMIN' },
-  { state: 'historicoalarma-list', type: 'link', name: 'Alertas', icon: 'alarm', userRole: 'AGRO|AGRO-ADMIN' }
+  { state: 'historicoalarma-list', type: 'link', name: 'Alertas', icon: 'alarm', userRole: 'AGRO|AGRO-ADMIN' },
+  { state: 'alarma-list', type: 'link', name: 'Alarmas', icon: 'traffic', userRole: 'AGRO|AGRO-ADMIN' }
 
 ];
 

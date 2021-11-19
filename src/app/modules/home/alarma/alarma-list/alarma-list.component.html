@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-card class="alarma-header">
+    <mat-card-content>
+
+      <mat-card-title>
+        Configuración de alarmas
+        <div class="button-row" style="float: right">
+          <button mat-raised-button color="primary" (click)="newAlarma()">+ NUEVO</button>
+        </div>
+      </mat-card-title>
+
+    </mat-card-content>
+  </mat-card>
+
+  <section class="alarma">
+    <mat-card class="card" col-md-4 *ngFor= "let alarma of alarmasAgrupadas">
+      <mat-card-header>
+        <mat-card-title>
+          Alarma de {{alarma.granos.descripcion}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          Configuración de {{alarma.unidadesMedidas.descripcion }} en {{alarma.unidadesMedidas.simbolo }}
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="editarAlarma(alarma)">
+          Editar
+          <mat-icon>edit</mat-icon>
+      </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+</div>
