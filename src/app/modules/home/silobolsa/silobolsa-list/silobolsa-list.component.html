@@ -6,7 +6,7 @@
         <button mat-raised-button color="primary" (click)="newSilobolsa()">+ NUEVO</button>
       </div>
     </mat-card-title>
-<br>
+    <br>
     <div class="example-container mat-elevation-z8">
       <mat-table [dataSource]="dataSource" matSort>
 
@@ -24,7 +24,8 @@
           <mat-header-cell *matHeaderCellDef> Tipo grano </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <span class="mobile-label">Grano:</span>
-            {{element.granos.descripcion}} </mat-cell>
+            {{element.granos.descripcion}}
+          </mat-cell>
         </ng-container>
 
         <!-- fechaEmbolsado Column -->
@@ -32,7 +33,8 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha embolsado </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <span class="mobile-label">Fecha:</span>
-             {{element.fechaEmbolsado | date:'MM-dd-yyyy'}} </mat-cell>
+            {{element.fechaEmbolsado | date:'MM-dd-yyyy'}}
+          </mat-cell>
         </ng-container>
 
         <!-- fechaEmbolsado Column -->
@@ -40,7 +42,8 @@
           <mat-header-cell *matHeaderCellDef> Campo </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <span class="mobile-label">Campo:</span>
-            {{element.campos.descripcion}} </mat-cell>
+            {{element.campos.descripcion}}
+          </mat-cell>
         </ng-container>
 
         <!-- detalle Column -->
@@ -48,7 +51,8 @@
           <mat-header-cell *matHeaderCellDef> Detalle </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <span class="mobile-label">Detalle:</span>
-            {{element.detalle}} </mat-cell>
+            {{element.detalle}}
+          </mat-cell>
         </ng-container>
 
 
@@ -71,6 +75,8 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
+
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
     </div>
   </mat-card-content>
 </mat-card>

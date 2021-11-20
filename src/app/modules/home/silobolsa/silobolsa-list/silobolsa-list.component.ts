@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SilobolsaAbmComponent } from '../silobolsa-abm/silobolsa-abm.component'
 import { Silobolsa } from '../../../../core/models/silobolsa.model';
 import { SilobolsaService } from '../../../../core/services/silobolsa.service';
@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-silobolsa-list',
@@ -27,15 +28,34 @@ export class SilobolsaListComponent implements OnInit {
     public silobolsaService: SilobolsaService,
     public storageService: StorageService) { }
 
-  ngOnInit(): void {
-    this.silobolsaService.SilobolsasList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      console.log("ver",respose);
-      respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.granosID, item.fechaEmbolsado, item.granos, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
-      this.dataSource = new MatTableDataSource(this.silobolsas);
-    }).catch(error => {      
-      console.log('Error al obtener las silobolsas!');
-    });
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+
+  ngAfterViewInit() {
+    this.loadData();
+  }
+
+  ngOnInit(): void {
+  }
+
+
+  loadData() {
+    this.silobolsaService.SilobolsasList(
+      this.storageService.getCurrentUser().productoresID)
+      .toPromise().then((response: any) => {
+
+        console.log(response);
+
+        this.dataSource = new MatTableDataSource<Silobolsa>(response);
+        this.dataSource.paginator = this.paginator;
+
+        // respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.granosID, item.fechaEmbolsado, item.granos, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
+        // this.dataSource = new MatTableDataSource(this.silobolsas);
+
+      }).catch(error => {
+        console.log('Error al obtener las silobolsas!');
+      });
   }
 
   deleteSilobolsa(silobolsa: Silobolsa) {
@@ -52,7 +72,7 @@ export class SilobolsaListComponent implements OnInit {
             (x) => x.ID != silobolsa.ID
           );
         }).catch(error => {
-         console.log('silobolsa invalida!');
+          console.log('silobolsa invalida!');
         });
         Swal.fire('Eliminado!', '', 'success');
       }
@@ -100,7 +120,7 @@ export class SilobolsaListComponent implements OnInit {
 
   updateSilobolsa(silobolsa: Silobolsa) {
     this.silobolsaService.UpdateSilobolsa(silobolsa.ID, silobolsa).toPromise().then((respose: any) => {
-      console.log("update",respose);
+      console.log("update", respose);
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
           if (x.ID == respose.data.id)
@@ -115,18 +135,22 @@ export class SilobolsaListComponent implements OnInit {
 
   addSilobolsa(silobolsa: Silobolsa) {
     this.silobolsaService.AddSilobolsa(silobolsa).toPromise().then((respose: any) => {
-      console.log("add",respose);
-      this.silobolsas.push(new Silobolsa(respose.data.id,
-        respose.data.codigoSilo,
-        respose.data.granosID,
-        respose.data.fechaEmbolsado,        
-        respose.data.granos,
-        respose.data.longitud,
-        respose.data.latitud,
-        respose.data.camposID,
-        respose.data.campos,
-        respose.data.detalle));
-      this.dataSource.data = this.silobolsas;
+
+      this.loadData();
+      // this.dataSource.data.push(new MatTableDataSource<Silobolsa>(response.data));
+        
+        
+        // new Silobolsa(respose.data.id,
+        // respose.data.codigoSilo,
+        // respose.data.granosID,
+        // respose.data.fechaEmbolsado,
+        // respose.data.granos,
+        // respose.data.longitud,
+        // respose.data.latitud,
+        // respose.data.camposID,
+        // respose.data.campos,
+        // respose.data.detalle));
+      // this.dataSource.data = this.silobolsas;
       Swal.fire('Silobolsa dada de alta!', '', 'success');
     }).catch(error => {
       console.log('silobolsa invalida');

@@ -42,6 +42,7 @@ import { EstadisticasEstadoGeneralComponent } from './estadisticas/estadisticasE
 import { GranosListComponent } from './granos/granos-list/granos-list.component';
 import { GranosAbmComponent } from './granos/granos-abm/granos-abm.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     CdkTableModule,
     GoogleMapsModule,
     ChartistModule,
+    MatPaginatorModule
   ],
   providers: [],
   declarations: [
