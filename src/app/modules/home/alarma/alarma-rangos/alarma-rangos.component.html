@@ -1,0 +1,98 @@
+<mat-card>
+	<mat-card-content>
+
+    <mat-card-title>
+      Rangos de {{unidadMedida}} para {{grano}}
+      <div class="button-row" style="float: right">
+        <button mat-raised-button color="primary" (click)="newAlarma()">+ NUEVO</button>
+      </div>
+    </mat-card-title>
+
+    <br>
+
+    <div class="example-container mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 mat-table">
+
+         <!--
+          public silobolsasID: string,
+          public silobolsas?: Silobolsa
+        ) {} -->
+
+          <!-- Color Column -->
+          <ng-container matColumnDef="color">
+            <mat-header-cell *matHeaderCellDef> Color </mat-header-cell>
+            <mat-cell *matCellDef="let element" [style.color]="element.colores.hex" class="mat-column-color">
+
+              <span class="mobile-label" >Color</span>
+              {{element.colores.descripcion}}
+            </mat-cell>
+          </ng-container>
+
+
+          <!-- Descripción -->
+          <ng-container matColumnDef="minimo">
+            <mat-header-cell *matHeaderCellDef> Mínimo </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Mínimo</span>
+              {{element.minimo}}
+            </mat-cell>
+          </ng-container>
+
+           <!-- Código del dispositivo Column -->
+           <ng-container matColumnDef="maximo">
+            <mat-header-cell *matHeaderCellDef> Máximo </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Máximo:</span>
+              {{element.maximo}}
+            </mat-cell>
+          </ng-container>
+
+           <!-- Detalle silobolsa Column -->
+           <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Descripción:</span>
+              {{element.descripcion}}
+            </mat-cell>
+          </ng-container>
+
+           <!-- Detalle silobolsa Column -->
+           <ng-container matColumnDef="tipoNotificacion">
+            <mat-header-cell *matHeaderCellDef>Tipo de notificación </mat-header-cell>
+            <mat-cell *matCellDef="let element"  >
+              <span class="mobile-label">Tipo de notificación:</span>
+              {{element.tiposNotificaciones.descripcion}}
+            </mat-cell>
+          </ng-container>
+
+           <!-- Detalle silobolsa Column -->
+           <ng-container matColumnDef="usuarioNotificacion">
+            <mat-header-cell *matHeaderCellDef>Usuario Notificación </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Usuario Notificación:</span>
+              {{element.usuarioDestino.usuario}}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Operation Column -->
+          <ng-container matColumnDef="operations">
+            <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary" (click)="detailsAlarma(element)">
+                <mat-icon>description</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" (click)="editAlarma(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" (click)="deleteAlarma(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+	</mat-card-content>
+</mat-card>

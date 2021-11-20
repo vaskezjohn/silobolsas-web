@@ -1,0 +1,44 @@
+
+  <div>
+    <h1 mat-dialog-title>Rango de alarma</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+          <form>
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.granos.descripcion"  type="text" placeholder="Grano" name="grano" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.unidadesMedidas.descripcion" type="text" placeholder="Unidad de medida"  name="unidadesMedidas" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.colores.descripcion" type="text" placeholder="Color" name="color" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.minimo" type="text" placeholder="Mínimo" name="minimo" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.maximo" type="text" placeholder="Máximo" name="maximo" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.descripcion" type="text" placeholder="Descripción" name="descripcion" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.tiposNotificaciones.descripcion" type="text" placeholder="tipo de notificación" name="tiposNotificaciones" disabled>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="alarma.usuarioDestino.email" type="text" placeholder="Usuario Notificación" name="usuario" disabled>
+            </mat-form-field>
+
+          </form>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="close()">Cerrar</button>
+  </div>

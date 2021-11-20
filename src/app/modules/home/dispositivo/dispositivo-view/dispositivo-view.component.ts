@@ -15,9 +15,8 @@ export class DispositivoViewComponent implements OnInit {
     @ Inject(MAT_DIALOG_DATA) public dispositivo: Dispositivo, public pdispositivoService: DispositivoService) { }
 
 
-
   ngOnInit(): void {
-    //console.log('FEC',this.fechaAltaFormat)
+
   }
 
   close() {

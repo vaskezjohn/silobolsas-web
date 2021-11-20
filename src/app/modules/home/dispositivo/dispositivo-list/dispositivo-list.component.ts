@@ -5,7 +5,6 @@ import { DispositivoAbmComponent } from '../dispositivo-abm/dispositivo-abm.comp
 import { DispositivoViewComponent } from '../dispositivo-view/dispositivo-view.component';
 import { Dispositivo } from '../../../../core/models/dispositivo.model';
 import { DispositivoService } from '../../../../core/services/dispositivo.service';
-import { Silobolsa } from 'src/app/core/models/silobolsa.model';
 import Swal from 'sweetalert2';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 
@@ -123,16 +122,6 @@ export class DispositivoListComponent implements OnInit {
 
   updateDispositivo(dispositivo: Dispositivo) {
     this.ngOnInit();
-   /*  this.DispositivoService.edit(dispositivo.id, dispositivo).toPromise().then((respose: any) => {
-      this.dataSource.data = this.dataSource.data.filter(
-        (x) => {
-          if (x.id == respose.data.id)
-            x = respose;
-          return true;
-        });
-    }).catch(error => {
-      console.log('Dispositivo invalido');
-    }); */
   }
 
 }

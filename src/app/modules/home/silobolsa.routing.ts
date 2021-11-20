@@ -12,6 +12,10 @@ import { TableroComponent} from './tablero/tablero.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { GranosListComponent } from './granos/granos-list/granos-list.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AlarmaListComponent } from './alarma/alarma-list/alarma-list.component';
+import { AlarmaRangosComponent } from './alarma/alarma-rangos/alarma-rangos.component';
+import { AlarmaAbmComponent } from './alarma/alarama-abm/alarma-abm.component';
+import { AlarmaViewComponent } from './alarma/alarma-view/alarma-view.component';
 
 export const MaterialRoutes: Routes = [
 
@@ -66,5 +70,21 @@ export const MaterialRoutes: Routes = [
   {
     path: 'perfil',
     component: PerfilComponent
-  }
+  },
+  {
+    path: 'alarma-list',
+    component: AlarmaListComponent
+  },
+  {
+    path: 'alarma-rangos/:granosId/:unidadesMedidasID',
+    component: AlarmaRangosComponent
+  },
+  {
+    path: 'alarma-abm',
+    component: AlarmaAbmComponent
+  },
+  {
+    path: 'alarma-view',
+    component: AlarmaViewComponent
+  },
 ];
