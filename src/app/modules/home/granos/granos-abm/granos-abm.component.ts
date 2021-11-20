@@ -16,7 +16,7 @@ export class GranosAbmComponent implements OnInit {
   constructor( public dialogRef: MatDialogRef<GranosAbmComponent>,
     private formBuilder: FormBuilder,
     public granosService: GranosService,
-    @Inject(MAT_DIALOG_DATA) public data : any) {  console.log(data[0].grano.ID);}
+    @Inject(MAT_DIALOG_DATA) public data : any) { }
 
 
   ngOnInit(): void {

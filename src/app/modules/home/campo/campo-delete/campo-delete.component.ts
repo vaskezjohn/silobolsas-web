@@ -28,7 +28,6 @@ export class CampoDeleteComponent implements OnInit {
      this.campoService.delete(this.campo).toPromise().then((respose: any) => {
       this.dialogRef.close(true);
     }).catch(responseError => {
-      console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
     });

@@ -31,28 +31,16 @@ export class SilobolsaListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
-  ngAfterViewInit() {
+  ngOnInit(): void {
     this.loadData();
   }
-
-  ngOnInit(): void {
-  }
-
 
   loadData() {
     this.silobolsaService.SilobolsasList(
       this.storageService.getCurrentUser().productoresID)
       .toPromise().then((response: any) => {
-
-        console.log(response);
-
         this.dataSource = new MatTableDataSource<Silobolsa>(response);
         this.dataSource.paginator = this.paginator;
-
-        // respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.ID, item.codigoSilo, item.granosID, item.fechaEmbolsado, item.granos, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
-        // this.dataSource = new MatTableDataSource(this.silobolsas);
-
       }).catch(error => {
         console.log('Error al obtener las silobolsas!');
       });
@@ -120,7 +108,6 @@ export class SilobolsaListComponent implements OnInit {
 
   updateSilobolsa(silobolsa: Silobolsa) {
     this.silobolsaService.UpdateSilobolsa(silobolsa.ID, silobolsa).toPromise().then((respose: any) => {
-      console.log("update", respose);
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
           if (x.ID == respose.data.id)

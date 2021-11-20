@@ -47,8 +47,8 @@
 
               <mat-form-field>
                 <mat-label>Provincia</mat-label>
-                <mat-select formControlName="provincias"  [(value)]="productor?.localidad.provinciasID" (selectionChange)="onProvinciaChange($event.value)" >
-                  <mat-option *ngFor="let provincia of resultadoProvincias" [value]="provincia.id">
+                <mat-select formControlName="provincias"  [(value)]="productor?.localidades.provinciasID" (selectionChange)="onProvinciaChange($event.value)" >
+                  <mat-option *ngFor="let provincia of resultadoProvincias" [value]="provincia.ID">
                       {{provincia.nombre}}
                   </mat-option>
                 </mat-select>
@@ -61,7 +61,7 @@
               <mat-form-field>
                 <mat-label>Localidad</mat-label>
                 <mat-select [(ngModel)]="productor.localidadesID" formControlName="localidades">
-                  <mat-option *ngFor="let localidad of resultadoLocalidades" [value]="localidad.id">
+                  <mat-option *ngFor="let localidad of resultadoLocalidades" [value]="localidad.ID">
                       {{localidad.nombre}}
                   </mat-option>
 

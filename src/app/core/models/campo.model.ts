@@ -1,4 +1,4 @@
-import { Localidad } from "./localidades.model";
+import { Localidades } from "./localidades.model";
 import { Silobolsa } from "./silobolsa.model";
 
 export class Campo {
@@ -11,7 +11,7 @@ export class Campo {
     public ID?: string,
     public localidadesID?: number,
     public productoresID?: string,
-    public localidades?: Localidad,
+    public localidades?: Localidades,
     public silobolsas?: Silobolsa
   ) { }
 }

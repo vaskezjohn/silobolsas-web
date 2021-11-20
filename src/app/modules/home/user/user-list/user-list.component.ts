@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserNewComponent } from '../user-new/user-new.component';
@@ -9,6 +9,7 @@ import { Users } from '../../../../core/models/users.model';
 import { Userervice } from '../../../../core/services/user.service';
 import Swal from 'sweetalert2';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-list',
@@ -23,11 +24,18 @@ export class UserListComponent implements OnInit {
   dataSource!: MatTableDataSource<Users>;
   constructor(public dialog: MatDialog, public userervice: Userervice, private storageService: StorageService) { }
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {    
     let filter = !this.storageService.isAdmin() ? `?%24filter=productoresID%20eq%20${this.storageService.getCurrentUser().productoresID}%20and%20rolesID%20eq%20cf6e4f59-2de6-11ec-b9b8-883882e3ecf6`: '';
-    this.userervice.userList(filter).toPromise().then((respose: any) => {        
-      respose.forEach((item: any) => this.users.push(new Users(item.nombre, item.apellido, item.telefono, item.genero, item.email, item.usuario, item.password, item.id, item.rolesID, item.productoresID)));
-      this.dataSource = new MatTableDataSource(this.users);
+    this.userervice.userList(filter).toPromise().then((response: any) => {   
+      
+      this.dataSource = new MatTableDataSource<Users>(response);
+        this.dataSource.paginator = this.paginator;
     }).catch(error => {
       console.log('Error al obtener los usuario'); 
     });    

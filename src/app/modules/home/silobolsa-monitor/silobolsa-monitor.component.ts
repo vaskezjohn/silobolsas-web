@@ -69,6 +69,9 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
       });
 
       this.dispositivoService.DispositivoListBySilobolasID(this.silobolsaID).toPromise().then((respose: any) => {
+
+        console.log("error",respose);
+
         for (let i = 0; i < 8; i++) {
           if (respose[i]) {
 
@@ -78,8 +81,8 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
               console.log('dispositivo invalida');
             });
 
-            this.dispostivos[i].id = respose[i].id;
-            this.dispostivos[i].codigo = respose[i].codigoSilo;
+            this.dispostivos[i].ID = respose[i].id;
+            this.dispostivos[i].codigoSilo = respose[i].codigoSilo;
             this.dispostivos[i].silobolsasID = respose[i].silobolsasID;
             this.dispostivos[i].silobolsas = respose[i].silobolsas;
           }
@@ -90,7 +93,6 @@ export class SilobolsaMonitorComponent implements OnInit, AfterViewInit {
 
       // this.silobolsaService.silobolsaByID(id).subscribe({
       //   next(respose) {
-      //     console.log("res",respose);
       //     silobolsa = respose[0];
       //   },
       //   complete() {

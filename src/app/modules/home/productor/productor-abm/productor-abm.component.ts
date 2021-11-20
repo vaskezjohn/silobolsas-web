@@ -3,9 +3,9 @@ import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
-import { Productor} from '../../../../core/models/productor.model';
-import { Provincia} from '../../../../core/models/provincia.model'
-import { Localidad} from '../../../../core/models/localidades.model'
+import { Productor } from '../../../../core/models/productor.model';
+import { Provincias } from '../../../../core/models/provincia.model'
+import { Localidades } from '../../../../core/models/localidades.model'
 import { ProductorService } from '../../../../core/services/productor.service';
 import { ProvinciaService } from '../../../../core/services/provincia.service';
 import { LocalidadService } from '../../../../core/services/localidad.service';
@@ -20,8 +20,8 @@ import Swal from 'sweetalert2';
 })
 export class ProductorAbmComponent implements OnInit {
   form!: FormGroup;
-  provincias: Provincia[] =[];
-  localidades: Localidad[] =[];
+  provincias: Provincias[] = [];
+  localidades: Localidades[] = [];
   editMode = false;
   resultadoProvincias!: Array<any>;
   resultadoLocalidades!: Array<any>;
@@ -62,7 +62,7 @@ export class ProductorAbmComponent implements OnInit {
 
   getProvincias() {
     this.provinciaService.ProvinciaList().toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.provincias.push(new Provincia(item.id, item.nombre)));
+      respose.forEach((item: any) => this.provincias.push(new Provincias(item.id, item.nombre)));
       this.resultadoProvincias = this.provincias;
 
     }).catch(error => {
@@ -73,7 +73,7 @@ export class ProductorAbmComponent implements OnInit {
   onProvinciaChange(provinciaId: number) {
     this.localidades = [];
     this.localidadService.LocalidadList(provinciaId).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.localidades.push(new Localidad(item.id, item.nombre,item.CP,item.provinciasID,item.provincias)));
+      respose.forEach((item: any) => this.localidades.push(new Localidades(item.id, item.nombre, item.CP, item.provinciasID, item.provincias)));
       this.resultadoLocalidades = this.localidades;
 
     }).catch(error => {
@@ -86,13 +86,13 @@ export class ProductorAbmComponent implements OnInit {
   }
 
   setEditForm() {
-    var provinciaId = this.productor.localidad?.provinciasID == undefined? 1: this.productor.localidad?.provinciasID;
+    var provinciaId = this.productor.localidades?.provinciasID == undefined ? 1 : this.productor.localidades?.provinciasID;
     this.form.controls['razonSocial'].setValue(this.productor.razonSocial);
     this.form.controls['cuit'].setValue(this.productor.cuit);
     this.form.controls['telefono'].setValue(this.productor.telefono);
     this.form.controls['mail'].setValue(this.productor.mail);
     this.form.controls['fechaAlta'].setValue(new Date(this.productor.fechaAlta).toISOString().split('T')[0]);
-    this.form.controls['provincias'].setValue(this.productor.localidad?.provinciasID);
+    this.form.controls['provincias'].setValue(this.productor.localidades?.provinciasID);
     this.onProvinciaChange(provinciaId);
     this.form.controls['localidades'].setValue(this.productor.localidadesID);
     this.form.controls['calle'].setValue(this.productor.calle);
@@ -105,12 +105,10 @@ export class ProductorAbmComponent implements OnInit {
     }
     this.productor.fechaAlta = this.form.controls['fechaAlta'].value;
 
-    if(this.editMode)
-    {
+    if (this.editMode) {
       this.update();
     }
-    else
-    {
+    else {
       this.add();
     }
     //this.dialogRef.close(this.productor);
@@ -118,27 +116,22 @@ export class ProductorAbmComponent implements OnInit {
 
   add() {
     this.showError = false;
-    console.log(this.productor)
     this.productorService.add(this.productor).toPromise().then((respose: any) => {
-    this.dialogRef.close(true);
-    Swal.fire('Productor dado de alta!', '', 'success');
+      this.dialogRef.close(true);
+      Swal.fire('Productor dado de alta!', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
       Swal.fire('Ocurrió un error imprevisto', '', 'error');
     });
   }
 
-  update()
-  {
+  update() {
     this.showError = false;
-    console.log(this.productor)
     this.productorService.edit(this.productor.ID, this.productor).toPromise().then((respose: any) => {
-    this.dialogRef.close(true);
-    Swal.fire('Productor actualizado!', '', 'success');
+      this.dialogRef.close(true);
+      Swal.fire('Productor actualizado!', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
       Swal.fire('Ocurrió un error imprevisto', '', 'error');

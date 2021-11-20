@@ -1,4 +1,4 @@
-import { Localidad } from "./localidades.model";
+import { Localidades } from "./localidades.model";
 
 export class Productor {
     constructor (
@@ -10,7 +10,7 @@ export class Productor {
         public fechaAlta: Date,
         public bajaLogica?: boolean,
         public localidadesID?: number,
-        public localidad?: Localidad,
+        public localidades?: Localidades,
         public calle?: string,
         public altura?: string,
       ) {}

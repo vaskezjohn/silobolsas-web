@@ -12,7 +12,7 @@
             <mat-form-field>
               <mat-label>Provincia</mat-label>
               <mat-select (selectionChange)="onProvinciaChange($event.value)" >
-                <mat-option *ngFor="let provincia of provincias" [value]="provincia.id">
+                <mat-option *ngFor="let provincia of provincias" [value]="provincia.ID">
                     {{provincia.nombre}}
                 </mat-option>
               </mat-select>
@@ -21,7 +21,7 @@
             <mat-form-field>
               <mat-label>Localidad</mat-label>
               <mat-select [(value)]="campo.localidadesID">
-                <mat-option *ngFor="let localidad of localidades" [value]="localidad.id">
+                <mat-option *ngFor="let localidad of localidades" [value]="localidad.ID">
                     {{localidad.nombre}}
                 </mat-option>
               </mat-select>

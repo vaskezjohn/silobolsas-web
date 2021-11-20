@@ -6,49 +6,52 @@
         <button mat-raised-button color="primary" (click)="newUser()">+ NUEVO</button>
       </div>
     </mat-card-title>
-    
+
     <br>
+    <div class="example-container mat-elevation-z8">
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-      <!-- User Column -->
-      <ng-container matColumnDef="usuario">
-        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Nombre:</span> {{element.nombre}} 
-        </mat-cell>
-      </ng-container>
+        <!-- User Column -->
+        <ng-container matColumnDef="usuario">
+          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Nombre:</span> {{element.nombre}}
+          </mat-cell>
+        </ng-container>
 
-      <!-- E-mail Column -->
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> 
-          E-mail </mat-header-cell>
-        <mat-cell *matCellDef="let element"> 
-          <span class="mobile-label">E-mail:</span>
-          {{element.email}} 
-        </mat-cell>
-      </ng-container>
+        <!-- E-mail Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>
+            E-mail </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">E-mail:</span>
+            {{element.email}}
+          </mat-cell>
+        </ng-container>
 
 
-      <!-- Operation Column -->
-      <ng-container matColumnDef="operations">
-        <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary" (click)="detailsUser(element)">
-            <mat-icon>description</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" (click)="editUser(element)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" (click)="deleteUser(element)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+        <!-- Operation Column -->
+        <ng-container matColumnDef="operations">
+          <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="detailsUser(element)">
+              <mat-icon>description</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="editUser(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="deleteUser(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
 
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
   </mat-card-content>
 </mat-card>

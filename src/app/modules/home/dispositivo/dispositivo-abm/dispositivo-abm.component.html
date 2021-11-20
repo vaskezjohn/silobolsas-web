@@ -25,12 +25,11 @@
                 <mat-select [(ngModel)]="dispositivo.silobolsasID" formControlName="silobolsas" (selectionChange)="cantidadDispositivosBySilobolsa($event.value)">
                   <mat-option *ngFor="let silobolsa of resultadoSilobolsas" [value]="silobolsa.ID">
                       {{silobolsa.codigoSilo}}
-                  </mat-option>
-
-                  <mat-error *ngIf="form.controls['silobolsas'].hasError('required')">
-                    La silobolsa es <strong>requerida</strong>
-                  </mat-error>
+                  </mat-option>                
                 </mat-select>
+                <mat-error *ngIf="form.controls['silobolsas'].hasError('required')">
+                  La silobolsa es <strong>requerida</strong>
+                </mat-error>
               </mat-form-field>
 
             </form>

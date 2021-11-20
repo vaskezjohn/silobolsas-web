@@ -18,8 +18,8 @@ import { DispositivoService } from '../../../../core/services/dispositivo.servic
 })
 export class DispositivoAbmComponent implements OnInit {
   form!: FormGroup;
-  campos: Campo[] =[];
-  silobolsas: Silobolsa[] =[];
+  campos: Campo[] = [];
+  silobolsas: Silobolsa[] = [];
   //campoID!: "";
   editMode = false;
   resultadoCampos!: Array<any>;
@@ -45,11 +45,11 @@ export class DispositivoAbmComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       descripcion: ['', Validators.required],
-      campos: ['' ],
+      campos: [''],
       silobolsas: ['', Validators.required]
     });
 
-    if (this.dispositivo.id) {
+    if (this.dispositivo.ID) {
       this.setEditForm();
       this.editMode = true;
     }
@@ -58,8 +58,8 @@ export class DispositivoAbmComponent implements OnInit {
   }
 
   getCampos() {
-      this.campoService.CampoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion,'','','','',item.ID,undefined,undefined,undefined)));
+    this.campoService.CampoList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
+      respose.forEach((item: any) => this.campos.push(new Campo(item.descripcion, '', '', '', '', item.ID, undefined, undefined, undefined)));
       this.resultadoCampos = this.campos;
 
     }).catch(error => {
@@ -77,29 +77,23 @@ export class DispositivoAbmComponent implements OnInit {
     });
   }
 
-  cantidadDispositivosBySilobolsa(silobolsaID:string){
+  cantidadDispositivosBySilobolsa(silobolsaID: string) {
     this.cantidadDispositivosPorSilovolsa = 0;
 
     this.dispositivoService.DispositivoListBySilobolasID(this.dispositivo.silobolsasID).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.cantidadDispositivosPorSilovolsa++ );
-
-      console.log('Cantidad', this.cantidadDispositivosPorSilovolsa)
-
+      respose.forEach((item: any) => this.cantidadDispositivosPorSilovolsa++);
     }).catch(error => {
       console.log('Error cantidadDispositivosBySilobolsa');
-
     });
   }
 
   onCampoChange(campoID: string) {
-    console.log('onCampoChange', campoID);
     this.silobolsas = [];
-    this.resultadoSilobolsas=[];
-    this.dispositivo.silobolsasID!= undefined;
+    this.resultadoSilobolsas = [];
+    this.dispositivo.silobolsasID != undefined;
     this.silobolsaService.SilobolsasListByCampo(campoID).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.silobolsas.push(new Silobolsa(item.id, item.codigoSilo, item.tipoGrano, item.fechaEmbolsado, item.longitud, item.latitud, item.camposID, item.campos, item.detalle)));
       this.resultadoSilobolsas = this.silobolsas;
-
     }).catch(error => {
       console.log('Error al obtener silobolsas');
     });
@@ -120,18 +114,15 @@ export class DispositivoAbmComponent implements OnInit {
       return;
     }
 
-    if(this.cantidadDispositivosPorSilovolsa >= 8)
-    {
+    if (this.cantidadDispositivosPorSilovolsa >= 8) {
       Swal.fire('La silobolsa seleccionada ya posee 8 dispositivos asociados', '', 'error');
       return;
     }
 
-    if(this.editMode)
-    {
+    if (this.editMode) {
       this.update();
     }
-    else
-    {
+    else {
       this.add();
     }
     this.dialogRef.close(this.dispositivo);
@@ -140,25 +131,21 @@ export class DispositivoAbmComponent implements OnInit {
   add() {
     this.showError = false;
     this.dispositivoService.add(this.dispositivo).toPromise().then((respose: any) => {
-    this.dialogRef.close(true);
-    Swal.fire('Dispositivo dado de alta!', '', 'success');
+      this.dialogRef.close(true);
+      Swal.fire('Dispositivo dado de alta!', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
       Swal.fire('Ocurrió un error imprevisto', '', 'error');
     });
   }
 
-   update()
-  {
+  update() {
     this.showError = false;
-    console.log(this.dispositivo)
-    this.dispositivoService.edit(this.dispositivo.id, this.dispositivo).toPromise().then((respose: any) => {
-    this.dialogRef.close(true);
-    Swal.fire('Dispositivo actualizado!', '', 'success');
+    this.dispositivoService.edit(this.dispositivo.ID, this.dispositivo).toPromise().then((respose: any) => {
+      this.dialogRef.close(true);
+      Swal.fire('Dispositivo actualizado!', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
       Swal.fire('Ocurrió un error imprevisto', '', 'error');

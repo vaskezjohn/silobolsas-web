@@ -31,8 +31,7 @@ export class LogInComponent implements OnInit {
     this.showError = false;
     if (this.usuario && this.password) {
       let login = new LoginObject(this.usuario, this.password);
-      this.authenticationService.login(login).toPromise().then((respose: any) => {      
-        console.log('responseUser',respose);  
+      this.authenticationService.login(login).toPromise().then((respose: any) => {   
         let sesion = new Session(respose.data.token, respose.data.tokenExpires, new User(respose.data.id, respose.data.email, respose.data.nombre, respose.data.apellido, respose.data.telefono,respose.data.rolesID,respose.data.productoresID, respose.data.roles.rol));
         this.correctLogin(sesion)
       }).catch(error => {

@@ -93,7 +93,6 @@ export class AlarmaAbmComponent implements OnInit {
   getGranos(){
     this.GranosService.GranosList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.granos.push(new Granos(item.id,item.descripcion)));
-      //console.log('Granos', this.granos);
     }).catch(error => {
       console.log('Error al obtener granos');
     });
@@ -102,7 +101,6 @@ export class AlarmaAbmComponent implements OnInit {
   getUnidadesDeMedida(){
     this.UnidadesMedidasService.UnidadMedidaList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.unidadesDeMedida.push(new UnidadMedida(item.id,item.descripcion, item.simbolo)));
-      //console.log('Medidas', this.unidadesDeMedida);
     }).catch(error => {
       console.log('Error al obtener unidades de medida');
     });
@@ -111,7 +109,6 @@ export class AlarmaAbmComponent implements OnInit {
   getGranosPorId(id: string){
     this.GranosService.GranosListById(id).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.granos.push(new Granos(item.id,item.descripcion)));
-      //console.log('Granos', this.granos);
     }).catch(error => {
       console.log('Error al obtener granos');
     });
@@ -120,7 +117,6 @@ export class AlarmaAbmComponent implements OnInit {
   getUnidadesDeMedidaPorId(id: string){
     this.UnidadesMedidasService.UnidadMedidaListById(id).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.unidadesDeMedida.push(new UnidadMedida(item.id,item.descripcion, item.simbolo)));
-      //console.log('Medidas', this.unidadesDeMedida);
     }).catch(error => {
       console.log('Error al obtener unidades de medida');
     });
@@ -130,7 +126,6 @@ export class AlarmaAbmComponent implements OnInit {
   getColores(){
     this.ColoresService.ColorList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.colores.push(new Color(item.id,item.descripcion, item.hex)));
-      //console.log('Colores', this.colores);
     }).catch(error => {
       console.log('Error al obtener colores');
     });
@@ -139,7 +134,6 @@ export class AlarmaAbmComponent implements OnInit {
   getNotificaciones(){
     this.notificacionesService.TipoNotificacionList().toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.notificaciones.push(new TipoNotificacion(item.id,item.descripcion)));
-      //console.log('Tipo de notificacion', this.notificaciones);
     }).catch(error => {
       console.log('Error al obtener los tipos de notificacion');
     });
@@ -150,7 +144,6 @@ export class AlarmaAbmComponent implements OnInit {
 
     this.UsuarioService.userList(filter).toPromise().then((respose: any) => {
       respose.forEach((item: any) => this.usuarios.push(new User(item.id,item.email,'','','','','','')));
-      //console.log('Usuarios', this.usuarios);
     }).catch(error => {
       console.log('Error al obtener los usuarios');
     });
@@ -179,23 +172,19 @@ export class AlarmaAbmComponent implements OnInit {
   }
 
   add(){
-    console.log('add', this.alarma);
     this.AlarmaService.add(this.alarma).toPromise().then((respose: any) => {
     this.dialogRef.close(true);
     Swal.fire('Nuevo rango de alarmas dado de alta', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       Swal.fire('Ocurrió un error imprevisto', '', 'error');
     });
   }
 
   update(){
-    console.log('update',this.alarma);
     this.AlarmaService.edit(this.alarma.id, this.alarma).toPromise().then((respose: any) => {
     this.dialogRef.close(true);
     Swal.fire('Rango de alarma actualizado!', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       Swal.fire('Ocurrió un error imprevisto', '', 'error');
     });
   }

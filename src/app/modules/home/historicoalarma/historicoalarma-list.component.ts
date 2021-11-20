@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
 import { HistoricoAlarma } from 'src/app/core/models/historicoalarma.model';
@@ -45,28 +46,17 @@ export class HistoricoAlarmaListComponent implements OnInit{
 
   constructor(public HistoricoAlarmaService: HistoricoAlarmaService, public storageService: StorageService) { }
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+ 
   ngOnInit(): void {
-    this.HistoricoAlarmaService.HistoricoAlarmaList(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.alarmas.push(new HistoricoAlarma(item.ID,
-        item.valor,
-        item.descripcion,
-        item.fechaHora,
-        item.valorMinimo,
-        item.valorMaximo,
-        item.dispositivosID,
-        item.dispositivos,
-        item.silobolsasID,
-        item.silobolsas,
-        item.usuariosID,
-        item.usuarios,
-        item.unidadesMedidasID,
-        item.unidadesMedidas,
-        item.tiposNotificacionesID,
-        item.tiposNotificaciones,
-        item.coloresID,
-        item.colores)));
-      this.dataSource = new MatTableDataSource(this.alarmas);
-      console.log('alertas',this.alarmas)
+    this.loadData();
+  }
+
+  loadData(){
+    this.HistoricoAlarmaService.HistoricoAlarmaList(this.storageService.getCurrentUser().productoresID).toPromise().then((response: any) => {    
+      this.dataSource = new MatTableDataSource<HistoricoAlarma>(response);
+      this.dataSource.paginator = this.paginator;
     }).catch(error => {
       console.log('Error al obtener alertas');
     });

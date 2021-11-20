@@ -19,7 +19,6 @@ export class ProductorViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.fechaAltaFormat = formatDate(this.productor.fechaAlta, 'dd-MM-yyyy', 'en-US');
-    //console.log('FEC',this.fechaAltaFormat)
   }
 
   close() {

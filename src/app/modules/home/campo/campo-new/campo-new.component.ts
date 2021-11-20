@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Campo } from '../../../../core/models/campo.model'
 import { CampoService } from '../../../../core/services/campo.service';
-import { Provincia } from '../../../../core/models/provincia.model'
-import { Localidad } from '../../../../core/models/localidades.model'
+import { Provincias } from '../../../../core/models/provincia.model'
+import { Localidades } from '../../../../core/models/localidades.model'
 import { ProvinciaService } from '../../../../core/services/provincia.service';
 import { LocalidadService } from '../../../../core/services/localidad.service';
 import { StorageService } from 'src/app/core/authentication/services/storage.service';
@@ -25,8 +25,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./campo-new.component.css']
 })
 export class CampoNewComponent implements OnInit {
-  provincias: Provincia[] = [];
-  localidades: Localidad[] = [];
+  provincias: Provincias[] = [];
+  localidades: Localidades[] = [];
   unidadesmedidas: UnidadMedida[] = [];
   colores: Color[] = [];
   mediciones: Medicion[] = [];
@@ -49,7 +49,7 @@ export class CampoNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.provinciaService.ProvinciaList().toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.provincias.push(new Provincia(item.id, item.nombre)));
+      respose.forEach((item: any) => this.provincias.push(new Provincias(item.id, item.nombre)));
     }).catch(error => {
       console.log('Error al obtener las provincias');
     });
@@ -66,7 +66,6 @@ export class CampoNewComponent implements OnInit {
       this.dialogRef.close(true);
       Swal.fire('Campo dado de alta!', '', 'success');
     }).catch(responseError => {
-      console.log(responseError);
       this.showError = true;
       this.erroMessage = responseError.error.message;
     });
@@ -75,7 +74,7 @@ export class CampoNewComponent implements OnInit {
   onProvinciaChange(provinciaId: number) {
     this.localidades = [];
     this.localidadService.LocalidadList(provinciaId).toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.localidades.push(new Localidad(item.id, item.nombre, item.CP, item.provinciasID, item.provincias)));
+      respose.forEach((item: any) => this.localidades.push(new Localidades(item.id, item.nombre, item.CP, item.provinciasID, item.provincias)));
     }).catch(error => {
       console.log('Error al obtener las localidades');
     });

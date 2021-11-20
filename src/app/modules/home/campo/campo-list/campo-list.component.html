@@ -10,90 +10,93 @@
 
     <br>
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-      <!-- Descripcion Column -->
-      <ng-container matColumnDef="descripcion">
-        <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Descripcion:</span>
-          {{element.descripcion}}
-        </mat-cell>
-      </ng-container>
+        <!-- Descripcion Column -->
+        <ng-container matColumnDef="descripcion">
+          <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Descripcion:</span>
+            {{element.descripcion}}
+          </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="provincia">
-        <mat-header-cell *matHeaderCellDef> Provincia </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Provincia:</span>
-          {{element.localidades.provincias.nombre}}
-        </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="provincia">
+          <mat-header-cell *matHeaderCellDef> Provincia </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Provincia:</span>
+            {{element.localidades.provincias.nombre}}
+          </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="localidad">
-        <mat-header-cell *matHeaderCellDef> Localidad </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Localidad:</span>
-          {{element.localidades.nombre}}
-        </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="localidad">
+          <mat-header-cell *matHeaderCellDef> Localidad </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Localidad:</span>
+            {{element.localidades.nombre}}
+          </mat-cell>
+        </ng-container>
 
-      <!-- Calle Column -->
-      <ng-container matColumnDef="calle">
-        <mat-header-cell *matHeaderCellDef> Calle </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Calle:</span>
-          {{element.calle}}
-        </mat-cell>
-      </ng-container>
+        <!-- Calle Column -->
+        <ng-container matColumnDef="calle">
+          <mat-header-cell *matHeaderCellDef> Calle </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Calle:</span>
+            {{element.calle}}
+          </mat-cell>
+        </ng-container>
 
-      <!-- altura Column -->
-      <ng-container matColumnDef="altura">
-        <mat-header-cell *matHeaderCellDef> Altura </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Altura:</span>
-          {{element.altura}}
-        </mat-cell>
-      </ng-container>
+        <!-- altura Column -->
+        <ng-container matColumnDef="altura">
+          <mat-header-cell *matHeaderCellDef> Altura </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Altura:</span>
+            {{element.altura}}
+          </mat-cell>
+        </ng-container>
 
-      <!-- Telefono Column -->
-      <ng-container matColumnDef="telefono">
-        <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Telefono:</span>
-          {{element.telefono}}
-        </mat-cell>
-      </ng-container>
-
-
-      <!-- Mail Column -->
-      <ng-container matColumnDef="mail">
-        <mat-header-cell *matHeaderCellDef> Mail </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class="mobile-label">Mail:</span>
-          {{element.mail}}
-        </mat-cell>
-      </ng-container>
+        <!-- Telefono Column -->
+        <ng-container matColumnDef="telefono">
+          <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Telefono:</span>
+            {{element.telefono}}
+          </mat-cell>
+        </ng-container>
 
 
-      <!-- Operation Column -->
-      <ng-container matColumnDef="operations">
-        <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary" (click)="detailsCampo(element)">
-            <mat-icon>description</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" (click)="editCampo(element)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" (click)="deleteCampo(element)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+        <!-- Mail Column -->
+        <ng-container matColumnDef="mail">
+          <mat-header-cell *matHeaderCellDef> Mail </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Mail:</span>
+            {{element.mail}}
+          </mat-cell>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
 
+        <!-- Operation Column -->
+        <ng-container matColumnDef="operations">
+          <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="detailsCampo(element)">
+              <mat-icon>description</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="editCampo(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="deleteCampo(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
   </mat-card-content>
 </mat-card>

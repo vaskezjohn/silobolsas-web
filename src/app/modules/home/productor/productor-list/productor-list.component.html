@@ -1,5 +1,5 @@
 <mat-card>
-	<mat-card-content>
+  <mat-card-content>
 
     <mat-card-title>
       Productores
@@ -11,72 +11,73 @@
     <br>
 
     <div class="example-container mat-elevation-z8">
-        <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 mat-table">
+      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 mat-table">
 
-          <!-- Razón social Column -->
-          <ng-container matColumnDef="razonSocial">
-            <mat-header-cell *matHeaderCellDef> Razón social </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="mobile-label">Razón social:</span>
-              {{element.razonSocial}}
-            </mat-cell>
-          </ng-container>
+        <!-- Razón social Column -->
+        <ng-container matColumnDef="razonSocial">
+          <mat-header-cell *matHeaderCellDef> Razón social </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Razón social:</span>
+            {{element.razonSocial}}
+          </mat-cell>
+        </ng-container>
 
-          <!-- Cuit -->
-          <ng-container matColumnDef="cuit">
-            <mat-header-cell *matHeaderCellDef> CUIT </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="mobile-label">CUIT:</span>
-              {{element.cuit}}
-            </mat-cell>
-          </ng-container>
+        <!-- Cuit -->
+        <ng-container matColumnDef="cuit">
+          <mat-header-cell *matHeaderCellDef> CUIT </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">CUIT:</span>
+            {{element.cuit}}
+          </mat-cell>
+        </ng-container>
 
-          <!-- Mail -->
-          <ng-container matColumnDef="mail">
-            <mat-header-cell *matHeaderCellDef> Mail </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="mobile-label">Mail:</span>
-              {{element.mail}}
-            </mat-cell>
-          </ng-container>
+        <!-- Mail -->
+        <ng-container matColumnDef="mail">
+          <mat-header-cell *matHeaderCellDef> Mail </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Mail:</span>
+            {{element.mail}}
+          </mat-cell>
+        </ng-container>
 
-          <!-- Provincia -->
-          <ng-container matColumnDef="provincia">
-            <mat-header-cell *matHeaderCellDef> Provincia </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="mobile-label">Provincia:</span>
-              {{element.localidad.provincias.nombre}}
-            </mat-cell>
-          </ng-container>
+        <!-- Provincia -->
+        <ng-container matColumnDef="provincia">
+          <mat-header-cell *matHeaderCellDef> Provincia </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Provincia:</span>
+            {{element.localidades.provincias.nombre}}
+          </mat-cell>
+        </ng-container>
 
-          <!-- Localidad -->
-          <ng-container matColumnDef="localidad">
-            <mat-header-cell *matHeaderCellDef> Localidad </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="mobile-label">Localidad:</span>
-              {{element.localidad.nombre}}
-            </mat-cell>
-          </ng-container>
+        <!-- Localidad -->
+        <ng-container matColumnDef="localidad">
+          <mat-header-cell *matHeaderCellDef> Localidad </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Localidad:</span>
+            {{element.localidades.nombre}}
+          </mat-cell>
+        </ng-container>
 
-          <!-- Operation Column -->
-          <ng-container matColumnDef="operations">
-            <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <button mat-icon-button color="primary" (click)="detailsProductor(element)">
-                <mat-icon>description</mat-icon>
-              </button>
-              <button mat-icon-button color="primary" (click)="editProductor(element)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button color="primary" (click)="deleteProductor(element)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
+        <!-- Operation Column -->
+        <ng-container matColumnDef="operations">
+          <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="detailsProductor(element)">
+              <mat-icon>description</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="editProductor(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="deleteProductor(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
     </div>
-	</mat-card-content>
+  </mat-card-content>
 </mat-card>

@@ -1,11 +1,11 @@
-import { Provincia } from "./provincia.model";
+import { Provincias } from "./provincia.model";
 
-export class Localidad {
+export class Localidades {
     constructor (
-        public id: number,
+        public ID: number,
         public nombre: string,
         public CP: number,
         public provinciasID: number,
-        public provincias: Provincia
+        public provincias: Provincias
       ) {}
     }

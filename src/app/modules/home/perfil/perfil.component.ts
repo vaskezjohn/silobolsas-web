@@ -20,7 +20,6 @@ export class PerfilComponent implements OnInit {
     this.user = this.storageService.getCurrentUser();
 
     this.productorService.getByID(this.storageService.getCurrentUser().productoresID).toPromise().then((respose: any) => {
-      console.log(respose);
       this.productor = respose.data;
     }).catch(error => {
       console.log('silobolsa invalida');

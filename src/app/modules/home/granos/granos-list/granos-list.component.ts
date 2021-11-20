@@ -68,7 +68,6 @@ export class GranosListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(grano => {
-      console.log("close",grano);
       if (grano) {
         if (grano.ID == '')
           this.addGrano(grano);

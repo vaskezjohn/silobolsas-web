@@ -59,8 +59,6 @@ export class AlarmaListComponent implements OnInit {
       //this.dataSource = new MatTableDataSource(this.dispositivos);
       this.ordenarPorGrano();
       this.agruparPorGranoYMedida();
-      console.log('Alarmas',this.alarmas)
-
     }).catch(error => {
       console.log('Error al obtener las alarmas', error);
     });
@@ -92,7 +90,6 @@ export class AlarmaListComponent implements OnInit {
   }
 
   editarAlarma(alarma : Alarma){
-    console.log('Alarma seleccionada', alarma)
     this.router.navigate(['/alarma-rangos', alarma.granosID, alarma.unidadesMedidasID]);
   }
 

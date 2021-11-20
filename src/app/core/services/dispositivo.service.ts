@@ -24,6 +24,7 @@ export class DispositivoService {
 
   DispositivoList(productoresID: string) {
     const query = Query.create().filter('Silobolsas/Campos/productoresID', OperatorType.Eq, `${productoresID}`)
+      .orderBy('ID', OrderBy.Desc)
       .expand('Silobolsas', c => c.expand('Campos'))
       .orderBy('insertDate', OrderBy.Asc);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductorAbmComponent } from '../productor-abm/productor-abm.component'
@@ -6,8 +6,9 @@ import { ProductorViewComponent } from '../productor-view/productor-view.compone
 import { Productor } from '../../../../core/models/productor.model';
 import { ProductorService } from '../../../../core/services/productor.service';
 import Swal from 'sweetalert2';
-import { Localidad } from 'src/app/core/models/localidades.model';
-import { Provincia } from 'src/app/core/models/provincia.model';
+import { Localidades } from 'src/app/core/models/localidades.model';
+import { Provincias } from 'src/app/core/models/provincia.model';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -17,39 +18,46 @@ import { Provincia } from 'src/app/core/models/provincia.model';
 })
 export class ProductorListComponent implements OnInit {
 
-  productores: Productor[] =[];
+  productores: Productor[] = [];
   editMode = false;
-  productorEdit: Productor = new Productor('', '', '', '', '', new Date,false,1, new Localidad(1,'',1,4, new Provincia(1,'')) ,'','');
+  productorEdit: Productor = new Productor('', '', '', '', '', new Date, false, 1, new Localidades(1, '', 1, 4, new Provincias(1, '')), '', '');
 
-  displayedColumns: string[] = ['razonSocial', 'cuit', 'mail', 'provincia', 'localidad','operations'];
+  displayedColumns: string[] = ['razonSocial', 'cuit', 'mail', 'provincia', 'localidad', 'operations'];
   dataSource!: MatTableDataSource<Productor>;
   constructor(public dialog: MatDialog, public ProductorService: ProductorService) { }
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   ngOnInit(): void {
-    this.ProductorService.ProductorList().toPromise().then((respose: any) => {
-      respose.forEach((item: any) => this.productores.push(new Productor(item.ID,
-                                                                          item.razonSocial,
-                                                                          item.cuit,
-                                                                          item.telefono,
-                                                                          item.mail,
-                                                                          item.fechaAlta,
-                                                                          item.bajaLogica,
-                                                                          item.localidadesID,
-                                                                          item.localidades,
-                                                                          item.calle,
-                                                                          item.altura)));
-      this.dataSource = new MatTableDataSource(this.productores);
+    this.loadData();
+  }
+
+  loadData() {
+    this.ProductorService.ProductorList().toPromise().then((response: any) => {
+      this.dataSource = new MatTableDataSource<Productor>(response);
+      this.dataSource.paginator = this.paginator;
+      // response.forEach((item: any) => this.productores.push(new Productor(item.ID,
+      //                                                                     item.razonSocial,
+      //                                                                     item.cuit,
+      //                                                                     item.telefono,
+      //                                                                     item.mail,
+      //                                                                     item.fechaAlta,
+      //                                                                     item.bajaLogica,
+      //                                                                     item.localidadesID,
+      //                                                                     item.localidades,
+      //                                                                     item.calle,
+      //                                                                     item.altura)));
+      // this.dataSource = new MatTableDataSource(this.productores);
     }).catch((error: any) => {
       console.log('Error al obtener los productores');
     });
-
   }
 
 
-  deleteProductor(productor: Productor){
+  deleteProductor(productor: Productor) {
     Swal.fire({
-      title:  'Eliminar Productor',
-      text:  '¿Desea eliminar al productor ' + productor.razonSocial +'?',
+      title: 'Eliminar Productor',
+      text: '¿Desea eliminar al productor ' + productor.razonSocial + '?',
       showDenyButton: true,
       confirmButtonText: 'Eliminar',
       denyButtonText: `No, cancelar`,
@@ -67,7 +75,7 @@ export class ProductorListComponent implements OnInit {
     })
   }
 
-  editProductor(productor: Productor){
+  editProductor(productor: Productor) {
     this.productorEdit = productor;
     this.editMode = false;
     this.openModelProductor();
@@ -76,11 +84,11 @@ export class ProductorListComponent implements OnInit {
   newProductor() {
     this.editMode = true;
     const dialogRef = this.dialog.open(ProductorAbmComponent, {
-      data: new Productor('', '', '', '', '', new Date,false,1, new Localidad(1,'',1,4, new Provincia(1,'')) ,'','')
+      data: new Productor('', '', '', '', '', new Date, false, 1, new Localidades(1, '', 1, 4, new Provincias(1, '')), '', '')
     });
     dialogRef.afterClosed().subscribe(respononse => {
-      if (respononse){
-        this.productores =[]
+      if (respononse) {
+        this.productores = []
         this.ngOnInit();
       }
     });
@@ -88,11 +96,10 @@ export class ProductorListComponent implements OnInit {
 
   addProductor(productor: Productor) {
     this.productores.push(productor);
-    this .dataSource.data = this.productores;
+    this.dataSource.data = this.productores;
   }
 
   detailsProductor(productor: Productor) {
-    console.log(productor.fechaAlta)
     const dialogRef = this.dialog.open(ProductorViewComponent, {
       data: productor
     });
@@ -102,7 +109,7 @@ export class ProductorListComponent implements OnInit {
     let productor: Productor;
 
     if (this.editMode)
-      productor = new Productor('', '', '', '', '', new Date,false,1, new Localidad(1,'',1,4, new Provincia(1,'')) ,'','');
+      productor = new Productor('', '', '', '', '', new Date, false, 1, new Localidades(1, '', 1, 4, new Provincias(1, '')), '', '');
     else
       productor = this.productorEdit;
 
@@ -112,7 +119,7 @@ export class ProductorListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(Productor => {
       if (Productor) {
-        if (Productor.ID == '' )
+        if (Productor.ID == '')
           this.addProductor(Productor);
         else if (Productor.ID != '')
           this.updateProductor(Productor);
@@ -121,11 +128,12 @@ export class ProductorListComponent implements OnInit {
   }
 
   updateProductor(productor: Productor) {
+    console.log(productor);
     this.ProductorService.edit(productor.ID, productor).toPromise().then((respose: any) => {
       this.dataSource.data = this.dataSource.data.filter(
         (x) => {
-          if (x.ID == respose.data.id)
-            x = respose;
+          if (x.ID == respose.data.ID)
+            x = respose.data;
           return true;
         });
     }).catch(error => {

@@ -33,9 +33,9 @@ export class SilobolsaInfoDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public dispositivo: Dispositivo) { }
 
   ngOnInit(): void {
-    if (this.dispositivo.id) {
-      this.dispositivoService.DispositivoListByID(this.dispositivo.id).toPromise().then((respose: any) => {
-        console.log(respose);
+    if (this.dispositivo.ID) {
+      this.dispositivoService.DispositivoListByID(this.dispositivo.ID).toPromise().then((respose: any) => {
+        console.log("open",respose);
         respose.ultimasMediciones.forEach((item: any) => {
 
           if (item.unidadesMedidas.id == '525c1f84-3ea7-11ec-b9b8-883882e3ecf6') {
